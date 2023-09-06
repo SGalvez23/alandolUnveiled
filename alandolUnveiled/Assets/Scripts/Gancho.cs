@@ -12,9 +12,12 @@ public class Gancho : MonoBehaviour
     LineRenderer lineRenderer;
     PlayerController controller;
     public bool shot;
-    public int maxRange = 10;
+    public float maxRange = 10f;
     public bool connected = false;
     public List<GameObject> anclajes;
+    RaycastHit2D ray;
+    private bool isAiming;
+    private GameObject brazo;
     
     private void Awake()
     {
@@ -22,29 +25,37 @@ public class Gancho : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         distanceJoint = GetComponent<DistanceJoint2D>();
         distanceJoint.enabled = false;
+        brazo = controller.arm;
     }
 
     private void FixedUpdate()
     {
+        ray = Physics2D.Raycast(controller.MousePos, transform.position, maxRange);
+        Vector3 difference = new Vector3(controller.MousePos.x, controller.MousePos.y) - transform.position;
+        difference.Normalize();
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
+        Debug.DrawRay(controller.MousePos, transform.position, Color.cyan);
+        //isAiming = controller.IsAiming;
+
         if (shot)
         {
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, controller.MousePos);
-            Debug.Log(lineRenderer.GetPosition(0));
-            distanceJoint.connectedAnchor = anclajes[0].transform.position;
-            distanceJoint.enabled = true;
-            lineRenderer.enabled = true;
+            if (ray.collider != null)
+            {
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, ray.collider.transform.position);
+                lineRenderer.enabled = true;
+                distanceJoint.enabled = true;
+                distanceJoint.connectedAnchor = ray.collider.transform.position;
+                distanceJoint.connectedBody = ray.collider.attachedRigidbody;
+            }
         }
-        else if(!shot)
+        else if (!shot)
         {
             distanceJoint.enabled = false;
             lineRenderer.enabled = false;
+            distanceJoint.connectedBody = null;
         }
-        if(distanceJoint.enabled) { lineRenderer.SetPosition(0, transform.position); }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
+        if (distanceJoint.enabled) { lineRenderer.SetPosition(0, transform.position); }
     }
 }

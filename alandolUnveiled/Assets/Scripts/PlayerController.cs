@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
-        sight.transform.localScale = new Vector3(0, 0, 0);
+        sight.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -203,12 +203,14 @@ public class PlayerController : MonoBehaviour
         {
             IsAiming = true;
             sight.transform.localScale = new Vector3(1, 1, 1);
+            sight.SetActive(true);
         }
         else if(context.canceled)
         {
             IsAiming= false;
             g.shot = false;
             sight.transform.localScale = new Vector3(0, 0, 0);
+            sight.SetActive(false);
         }
     }
 
