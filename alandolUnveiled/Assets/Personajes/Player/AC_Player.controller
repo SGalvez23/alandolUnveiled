@@ -743,6 +743,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: mousePos
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -803,17 +809,17 @@ AnimatorStateMachine:
   - {fileID: 8131046578020494918}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -8166687402605698489}
-    second:
-    - {fileID: -4281141161972956617}
-  - first: {fileID: -1924221258899262036}
-    second:
-    - {fileID: -4655782877891845215}
   - first: {fileID: -2060694490168864677}
     second:
     - {fileID: 2476455001687722660}
     - {fileID: -9188030616275021413}
     - {fileID: 966247510184297307}
+  - first: {fileID: -1924221258899262036}
+    second:
+    - {fileID: -4655782877891845215}
+  - first: {fileID: -8166687402605698489}
+    second:
+    - {fileID: -4281141161972956617}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 600, y: 100, z: 0}
   m_EntryPosition: {x: 60, y: 120, z: 0}

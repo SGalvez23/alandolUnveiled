@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    //Variables Moviemiento
     public float walkspeed = 5f;
     public float runspeed = 10f;
     public float airspeed = 15f;
@@ -15,7 +16,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject arm;
     public GameObject sight;
+    public Gancho g;
 
+    //Funcion que define si el personaje se puede mover y a que velocidad
     public float CurrentMoveSpeed
     {
         get
@@ -45,6 +48,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //ANIMACIONES
+   
     [SerializeField]
     private bool _isMoving = false;
     public bool IsMoving
@@ -87,7 +92,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool _isFacingRight = true;
+    [SerializeField]
+    private Vector2 _mousePos;
+    public Vector2 MousePos { get { return _mousePos; } }
+
+    [SerializeField]
+    private bool _isFacingRight = true;
     public bool IsFacingRight
     {
         get { return _isFacingRight; }
@@ -122,9 +132,9 @@ public class PlayerController : MonoBehaviour
         get { return animator.GetBool(AnimationStrings.lockVelocity); }
     }
 
+
     Rigidbody2D rb;
     Animator animator;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -173,6 +183,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //ACCIONES
     public void OnRun(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -196,28 +207,35 @@ public class PlayerController : MonoBehaviour
         else if(context.canceled)
         {
             IsAiming= false;
+            g.shot = false;
             sight.transform.localScale = new Vector3(0, 0, 0);
         }
     }
 
+    //Funcion que obtiene el input del mouse para apuntar
     public void GetPointerInput(InputAction.CallbackContext context)
     {
-        if(IsAiming)
-        {
-            Vector3 mousePos = context.ReadValue<Vector2>();
-            mousePos.z = Camera.main.nearClipPlane;
-            Vector3 cam = Camera.main.ScreenToWorldPoint(mousePos);
+        _mousePos = Mouse.current.position.ReadValue();
+        _mousePos = Camera.main.ScreenToWorldPoint(MousePos);
 
-            Vector3 difference = cam - transform.position;
-            difference.Normalize();
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        Vector3 difference = new Vector3(MousePos.x, MousePos.y) - transform.position;
+        difference.Normalize();
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAiming)
+        {
+            g.shot = true;
+            //Debug.Log(MousePos.magnitude);
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        //todo check if alive
+        //to do check if alive
         if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             animator.SetTrigger(AnimationStrings.jumpTrigger);

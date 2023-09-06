@@ -21,4 +21,5 @@ internal class AnimationStrings
     internal static string hitTrigger = "hit";
     internal static string lockVelocity = "lockVelocity";
     internal static string isAiming = "isAiming";
+    internal static string mousePos = "mousePos";
 }
