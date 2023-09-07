@@ -1,43 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Build;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Gancho : MonoBehaviour
 {
+    Rigidbody2D rb;
     DistanceJoint2D distanceJoint;
     LineRenderer lineRenderer;
     PlayerController controller;
+    public GameObject[] ropeSegments;
+    public int numLinks = 5;
     public bool canConnect;
     public bool shot;
     [SerializeField]
     float maxRange = 100f; //Rango del Gancho
     Vector3 direction;
+    Collider2D currentTarget;
+    private bool isConnected;
 
-    private bool isLeftMousePressed = false;
-    public bool IsConnected
-    {
-        get { return isLeftMousePressed; }
-
-        set
-        {
-            isLeftMousePressed = Mouse.current.leftButton.isPressed;
-        }
-    }
+    public bool hasRan = false;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         controller = GetComponentInParent<PlayerController>();
         lineRenderer = GetComponent<LineRenderer>();
         distanceJoint = GetComponent<DistanceJoint2D>();
         distanceJoint.enabled = false;
         canConnect = true;
+        isConnected = false;
     }
 
     private void FixedUpdate()
@@ -48,12 +39,27 @@ public class Gancho : MonoBehaviour
         Debug.DrawRay(transform.position, direction, Color.cyan);
 
         shot = controller.shot;
-        if (shot && ValidTarget(raycastHit.collider))
+        currentTarget = ValidTarget(raycastHit.collider);
+        lineRenderer.SetPosition(0, transform.position);
+        distanceJoint.connectedAnchor = transform.position;
+
+        if (shot && currentTarget != null && canConnect && !isConnected)
         {
-            EnableLine();
+            DrawLineToCollider(currentTarget);
+            if(!hasRan)
+                GenerateRope();
+            //EnableLine();
         }
-        else if (!shot || !ValidTarget(raycastHit.collider) || !IsConnected)
+        else if (shot && currentTarget is null)
         {
+            canConnect = true;
+            isConnected = false;
+            Debug.Log("miss");
+        }
+        else if (!shot)
+        {
+            canConnect = true;
+            isConnected = false;
             DisableLine();
         }
     }
@@ -62,34 +68,64 @@ public class Gancho : MonoBehaviour
     {
         lineRenderer.enabled = true;
         distanceJoint.enabled = true;
+
+        distanceJoint.maxDistanceOnly = true;
+        distanceJoint.distance = maxRange;
     }
 
     private void DisableLine()
     {
         lineRenderer.enabled = false;
         distanceJoint.enabled = false;
-        distanceJoint.connectedBody = null;
     }
 
-    private bool ValidTarget(Collider2D collider)
+    private Collider2D ValidTarget(Collider2D collider)
     {
-        Collider2D currentTarget;
         while(collider == null) 
         {
-            return false;
+            return null;
         }
 
-        if (collider.CompareTag("Anclaje") && canConnect)
+        if (collider.CompareTag("Anclaje") && !isConnected)
         {
-            currentTarget = collider;
             Debug.Log("valido");
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, currentTarget.transform.position);
-            distanceJoint.connectedAnchor = transform.position;
-            distanceJoint.connectedBody = currentTarget.attachedRigidbody;
-            return true;
+            return collider;
         }
 
-        return false;
+        return null;
+    }
+
+    private void DrawLineToCollider(Collider2D collider)
+    {    
+        lineRenderer.SetPosition(1, collider.transform.position);
+        distanceJoint.connectedBody = collider.attachedRigidbody;
+        canConnect = false;
+        isConnected = true;
+    }
+
+    private void GenerateRope()
+    {
+        Rigidbody2D prevBody = rb;
+
+        for (int i = 0; i < numLinks; i++)
+        {
+            RopeSegment newSeg = Instantiate(ropeSegments[i].GetComponent<RopeSegment>());
+            newSeg.transform.parent = transform;
+            newSeg.transform.position = transform.position;
+            HingeJoint2D hj = newSeg.GetComponent<HingeJoint2D>();
+            hj.connectedBody = prevBody;
+
+            prevBody = newSeg.GetComponent<Rigidbody2D>();
+
+            if(newSeg.gameObject.name == "PedazoFinal(Clone)")
+            {
+                newSeg.connectedBelow = currentTarget.gameObject;
+                newSeg.GetComponent<FixedJoint2D>().connectedBody = currentTarget.attachedRigidbody;
+            }
+        }
+
+        canConnect = false;
+        isConnected = true;
+        hasRan = true;
     }
 }

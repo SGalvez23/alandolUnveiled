@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (context.canceled)
         {
-            shot= false;
+            shot = false;
         }
     }
 

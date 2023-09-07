@@ -280,6 +280,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "HoldAim",
+                    "id": "2da8d018-c65b-42a2-a03f-08183d376945",
+                    "path": "OneModifier",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnterAim",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "733d368e-ad41-4709-8147-cef898ba09e2",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EnterAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "64895c97-3f41-4f5a-a950-66ad6706d7a8",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnterAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "77c97af4-063d-4e01-a263-6c2309a4f1ad",
                     "path": "<Mouse>/position",
@@ -305,6 +338,17 @@
                     "name": "",
                     "id": "4d87af26-8b9d-418d-a72c-b8821102e5c5",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "091d86d1-2f48-4318-963d-176201ae2dfb",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

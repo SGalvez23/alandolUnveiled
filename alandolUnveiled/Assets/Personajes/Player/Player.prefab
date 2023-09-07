@@ -393,9 +393,11 @@ MonoBehaviour:
   arm: {fileID: 4976796248247773614}
   sight: {fileID: 5526056293193143939}
   g: {fileID: 8406227902180509467}
+  shot: 0
   _isMoving: 0
   _isRunning: 0
   _isAiming: 0
+  _mousePos: {x: 0, y: 0}
   _isFacingRight: 1
 --- !u!114 &5127205192057617434
 MonoBehaviour:
@@ -502,10 +504,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c521fe93-6e3e-4e06-a5a7-ef4e59d2a09b
     m_ActionName: Player/Move[/DualSenseGamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0940fccc-4a59-40a3-942a-d7b2a57afd55
-    m_ActionName: Player/Look[/DualSenseGamepadHID/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4108955479133159674}
