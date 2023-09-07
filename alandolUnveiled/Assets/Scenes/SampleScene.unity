@@ -655,9 +655,9 @@ GameObject:
   - component: {fileID: 869043479}
   - component: {fileID: 869043478}
   - component: {fileID: 869043481}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Static Sprite (1)
-  m_TagString: Untagged
+  m_TagString: Anclaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,9 +839,9 @@ GameObject:
   - component: {fileID: 1007449301}
   - component: {fileID: 1007449300}
   - component: {fileID: 1007449303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Static Sprite (2)
-  m_TagString: Untagged
+  m_TagString: Anclaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1213,9 +1213,9 @@ GameObject:
   - component: {fileID: 1534602969}
   - component: {fileID: 1534602968}
   - component: {fileID: 1534602971}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Static Sprite
-  m_TagString: Untagged
+  m_TagString: Anclaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1486,6 +1486,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1344332183254787530, guid: 7edde457900000d4eb49fefc46932a9a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344332183254787530, guid: 7edde457900000d4eb49fefc46932a9a, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2908740785386552991, guid: 7edde457900000d4eb49fefc46932a9a, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
       value: 0.55514145
@@ -1580,9 +1588,9 @@ GameObject:
   - component: {fileID: 1955827690}
   - component: {fileID: 1955827689}
   - component: {fileID: 1955827692}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Static Sprite (3)
-  m_TagString: Untagged
+  m_TagString: Anclaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1764,9 +1772,9 @@ GameObject:
   - component: {fileID: 2131950037}
   - component: {fileID: 2131950036}
   - component: {fileID: 2131950039}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Static Sprite (4)
-  m_TagString: Untagged
+  m_TagString: Anclaje
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

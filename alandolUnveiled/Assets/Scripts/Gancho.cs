@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,51 +14,82 @@ public class Gancho : MonoBehaviour
     DistanceJoint2D distanceJoint;
     LineRenderer lineRenderer;
     PlayerController controller;
+    public bool canConnect;
     public bool shot;
-    public float maxRange = 10f;
-    public bool connected = false;
-    public List<GameObject> anclajes;
-    RaycastHit2D ray;
-    private bool isAiming;
-    private GameObject brazo;
-    
+    [SerializeField]
+    float maxRange = 100f; //Rango del Gancho
+    Vector3 direction;
+
+    private bool isLeftMousePressed = false;
+    public bool IsConnected
+    {
+        get { return isLeftMousePressed; }
+
+        set
+        {
+            isLeftMousePressed = Mouse.current.leftButton.isPressed;
+        }
+    }
+
     private void Awake()
     {
         controller = GetComponentInParent<PlayerController>();
         lineRenderer = GetComponent<LineRenderer>();
         distanceJoint = GetComponent<DistanceJoint2D>();
         distanceJoint.enabled = false;
-        brazo = controller.arm;
+        canConnect = true;
     }
 
     private void FixedUpdate()
     {
-        ray = Physics2D.Raycast(controller.MousePos, transform.position, maxRange);
-        Vector3 difference = new Vector3(controller.MousePos.x, controller.MousePos.y) - transform.position;
-        difference.Normalize();
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
-        Debug.DrawRay(controller.MousePos, transform.position, Color.cyan);
-        //isAiming = controller.IsAiming;
+        direction = new Vector3(controller.MousePos.x, controller.MousePos.y) - transform.position;
+        direction.Normalize();
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, direction, maxRange);
+        Debug.DrawRay(transform.position, direction, Color.cyan);
 
-        if (shot)
+        shot = controller.shot;
+        if (shot && ValidTarget(raycastHit.collider))
         {
-            if (ray.collider != null)
-            {
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, ray.collider.transform.position);
-                lineRenderer.enabled = true;
-                distanceJoint.enabled = true;
-                distanceJoint.connectedAnchor = ray.collider.transform.position;
-                distanceJoint.connectedBody = ray.collider.attachedRigidbody;
-            }
+            EnableLine();
         }
-        else if (!shot)
+        else if (!shot || !ValidTarget(raycastHit.collider) || !IsConnected)
         {
-            distanceJoint.enabled = false;
-            lineRenderer.enabled = false;
-            distanceJoint.connectedBody = null;
+            DisableLine();
         }
-        if (distanceJoint.enabled) { lineRenderer.SetPosition(0, transform.position); }
+    }
+
+    private void EnableLine()
+    {
+        lineRenderer.enabled = true;
+        distanceJoint.enabled = true;
+    }
+
+    private void DisableLine()
+    {
+        lineRenderer.enabled = false;
+        distanceJoint.enabled = false;
+        distanceJoint.connectedBody = null;
+    }
+
+    private bool ValidTarget(Collider2D collider)
+    {
+        Collider2D currentTarget;
+        while(collider == null) 
+        {
+            return false;
+        }
+
+        if (collider.CompareTag("Anclaje") && canConnect)
+        {
+            currentTarget = collider;
+            Debug.Log("valido");
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, currentTarget.transform.position);
+            distanceJoint.connectedAnchor = transform.position;
+            distanceJoint.connectedBody = currentTarget.attachedRigidbody;
+            return true;
+        }
+
+        return false;
     }
 }

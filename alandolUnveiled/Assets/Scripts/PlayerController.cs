@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject arm;
     public GameObject sight;
     public Gancho g;
+    public bool shot;
 
     //Funcion que define si el personaje se puede mover y a que velocidad
     public float CurrentMoveSpeed
@@ -207,8 +208,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(context.canceled)
         {
-            IsAiming= false;
-            g.shot = false;
+            IsAiming = false;
+
             sight.transform.localScale = new Vector3(0, 0, 0);
             sight.SetActive(false);
         }
@@ -230,8 +231,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && IsAiming)
         {
-            g.shot = true;
+            shot = true;
             //Debug.Log(MousePos.magnitude);
+        }
+        else if (context.canceled)
+        {
+            shot= false;
         }
     }
 

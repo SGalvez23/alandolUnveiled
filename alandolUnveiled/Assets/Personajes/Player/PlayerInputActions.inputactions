@@ -204,17 +204,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
                     "path": "<Joystick>/trigger",
                     "interactions": "",
@@ -315,7 +304,7 @@
                 {
                     "name": "",
                     "id": "4d87af26-8b9d-418d-a72c-b8821102e5c5",
-                    "path": "<Mouse>/middleButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
