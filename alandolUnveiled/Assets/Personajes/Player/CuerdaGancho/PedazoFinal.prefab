@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9210624703638916672}
   - component: {fileID: 6365756313477574613}
   - component: {fileID: 6445847140774052545}
-  - component: {fileID: -977570909924036282}
   m_Layer: 0
   m_Name: PedazoFinal
   m_TagString: Cuerda
@@ -137,7 +136,7 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 1
+  m_UseLimits: 0
   m_AngleLimits:
     m_LowerAngle: 60
     m_UpperAngle: -60
@@ -200,22 +199,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectedAbove: {fileID: 0}
   connectedBelow: {fileID: 0}
---- !u!255 &-977570909924036282
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922511804595620167}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_DampingRatio: 0
-  m_Frequency: 0

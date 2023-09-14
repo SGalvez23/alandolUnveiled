@@ -128,9 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8464787945951612406}
   - component: {fileID: 971217969630152397}
-  - component: {fileID: 2164458887421425691}
-  - component: {fileID: 3446199825033478153}
-  - component: {fileID: 5676190771812490189}
+  - component: {fileID: 3778558392245151392}
   - component: {fileID: 8297420050646169997}
   m_Layer: 7
   m_Name: PuntaGancho
@@ -206,76 +204,109 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &2164458887421425691
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319790446536745688}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &3446199825033478153
+--- !u!114 &3778558392245151392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5319790446536745688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 391f7e2bbe47c7f43af6e8a60d8e47b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d8f6651fae200f43919fdb84815a288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeSegments:
-  - {fileID: 5922511804595620167, guid: 37e1e58d85d20dd4183b22f7729f0431, type: 3}
-  - {fileID: 5922511804595620167, guid: 30fa7775fc1d64b4585b63134be22ad1, type: 3}
-  - {fileID: 5922511804595620167, guid: 19e11c9304e0d2b4eb25c02eb44ec60f, type: 3}
-  - {fileID: 5922511804595620167, guid: 31369d591baa85d4ba4f7e46a79ab7a5, type: 3}
-  - {fileID: 5922511804595620167, guid: abd0fed8653d73e438832f881035e584, type: 3}
-  numLinks: 5
-  canConnect: 0
-  shot: 0
-  maxRange: 10
-  ran: 0
---- !u!232 &5676190771812490189
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319790446536745688}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 1.8025501, y: -0.099999815}
-  m_AutoConfigureDistance: 1
-  m_Distance: 0.005
-  m_MaxDistanceOnly: 0
+  controller: {fileID: 0}
+  lr: {fileID: 8297420050646169997}
+  percision: 40
+  straightenLineSpeed: 0
+  ropeAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.13081768
+      value: -0.05716638
+      inSlope: -0.038833275
+      outSlope: -0.038833275
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.61620337
+      outWeight: 0.16565119
+    - serializedVersion: 3
+      time: 0.244752
+      value: 0.104596704
+      inSlope: -0.0015024565
+      outSlope: -0.0015024565
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6567328
+      outWeight: 0.03697325
+    - serializedVersion: 3
+      time: 0.362328
+      value: -0.11045332
+      inSlope: 0.004755276
+      outSlope: 0.004755276
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.7493773
+      outWeight: 0.7313897
+    - serializedVersion: 3
+      time: 0.46827185
+      value: -0.00667198
+      inSlope: 0.05411284
+      outSlope: 0.05411284
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16225135
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  StartWaveSize: 3
+  ropeProgressionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ropeProgressionSpeed: 20
+  isGrappling: 1
 --- !u!120 &8297420050646169997
 LineRenderer:
   serializedVersion: 2
@@ -284,7 +315,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5319790446536745688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -323,7 +354,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -341,8 +372,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 0.4481132, b: 0.92826754, a: 1}
+      key1: {r: 1, g: 0.4481132, b: 0.92826754, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -365,12 +396,12 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
+      m_Mode: 1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 1
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
