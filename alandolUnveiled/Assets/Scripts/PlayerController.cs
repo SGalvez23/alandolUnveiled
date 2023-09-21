@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     int maxRange = 250;
     Vector3 mouseOnScreen;
     Vector3 difference;
+    Vector3 joysitckOnScreen;
 
     public Transform gunHolder;
     public Transform gunPivot;
@@ -196,6 +197,14 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField]
+    private Vector2 _joystickPos;
+    public Vector2 JoyStickPos
+    {
+        get { return _joystickPos; }
+        private set { _joystickPos = value; }
+    }
+
+    [SerializeField]
     private bool _isFacingRight = true;
     public bool IsFacingRight
     {
@@ -237,6 +246,19 @@ public class PlayerController : MonoBehaviour
         mouseOnScreen = Camera.main.ScreenToWorldPoint(MousePos);
         difference = new Vector3(mouseOnScreen.x, mouseOnScreen.y) - transform.position;
         Debug.DrawRay(firePoint.position, difference.normalized, Color.yellow);
+
+        if (IsAiming)
+        {
+            //difference.Normalize();
+            //float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            //arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
+
+            joysitckOnScreen = Camera.main.ScreenToWorldPoint(JoyStickPos);
+            Vector3 joyDiff = new Vector3(joysitckOnScreen.x, joysitckOnScreen.y) - transform.position;
+            joyDiff.Normalize();
+            float rotZ = Mathf.Atan2(joyDiff.y, joyDiff.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.Euler(0f, 0, rotZ + 90);
+        }
     }
 
     //INPUTS
@@ -276,16 +298,11 @@ public class PlayerController : MonoBehaviour
             IsAiming = true;
             sight.transform.localScale = new Vector3(1, 1, 1);
             sight.SetActive(true);
-
-            SetGrapplePoint();
         }
         else if(context.canceled)
         {
             IsAiming = false;
             sight.SetActive(false);
-
-            sj.enabled = false;
-            hookRope.enabled = false;
         }
     }
 
@@ -293,10 +310,12 @@ public class PlayerController : MonoBehaviour
     public void GetPointerInput(InputAction.CallbackContext context)
     {
         MousePos = context.ReadValue<Vector2>();
+    }
 
-        difference.Normalize();
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
+    public void GetJoystickInput(InputAction.CallbackContext context)
+    {
+        JoyStickPos = context.ReadValue<Vector2>();
+        Debug.Log(JoyStickPos);
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -304,12 +323,15 @@ public class PlayerController : MonoBehaviour
         if (context.started && IsAiming)
         {
             shot = true;
+            SetGrapplePoint();
             //configurar animacion
         }
         else if (context.canceled)
         {
             shot = false;
             rb.gravityScale = 1;
+            sj.enabled = false;
+            hookRope.enabled = false;
         }
     }
 

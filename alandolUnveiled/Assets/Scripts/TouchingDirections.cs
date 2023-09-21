@@ -28,8 +28,13 @@ public class TouchingDirections : MonoBehaviour
         }
     }
 
+    //Solucionar:
+    //Cualquier objeto en el layer de ground que toque el eje x del jugador lo detectara como pared
+    //incluso si no es una pared, una rampa por ej.
     [SerializeField]
     private bool _isOnWall = false;
+    //Se determina la direccion de la pared tomando como referencia hacia donde esta viendo el jugador
+    private Vector2 wallDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
     public bool IsOnWall
     {
         get { return _isOnWall; }
@@ -42,7 +47,6 @@ public class TouchingDirections : MonoBehaviour
 
     [SerializeField]
     private bool _isOnCeiling = false;
-    private Vector2 wallDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
 
     public bool IsOnCeiling
     {
@@ -59,18 +63,12 @@ public class TouchingDirections : MonoBehaviour
         touchingCol = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         IsGrounded = touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0;
         IsOnWall = touchingCol.Cast(wallDirection, castFilter, wallHits, wallDistance) > 0;
-        IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
+        //IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
     }
 }
 
