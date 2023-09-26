@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HookRope : MonoBehaviour
 {
-    public PlayerController controller;
+    public AnnoraController controller;
     public LineRenderer lr;
 
     [SerializeField] private int percision = 40;

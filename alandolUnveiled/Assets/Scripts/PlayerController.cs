@@ -4,57 +4,40 @@ using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(SpringJoint2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    //Scripts
-    public HookRope hookRope;
-
     //Variables Moviemiento
     public float walkspeed = 7f;
     public float runspeed = 10f;
     public float airspeed = 12f;
     public float jumpImpulse = 10f;
-    Vector2 moveInput;
+    protected Vector2 moveInput;
     //para saber contra que esta colisionando y actualizar la animacion
-    TouchingDirections touchingDirections;
+    protected TouchingDirections touchingDirections;
 
     //Fisicas
-    SpringJoint2D sj;
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     //Animacion
-    Animator animator;
+    public Animator animator;
 
-    //Gancho
+    //Apuntado
     public GameObject arm;
+    public Transform firePoint;
     public GameObject sight;
     public bool shot;
-    int maxRange = 250;
-    Vector3 mouseOnScreen;
-    Vector3 difference;
-    Vector3 joysitckOnScreen;
-
-    public Transform gunHolder;
-    public Transform gunPivot;
-    public Transform firePoint;
-    public Vector2 grapplePoint;
-    public Vector2 grappleDistanceVector;
-    bool launchToPoint = true;
-    float launchSpeed = 0.5f;
-    public bool infiniteRange = false;
-    private float targetDistance = 3;
-    private float targetFrequncy = 1;
+    protected int maxRange = 250;
+    protected Vector3 mouseOnScreen;
+    protected Vector3 difference;
+    protected Vector3 joysitckOnScreen;
 
     private void Awake()
     {
-        sj = GetComponent<SpringJoint2D>();
-        sj.enabled = false;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         sight.SetActive(false);
-        hookRope.enabled = false;
     }
 
     //Funcion que define a que velocidad se mueve el personaje
@@ -93,54 +76,6 @@ public class PlayerController : MonoBehaviour
         else if (moveInput.x < 0 && IsFacingRight)
         {
             IsFacingRight = false;
-        }
-    }
-
-    //Funcion que coloca el punto final del gancho
-    void SetGrapplePoint()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, difference.normalized, 1<<11);
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.transform.gameObject.name);
-            if (Vector2.Distance(hit.point, firePoint.position) <= maxRange && hit.collider.CompareTag("Anclaje") || infiniteRange)
-            {
-                grapplePoint = hit.point;
-                grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                hookRope.enabled = true;
-
-            }
-        }
-    }
-
-    //Funcion que modifica el springJoint2D simular el agarre del gancho
-    public void Grapple()
-    {
-        sj.autoConfigureDistance = false;
-        if(!launchToPoint && !sj.autoConfigureDistance)
-        {
-            sj.distance = targetDistance;
-            sj.frequency = targetFrequncy;
-        }
-
-        if(!launchToPoint)
-        {
-            if (sj.autoConfigureDistance)
-            {
-                sj.autoConfigureDistance = true;
-                sj.frequency = 0;
-            }
-
-            sj.connectedAnchor = grapplePoint;
-            sj.enabled = true;
-        }
-        else
-        {
-            sj.connectedAnchor = grapplePoint;
-            Vector2 distance = firePoint.position - gunHolder.position;
-            sj.distance = distance.magnitude;
-            sj.frequency = launchSpeed;
-            sj.enabled = true;
         }
     }
 
@@ -243,21 +178,27 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
 
-        mouseOnScreen = Camera.main.ScreenToWorldPoint(MousePos);
-        difference = new Vector3(mouseOnScreen.x, mouseOnScreen.y) - transform.position;
-        Debug.DrawRay(firePoint.position, difference.normalized, Color.yellow);
-
         if (IsAiming)
         {
-            //difference.Normalize();
-            //float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            //arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ + 90);
+            mouseOnScreen = Camera.main.ScreenToWorldPoint(MousePos);
+            difference = new Vector3(mouseOnScreen.x, mouseOnScreen.y) - transform.position;
+            difference.Normalize();
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+            if(!IsFacingRight)
+            {
+                rotationZ += 180;
+            }
+
+            arm.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+
+            Debug.DrawRay(firePoint.position, difference.normalized, Color.red);
 
             joysitckOnScreen = Camera.main.ScreenToWorldPoint(JoyStickPos);
             Vector3 joyDiff = new Vector3(joysitckOnScreen.x, joysitckOnScreen.y) - transform.position;
             joyDiff.Normalize();
             float rotZ = Mathf.Atan2(joyDiff.y, joyDiff.x) * Mathf.Rad2Deg;
-            arm.transform.rotation = Quaternion.Euler(0f, 0, rotZ + 90);
+            //arm.transform.rotation = Quaternion.Euler(0f, 0, rotZ + 90);
         }
     }
 
@@ -316,23 +257,6 @@ public class PlayerController : MonoBehaviour
     {
         JoyStickPos = context.ReadValue<Vector2>();
         Debug.Log(JoyStickPos);
-    }
-
-    public void OnShoot(InputAction.CallbackContext context)
-    {
-        if (context.started && IsAiming)
-        {
-            shot = true;
-            SetGrapplePoint();
-            //configurar animacion
-        }
-        else if (context.canceled)
-        {
-            shot = false;
-            rb.gravityScale = 1;
-            sj.enabled = false;
-            hookRope.enabled = false;
-        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
