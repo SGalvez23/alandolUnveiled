@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
 public class EnemyController : MonoBehaviour
 {
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
+    Damageable damageable;
     Animator animator;
+    public Slider healthBar;
 
     public float walkspeed = 3f;
     public float walkStopRate = 0.05f;
@@ -64,7 +67,9 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
+        damageable = GetComponent<Damageable>();
         animator = GetComponent<Animator>();
+        healthBar = GetComponentInChildren<Slider>();
     }
 
     private void FixedUpdate()
@@ -78,6 +83,8 @@ public class EnemyController : MonoBehaviour
             rb.velocity = new Vector2(walkspeed * walkDirVector.x, rb.velocity.y);
         else
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+
+        healthBar.value = damageable.Health;
     }
 
     private void Update()

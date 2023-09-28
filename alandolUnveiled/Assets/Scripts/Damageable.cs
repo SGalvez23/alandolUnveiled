@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Damageable : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Damageable : MonoBehaviour
     Animator animator;
     [SerializeField]
     private float _maxHealth = 100;
+    public Image healthBar;
 
     public float MaxHealth
     {
@@ -70,7 +72,10 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
 
-
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Hit(20, new Vector2(-3, 1));
+        }
     }
 
     public bool Hit(float damage, Vector2 knockback)
@@ -82,6 +87,7 @@ public class Damageable : MonoBehaviour
 
             animator.SetTrigger(AnimationStrings.hitTrigger);
             damagableHit?.Invoke(damage, knockback);
+            healthBar.fillAmount = _health / 100f;
 
             return true;
         }

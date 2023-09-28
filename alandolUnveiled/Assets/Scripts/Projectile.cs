@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    EnemyController enemy;
     public float speed = 10;
+    public float dmg = 15;
     public Vector3 launchOffset;
     public bool thrown;
 
@@ -30,5 +32,14 @@ public class Projectile : MonoBehaviour
         {
             transform.position += -transform.right * speed * Time.deltaTime;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        enemy = collision.collider.GetComponent<EnemyController>();
+        enemy.GetComponent<Damageable>().Health -= dmg;
+        //enemy.healthBar.value -= dmg;
+
+        Debug.Log(collision.gameObject);
     }
 }
