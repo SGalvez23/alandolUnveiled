@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     protected Vector2 moveInput;
     //para saber contra que esta colisionando y actualizar la animacion
     protected TouchingDirections touchingDirections;
+    protected Damageable damageable;
 
     //Fisicas
     protected Rigidbody2D rb;

@@ -28,18 +28,18 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!thrown) 
+        if(thrown) 
         {
-            transform.position += -transform.right * speed * Time.deltaTime;
+            transform.position += transform.right * speed * Time.deltaTime;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        enemy = collision.collider.GetComponent<EnemyController>();
-        enemy.GetComponent<Damageable>().Health -= dmg;
-        //enemy.healthBar.value -= dmg;
-
-        Debug.Log(collision.gameObject);
+        if (collision.collider.CompareTag("Enemigo"))
+        {
+            enemy = collision.collider.GetComponent<EnemyController>();
+            enemy.ModifyHealth(dmg);
+        }
     }
 }

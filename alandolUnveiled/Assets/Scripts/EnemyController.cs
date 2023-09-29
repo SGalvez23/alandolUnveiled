@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour
         else
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
 
-        healthBar.value = damageable.Health;
+        healthBar.value = damageable.Health / 100;
     }
 
     private void Update()
@@ -106,5 +106,10 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError("error");
         }
+    }
+
+    public void ModifyHealth(float dmg)
+    {
+        damageable.Health -= dmg;
     }
 }

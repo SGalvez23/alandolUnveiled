@@ -27,34 +27,7 @@ public class MiloController : PlayerController
         if (IsAiming)
         {
             MouseOnScreen();
-            CalcVecThrow();
-            SetArrow();
         }
-        else if (!IsAiming)
-        {
-            RemoveArrow();
-        }
-    }
-
-    void CalcVecThrow()
-    {
-        //Vector2 distance = mouseOnScreen - this.transform.position;
-        //throwVector = -distance.normalized * 100;
-        throwVector = difference;
-    }
-
-    void SetArrow()
-    {
-        lr.positionCount = 2;
-        lr.SetPosition(0, firePoint.transform.position);
-        //lr.SetPosition(1, throwVector.normalized / 2);
-        lr.SetPosition(1, throwVector);
-        lr.enabled = true;
-    }
-
-    void RemoveArrow()
-    {
-        lr.enabled = false;
     }
 
     void ThrowObj()
@@ -67,7 +40,6 @@ public class MiloController : PlayerController
     {
         if (context.started)
         {
-            RemoveArrow();
             ThrowObj();
         }
     }

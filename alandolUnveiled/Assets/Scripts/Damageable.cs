@@ -76,6 +76,9 @@ public class Damageable : MonoBehaviour
         {
             Hit(20, new Vector2(-3, 1));
         }
+
+        if(!IsAlive)
+            Destroy(gameObject);
     }
 
     public bool Hit(float damage, Vector2 knockback)
