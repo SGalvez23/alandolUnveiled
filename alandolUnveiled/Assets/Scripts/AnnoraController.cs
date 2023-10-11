@@ -25,7 +25,13 @@ public class AnnoraController : MonoBehaviour
 
     public GameObject arm;
     public GameObject sight;
+<<<<<<< Updated upstream:alandolUnveiled/Assets/Scripts/AnnoraController.cs
     public bool shot;
+=======
+    protected Vector3 mouseOnScreen;
+    protected Vector3 difference;
+    protected Vector3 joysitckOnScreen;
+>>>>>>> Stashed changes:alandolUnveiled/Assets/Scripts/PlayerControllers/PlayerController.cs
 
     private void Awake()
     {

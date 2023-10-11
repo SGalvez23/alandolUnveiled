@@ -70,6 +70,10 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
 
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
 
     }
 
