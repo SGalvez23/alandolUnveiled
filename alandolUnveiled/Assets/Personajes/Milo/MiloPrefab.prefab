@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231936636427607334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5332523378148340664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4286884031464710220}
+  m_Layer: 0
+  m_Name: leftHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4286884031464710220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332523378148340664}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.9, y: -1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8231936636427607334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7513316911805560605
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,6 +100,7 @@ Transform:
   m_Children:
   - {fileID: 7466960728233246029}
   - {fileID: 1755108378553531286}
+  - {fileID: 4286884031464710220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6776876725750266809
@@ -85,9 +117,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 7466960728233246029}
   viejonCheck: {fileID: 1755108378553531286}
+  leftHand: {fileID: 4286884031464710220}
   playerData: {fileID: 11400000, guid: 4592ef04ee246304a8564fb2248918a6, type: 2}
-  viejon: {fileID: 3342070809693042358, guid: 2150e5d3591889d4ebe60c5f3bf6212f, type: 3}
-  placed: 0
+  A1Prefab: {fileID: 3342070809693042358, guid: 2150e5d3591889d4ebe60c5f3bf6212f, type: 3}
+  appliedA1: 0
+  A2Prefab: {fileID: 5364852603951236565, guid: 69047bdbfe2acc74898d3f7cdba74b69, type: 3}
+  appliedA2: 0
+  A3Prefab: {fileID: 8987957660714348027, guid: fd035bd4774b18040a6119a597c04458, type: 3}
+  appliedA3: 0
+  A4Prefab: {fileID: 6276921547740396782, guid: 9fb5954123203c945981bd7e62760f2b, type: 3}
+  appliedA4: 0
+  sarten: {fileID: 5364852603951236565, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
+  crosshair: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
   healthUI: {fileID: 0}
 --- !u!114 &1972803517840376767
 MonoBehaviour:
@@ -103,6 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputBuffer: 0.2
   ability1InputStartTime: 0
+  ability2InputStartTime: 0
+  ability3InputStartTime: 0
+  ability4InputStartTime: 0
 --- !u!114 &6980476928454403161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,15 +213,51 @@ MonoBehaviour:
     m_ActionId: 99be681d-606f-47a6-b1d6-b4c6bd8463c8
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnEnterAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 35698748-919f-4083-9adc-9f4252af2cdf
     m_ActionName: Player/EnterAim[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9302f0b3-3d0e-4f64-a2a1-ce89dfc4c359
     m_ActionName: Player/Aim[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f4526d4e-39b5-4405-ad04-1c07da31632f
     m_ActionName: Player/Shoot[/Mouse/leftButton,/Keyboard/q]
   - m_PersistentCalls:
@@ -236,6 +316,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: efea6b11-3800-4fb8-8f2a-b4eb928ae384
     m_ActionName: Player/A1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b3efa931-a319-4f2c-8b4f-efdd4a91b4e0
+    m_ActionName: Player/A2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c579c1ab-2950-4919-a80f-ae293814caa6
+    m_ActionName: Player/A3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1972803517840376767}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 404e83ef-5969-4fa4-8fab-040fc6918bd1
+    m_ActionName: Player/A4[/Keyboard/4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

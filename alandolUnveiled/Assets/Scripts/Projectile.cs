@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
+        thrown = true;
         rb = GetComponent<Rigidbody2D>();
 
         if (thrown)

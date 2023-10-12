@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public PlayerLandedState LandedState { get; private set; }
     public MiloAimState BasicAtkState { get; private set; }
     public Milo_A1State ViejonState { get; private set; }
+    public Milo_A2State RojoVivoState { get; private set; }
+    public Milo_A3State CheveState { get; private set; }
+    public Milo_A4State CarnitaAsadaState { get; private set; }
     #endregion
 
     #region Componentes
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    #region PlayerData
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDir { get; private set; }
 
@@ -42,12 +46,21 @@ public class Player : MonoBehaviour
     private PlayerData playerData;
 
     private Vector2 workspace;
+    #endregion
 
-    public GameObject viejon;
-    public bool placed;
+    #region Abilities
+    public GameObject A1Prefab;
+    public bool appliedA1;
+    public Projectile A2Prefab;
+    public bool appliedA2;
+    public Projectile A3Prefab;
+    public bool appliedA3;
+    public Projectile A4Prefab;
+    public bool appliedA4;
 
     public Projectile sarten;
     public GameObject crosshair;
+    #endregion
 
     public Image healthUI;
 
@@ -63,6 +76,9 @@ public class Player : MonoBehaviour
         LandedState = new PlayerLandedState(this, StateMachine, playerData, "landed");
         ViejonState = new Milo_A1State(this, StateMachine, playerData, "viejon");
         BasicAtkState = new MiloAimState(this, StateMachine, playerData, "aiming");
+        RojoVivoState = new Milo_A2State(this, StateMachine, playerData, "rojoVivo");
+        CheveState = new Milo_A3State(this, StateMachine, playerData, "buff");
+        CarnitaAsadaState = new Milo_A4State(this, StateMachine, playerData, "buff");
 
         FacingDir = 1;
     }
@@ -150,22 +166,9 @@ public class Player : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-    public void PlaceViejon()
-    {
-        Instantiate(viejon, viejonCheck.position, Quaternion.identity);
-        placed = true;
-    }
+    #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Invoke("Heal", 1);
-    }
-
-    public void Heal()
-    {
-        playerData.health += 10;
-    }
-
+    #region BasicAtk
     public void MiloBasicAtk()
     {
         Projectile s = Instantiate(sarten, leftHand.position, Quaternion.identity);
@@ -181,6 +184,49 @@ public class Player : MonoBehaviour
     {
         crosshair.SetActive(false);
     }
+    #endregion
 
+    #region A1
+    public void PlaceViejon()
+    {
+        Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
+        appliedA1 = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Invoke("Heal", 1);
+    }
+    //modificar, no funciona bien el heal
+    public void Heal()
+    {
+        playerData.health += 10;
+    }
+    #endregion
+
+    #region A2
+    public void ApplyA2()
+    {
+        Debug.Log("A2");
+        appliedA2 = true;
+    }
+    #endregion
+
+    #region A3
+    public void CookCheve()
+    {
+        Instantiate(A3Prefab, leftHand.position, Quaternion.identity);
+        appliedA3 = true;
+        Debug.Log("A3");
+    }
+    #endregion
+
+    #region A4
+    public void CookCarnita()
+    {
+        Instantiate(A4Prefab, leftHand.position, Quaternion.identity);
+        appliedA4 = true;
+        Debug.Log("A4");
+    }
     #endregion
 }

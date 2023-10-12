@@ -30,7 +30,7 @@ public class Milo_A1State : PlayerAbilityState
     {
         base.Update();
 
-        if (player.placed)
+        if (player.appliedA1)
             isDone = true;
     }
 
