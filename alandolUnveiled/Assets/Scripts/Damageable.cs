@@ -72,11 +72,6 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Hit(20, new Vector2(-3, 1));
-        }
-
         if(!IsAlive)
             Destroy(gameObject);
     }
