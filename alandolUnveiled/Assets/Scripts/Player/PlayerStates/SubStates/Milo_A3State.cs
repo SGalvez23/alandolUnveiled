@@ -18,7 +18,12 @@ public class Milo_A3State : PlayerAbilityState
         CanUse = false;
         player.InputHandler.UseA3Input();
         player.CookCheve();
+        //player.Throw(player.BasicAtkState.Velocity, player.projectileIndex);
+    }
 
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void Update()

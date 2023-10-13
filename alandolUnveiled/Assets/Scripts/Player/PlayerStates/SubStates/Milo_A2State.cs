@@ -18,6 +18,12 @@ public class Milo_A2State : PlayerAbilityState
         CanUse = false;
         player.InputHandler.UseA2Input();
         player.ApplyA2();
+        //player.Throw(player.BasicAtkState.Velocity, player.projectileIndex);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void Update()

@@ -10,6 +10,9 @@ public class PlayerInAirState : PlayerState
     private bool jumpInputStop;
     private bool coyoteTime;
     private bool isJumping;
+    private bool ability2Input;
+    private bool ability3Input;
+    private bool ability4Input;
 
     public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
@@ -46,6 +49,9 @@ public class PlayerInAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
         jumpInputStop = player.InputHandler.JumpInputStop;
+        ability2Input = player.InputHandler.Ability2Input;
+        ability3Input = player.InputHandler.Ability3Input;
+        ability4Input = player.InputHandler.Ability4Input;
 
         CheckJumpMultiplier();
 
@@ -56,6 +62,21 @@ public class PlayerInAirState : PlayerState
         else if (jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
+        }
+        else if (ability2Input) // && player.RojoVivoState.CanUse2() -- ajustar CanUse2, no funciona
+        {
+            player.InputHandler.UseA2Input();
+            stateMachine.ChangeState(player.RojoVivoState);
+        }
+        else if (ability3Input)
+        {
+            player.InputHandler.UseA3Input();
+            stateMachine.ChangeState(player.CheveState);
+        }
+        else if (ability4Input)
+        {
+            player.InputHandler.UseA4Input();
+            stateMachine.ChangeState(player.CarnitaAsadaState);
         }
         else
         {

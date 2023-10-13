@@ -18,6 +18,12 @@ public class Milo_A4State : PlayerAbilityState
         CanUse = false;
         player.InputHandler.UseA4Input();
         player.CookCarnita();
+        //player.Throw(player.BasicAtkState.Velocity, player.projectileIndex);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void Update()

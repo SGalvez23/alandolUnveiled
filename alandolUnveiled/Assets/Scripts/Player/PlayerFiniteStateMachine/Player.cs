@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public LineRenderer LineRenderer { get; private set; }
     #endregion
 
     #region Check Transforms
@@ -33,8 +34,9 @@ public class Player : MonoBehaviour
     private Transform groundCheck;
     [SerializeField]
     private Transform viejonCheck;
+    public Transform leftHand;
     [SerializeField]
-    private Transform leftHand;
+    private Transform sartenPrefab;
 
     #endregion
 
@@ -49,17 +51,21 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Abilities
+    public List<Projectile> projectiles = new List<Projectile>();
+    public int ProjectileIndex { get; set; }
     public GameObject A1Prefab;
     public bool appliedA1;
-    public Projectile A2Prefab;
+    public GameObject A2Prefab;
     public bool appliedA2;
-    public Projectile A3Prefab;
+    public GameObject A3Prefab;
     public bool appliedA3;
-    public Projectile A4Prefab;
+    public GameObject A4Prefab;
     public bool appliedA4;
 
-    public Projectile sarten;
+    public GameObject sarten;
     public GameObject crosshair;
+    private float trajectoryTimeStep = 0.05f;
+    private int trajectoryStepCount = 15;
     #endregion
 
     public Image healthUI;
@@ -88,6 +94,7 @@ public class Player : MonoBehaviour
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
+        LineRenderer = GetComponent<LineRenderer>();
 
         StateMachine.Initialize(IdleState);
     }
@@ -107,6 +114,7 @@ public class Player : MonoBehaviour
         if (InputHandler.IsAiming)
         {
             crosshair.transform.position = InputHandler.MouseInput;
+            DrawTrajectory();
         }
     }
 
@@ -169,9 +177,29 @@ public class Player : MonoBehaviour
     #endregion
 
     #region BasicAtk
-    public void MiloBasicAtk()
+    public void DrawTrajectory()
     {
-        Projectile s = Instantiate(sarten, leftHand.position, Quaternion.identity);
+        Vector3[] positions = new Vector3[trajectoryStepCount];
+        for (int i = 0; i < trajectoryStepCount; i++)
+        {
+            float t = i * trajectoryTimeStep;
+            Vector3 pos = (Vector2)leftHand.position + BasicAtkState.Velocity * t + 0.5f * Physics2D.gravity * t;
+
+            positions[i] = pos;
+        }
+
+        LineRenderer.positionCount = trajectoryStepCount;
+        LineRenderer.SetPositions(positions);
+    }
+
+    public void Throw(Vector2 vel, int projectile)
+    {
+        //GameObject sartenVolador = Instantiate(sarten, leftHand.position, Quaternion.identity);
+        //sartenVolador.GetComponent<Rigidbody2D>().velocity = vel;
+
+        Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
+        Debug.Log(projectile);
+        throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");
     }
 
@@ -207,26 +235,26 @@ public class Player : MonoBehaviour
     #region A2
     public void ApplyA2()
     {
-        Debug.Log("A2");
         appliedA2 = true;
+        ProjectileIndex = 1;
     }
     #endregion
 
     #region A3
     public void CookCheve()
     {
-        Instantiate(A3Prefab, leftHand.position, Quaternion.identity);
+        //Instantiate(A3Prefab, leftHand.position, Quaternion.identity);
         appliedA3 = true;
-        Debug.Log("A3");
+        ProjectileIndex = 2;
     }
     #endregion
 
     #region A4
     public void CookCarnita()
     {
-        Instantiate(A4Prefab, leftHand.position, Quaternion.identity);
+        //Instantiate(A4Prefab, leftHand.position, Quaternion.identity);
         appliedA4 = true;
-        Debug.Log("A4");
+        ProjectileIndex = 3;
     }
     #endregion
 }

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2358144569708116879}
   - component: {fileID: 5978468339008519438}
   - component: {fileID: 120841983295449373}
-  - component: {fileID: 5364852603951236565}
   - component: {fileID: 7814753807313482889}
+  - component: {fileID: 8581083390164647671}
   m_Layer: 0
   m_Name: Throwable_Sarten
   m_TagString: Untagged
@@ -122,22 +122,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 1.9}
   serializedVersion: 2
   m_Radius: 2
---- !u!114 &5364852603951236565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000987719633338662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9524881453e8cab4fb0e67864b4a0e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  dmg: 15
-  launchOffset: {x: 0, y: 0, z: 0}
-  thrown: 0
 --- !u!50 &7814753807313482889
 Rigidbody2D:
   serializedVersion: 4
@@ -146,7 +130,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000987719633338662}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -163,5 +147,17 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8581083390164647671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000987719633338662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9524881453e8cab4fb0e67864b4a0e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

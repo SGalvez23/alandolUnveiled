@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b203e56127a864348ae585bc2fcab24a, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  health: 310
+  health: 380
   movementVel: 10
   jumpVel: 15
   amountJumps: 1
@@ -22,6 +22,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  launchForce: 1.5
   viejonTime: 4
   rojoVivoTime: 10
   cheveTime: 5

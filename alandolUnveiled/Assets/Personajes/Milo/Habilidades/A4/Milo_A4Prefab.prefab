@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7577985579358083229}
   - component: {fileID: 7964390097809782948}
   - component: {fileID: 8235623030793018983}
-  - component: {fileID: 6276921547740396782}
+  - component: {fileID: 6763915397303334313}
   m_Layer: 0
   m_Name: Milo_A4Prefab
   m_TagString: Untagged
@@ -112,8 +112,8 @@ Transform:
   m_GameObject: {fileID: 8724523009575504333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.099050745, y: 1.5635501, z: -3.9587226}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2631472238543302238}
@@ -191,7 +191,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &6276921547740396782
+--- !u!114 &6763915397303334313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +203,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9524881453e8cab4fb0e67864b4a0e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  dmg: 15
-  launchOffset: {x: 0, y: 0, z: 0}
-  thrown: 0

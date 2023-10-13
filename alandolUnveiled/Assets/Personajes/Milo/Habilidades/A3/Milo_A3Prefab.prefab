@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1366739410998369993}
   - component: {fileID: 7088373776836229272}
   - component: {fileID: 7646209239341627887}
-  - component: {fileID: 8987957660714348027}
+  - component: {fileID: -5464277139209624619}
   m_Layer: 0
   m_Name: Milo_A3Prefab
   m_TagString: Untagged
@@ -78,7 +78,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4849396119909495286}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &8987957660714348027
+--- !u!114 &-5464277139209624619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,10 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9524881453e8cab4fb0e67864b4a0e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  dmg: 15
-  launchOffset: {x: 0, y: 0, z: 0}
-  thrown: 0
 --- !u!1 &4957937666885951372
 GameObject:
   m_ObjectHideFlags: 0

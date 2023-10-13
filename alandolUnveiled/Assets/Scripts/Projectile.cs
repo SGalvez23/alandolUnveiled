@@ -4,43 +4,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    EnemyController enemy;
-    public float speed = 10;
-    public float dmg = 15;
-    public Vector3 launchOffset;
-    public bool thrown;
-
     Rigidbody2D rb;
 
-    private void Awake()
+    private void Start()
     {
-        thrown = true;
         rb = GetComponent<Rigidbody2D>();
-
-        if (thrown)
-        {
-            var direction = transform.right + Vector3.up;
-            rb.AddForce(direction * speed, ForceMode2D.Impulse);
-        }
-        transform.Translate(launchOffset);
-
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if(thrown) 
-        {
-            transform.position += transform.right * speed * Time.deltaTime;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Enemigo"))
-        {
-            enemy = collision.collider.GetComponent<EnemyController>();
-            enemy.ModifyHealth(dmg);
-        }
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

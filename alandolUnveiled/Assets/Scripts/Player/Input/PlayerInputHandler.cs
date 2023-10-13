@@ -25,6 +25,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsAiming { get; private set; }
     public bool BasicAtkInput { get; set; }
     public Vector2 MouseInput { get; private set; }
+    public Vector2 StartingMousePos { get; private set; }
 
     public bool Ability1Input { get; private set; }
     public bool Ability1InputStop { get; private set; }
@@ -80,6 +81,7 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             IsAiming = true;
+            StartingMousePos = MouseInput;
         }
         else if(context.canceled)
         {

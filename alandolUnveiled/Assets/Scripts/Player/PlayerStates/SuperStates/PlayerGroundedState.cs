@@ -69,6 +69,15 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.InAirState);
         }
 
+        if (aiming)
+        {
+            stateMachine.ChangeState(player.BasicAtkState);
+        }
+        else if(aiming && !isGrounded)
+        {
+            stateMachine.ChangeState(player.InAirState);
+        }
+
         if (ability1Input && player.ViejonState.CanUse1() && canPlaceViejon)
         {
             player.InputHandler.UseA1Input();
@@ -91,11 +100,6 @@ public class PlayerGroundedState : PlayerState
         {
             player.InputHandler.UseA4Input();
             stateMachine.ChangeState(player.CarnitaAsadaState);
-        }
-
-        if(aiming)
-        {
-            stateMachine.ChangeState(player.BasicAtkState);
         }
     }
 }

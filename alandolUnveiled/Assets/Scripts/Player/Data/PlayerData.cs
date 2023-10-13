@@ -24,6 +24,7 @@ public class PlayerData : ScriptableObject
     public LayerMask whatIsGround;
 
     [Header("Habilidades Milo")]
+    public float launchForce = 2f;
     public float viejonTime = 4f;
     public float rojoVivoTime = 10f;
     public float cheveTime = 5f;
