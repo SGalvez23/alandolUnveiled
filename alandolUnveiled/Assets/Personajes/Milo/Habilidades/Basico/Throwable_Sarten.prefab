@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8581083390164647671}
   m_Layer: 0
   m_Name: Throwable_Sarten
-  m_TagString: Untagged
+  m_TagString: Sarten
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

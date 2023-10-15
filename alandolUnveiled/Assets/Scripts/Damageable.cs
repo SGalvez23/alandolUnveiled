@@ -72,8 +72,11 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
 
-        if(!IsAlive)
+        if (!IsAlive)
+        {
             Destroy(gameObject);
+            GameManager.Instance.points += 1;
+        }
     }
 
     public bool Hit(float damage, Vector2 knockback)
