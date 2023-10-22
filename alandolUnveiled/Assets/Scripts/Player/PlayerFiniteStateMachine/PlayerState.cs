@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerState
 {
-    protected Player player;
+    protected MainPlayer player;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
@@ -14,7 +14,7 @@ public class PlayerState
 
     private string animBoolName;
 
-    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
+    public PlayerState(MainPlayer player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;

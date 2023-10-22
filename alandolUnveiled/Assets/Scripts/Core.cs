@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    Player player;
+    MainPlayer player;
     EnemyController enemy;
 
 

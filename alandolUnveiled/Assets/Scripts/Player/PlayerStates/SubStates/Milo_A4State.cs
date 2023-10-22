@@ -7,7 +7,7 @@ public class Milo_A4State : PlayerAbilityState
     public bool CanUse { get; private set; }
     private float a4Time;
 
-    public Milo_A4State(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public Milo_A4State(MainPlayer player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
 

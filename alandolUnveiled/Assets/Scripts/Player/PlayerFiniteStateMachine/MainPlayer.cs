@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Player : MonoBehaviour
+public class MainPlayer : MonoBehaviourPunCallbacks
 {
     #region Variables de Estado
     public PlayerStateMachine StateMachine { get; private set; }

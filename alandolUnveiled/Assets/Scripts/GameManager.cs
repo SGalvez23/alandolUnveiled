@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> StateChanged;
-    public EnemySpawner eSpawner;
+    public EnemyController enemyController;
     public int points;
 
     private void Awake()

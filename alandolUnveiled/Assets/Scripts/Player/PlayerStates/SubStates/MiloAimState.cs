@@ -11,7 +11,7 @@ public class MiloAimState : PlayerAbilityState
     public Vector2 Velocity { get; private set; }
     public Vector3 mouseOnScreen;
 
-    public MiloAimState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public MiloAimState(MainPlayer player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
 

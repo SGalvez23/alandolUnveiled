@@ -8,7 +8,7 @@ public class Milo_A1State : PlayerAbilityState
 
     private float a1Time;
 
-    public Milo_A1State(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public Milo_A1State(MainPlayer player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
 
