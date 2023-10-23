@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public GameState State;
-    public static event Action<GameState> StateChanged;
-    public EnemyController enemyController;
-    public int points;
+    public static GameManager Instance { get; private set; }
+    public int amountEnemies;
 
     private void Awake()
     {
@@ -21,59 +18,16 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Mas de un gameManager");
         }
+
+        amountEnemies = 4;
     }
 
-
-    private void Start()
+    private void Update()
     {
-        UpdateGameState(GameState.Gameplay);
-        points = 0;
-    }
-
-    public void UpdateGameState(GameState newState)
-    {
-        State = newState;
-
-        switch (newState)
+        if(amountEnemies == 0)
         {
-            case GameState.Gameplay:
-                HandleGameplay();
-                break;
-            case GameState.Decide:
-                HandleDecide();
-                break;
-            case GameState.Victory:
-                HandleVictory();
-                break;
+            Loader.Load(Loader.Scene.VictoryScreen);
         }
-
-        StateChanged?.Invoke(newState);
-        Debug.Log(State);
-        Debug.Log(points);
-    }
-
-    private void HandleGameplay()
-    {
-
-    }
-
-    private void HandleDecide()
-    {
-        if(points > 3)
-        {
-            UpdateGameState(GameState.Victory);
-        }
-    }
-
-    private void HandleVictory()
-    {
-        Loader.Load(Loader.Scene.VictoryScreen);
     }
 }
 
-public enum GameState
-{
-    Gameplay,
-    Decide,
-    Victory
-}

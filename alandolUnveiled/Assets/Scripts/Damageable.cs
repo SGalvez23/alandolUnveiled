@@ -75,7 +75,7 @@ public class Damageable : MonoBehaviour
         if (!IsAlive)
         {
             Destroy(gameObject);
-            GameManager.Instance.points += 1;
+            GameManager.Instance.amountEnemies -= 1;
         }
     }
 
