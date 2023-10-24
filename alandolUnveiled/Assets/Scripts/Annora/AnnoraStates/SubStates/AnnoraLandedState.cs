@@ -16,9 +16,13 @@ public class AnnoraLandedState : AnnoraGroundedState
         {
             stateMachine.ChangeState(annora.MoveState);
         }
-        else if(isAnimationFinished)
+        else if(isAnimationFinished && !aiming)
         {
             stateMachine.ChangeState(annora.IdleState);
+        }
+        else if (aiming && xInput != 0)
+        {
+            stateMachine.ChangeState(annora.MovingAimState);
         }
     }
 }

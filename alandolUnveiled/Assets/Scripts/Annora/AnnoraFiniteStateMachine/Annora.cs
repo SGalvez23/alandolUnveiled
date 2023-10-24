@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class Annora : MonoBehaviourPunCallbacks
 {
@@ -15,7 +16,9 @@ public class Annora : MonoBehaviourPunCallbacks
     public AnnoraJumpState JumpState { get; private set; }
     public AnnoraInAirState InAirState { get; private set; }
     public AnnoraLandedState LandedState { get; private set; }
-    //public AnnoraAimState BasicAtkState { get; private set; }
+    public AnnoraAimState AimState { get; private set; }
+    public AnnoraMovingAimState MovingAimState { get; private set; }
+    public AnnoraAerialAimState AerialAimState { get; private set; }
     public Annora_A1State ViejonState { get; private set; }
     public Annora_A2State RojoVivoState { get; private set; }
     //public Annora_A3State CheveState { get; private set; }
@@ -45,7 +48,8 @@ public class Annora : MonoBehaviourPunCallbacks
     #endregion
 
     #region Abilities
-
+    protected Vector3 mouseOnScreen;
+    public GameObject crosshair;
     #endregion
 
     #region UI
@@ -57,11 +61,14 @@ public class Annora : MonoBehaviourPunCallbacks
     {
         StateMachine = new AnnoraStateMachine();
 
-        IdleState = new AnnoraIdleState(this, StateMachine, annoraData, AnnoraAnimStrings.isIdle);
-        MoveState = new AnnoraMoveState(this, StateMachine, annoraData, AnnoraAnimStrings.isMoving);
-        JumpState = new AnnoraJumpState(this, StateMachine, annoraData, AnnoraAnimStrings.inAir);
-        InAirState = new AnnoraInAirState(this, StateMachine, annoraData, AnnoraAnimStrings.inAir);
-        LandedState = new AnnoraLandedState(this, StateMachine, annoraData, AnnoraAnimStrings.landed);
+        IdleState = new AnnoraIdleState(this, StateMachine, annoraData, "isIdle");
+        MoveState = new AnnoraMoveState(this, StateMachine, annoraData, "isMoving");
+        JumpState = new AnnoraJumpState(this, StateMachine, annoraData, "inAir");
+        InAirState = new AnnoraInAirState(this, StateMachine, annoraData, "inAir");
+        LandedState = new AnnoraLandedState(this, StateMachine, annoraData, "landed");
+        AimState = new AnnoraAimState(this, StateMachine, annoraData, "aiming");
+        MovingAimState = new AnnoraMovingAimState(this, StateMachine, annoraData, "isMoving");
+        AerialAimState = new AnnoraAerialAimState(this, StateMachine, annoraData, "inAir");
 
         FacingDir = 1;
     }
@@ -81,7 +88,12 @@ public class Annora : MonoBehaviourPunCallbacks
         CurrentVelocity = Rb2D.velocity;
         StateMachine.CurrentState.Update();
 
+        if (InputHandler.IsAiming)
+        {
+            crosshair.transform.position = InputHandler.MousePos;
+        }
 
+        Debug.Log(StateMachine.CurrentState);
     }
 
     private void FixedUpdate()
@@ -130,6 +142,16 @@ public class Annora : MonoBehaviourPunCallbacks
     {
         FacingDir *= -1;
         transform.Rotate(0, 180, 0);
+    }
+
+    public void Crosshair()
+    {
+        crosshair.SetActive(true);
+    }
+
+    public void DeleteCrosshair()
+    {
+        crosshair.SetActive(false);
     }
     #endregion
 }

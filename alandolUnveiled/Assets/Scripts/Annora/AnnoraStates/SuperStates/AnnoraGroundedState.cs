@@ -5,13 +5,13 @@ using UnityEngine;
 public class AnnoraGroundedState : AnnoraState
 {
     protected int xInput;
-    private bool JumpInput;
-    private bool isGrounded;
-    private bool ability1Input;
-    private bool ability2Input;
-    private bool ability3Input;
-    private bool ability4Input;
-    private bool aiming;
+    protected bool JumpInput;
+    protected bool isGrounded;
+    protected bool ability1Input;
+    protected bool ability2Input;
+    protected bool ability3Input;
+    protected bool ability4Input;
+    protected bool aiming;
 
     public AnnoraGroundedState(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
@@ -28,7 +28,7 @@ public class AnnoraGroundedState : AnnoraState
     {
         base.Enter();
 
-        
+        annora.JumpState.ResetJumps();
     }
 
     public override void Exit()
@@ -56,6 +56,24 @@ public class AnnoraGroundedState : AnnoraState
         {
             annora.InputHandler.HasJumped();
             stateMachine.ChangeState(annora.JumpState);
+        }
+        else if(!isGrounded)
+        {
+            annora.InAirState.StartCoyoteTime();
+            stateMachine.ChangeState(annora.InAirState);
+        }
+
+        if (aiming)
+        {
+            stateMachine.ChangeState(annora.AimState);
+        }
+        else if(aiming && !isGrounded)
+        {
+            stateMachine.ChangeState(annora.AerialAimState);
+        }
+        else if(!aiming && xInput == 0)
+        {
+            stateMachine.ChangeState(annora.IdleState);
         }
     }
 }

@@ -36,6 +36,8 @@ public class AnnoraMoveState : AnnoraGroundedState
 
         annora.SetXVelocity(annoraData.movementVel * xInput);
 
+        aiming = annora.InputHandler.IsAiming;
+
         if (xInput == 0)
         {
             stateMachine.ChangeState(annora.IdleState);

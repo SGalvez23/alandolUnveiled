@@ -26,7 +26,7 @@ public class AnnoraState
         DoCheck();
         annora.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
-        Debug.Log(animBoolName);
+        //Debug.Log(stateMachine.CurrentState);
         isAnimationFinished = false;
     }
 

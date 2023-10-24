@@ -13,7 +13,7 @@ public class AnnoraData : ScriptableObject
 
     [Header("Jump State")]
     public float jumpVel = 15f;
-    public int amountJumps = 1;
+    public int totalJumps = 2;
 
     [Header("InAir State")]
     public float coyoteTime = 0.2f;

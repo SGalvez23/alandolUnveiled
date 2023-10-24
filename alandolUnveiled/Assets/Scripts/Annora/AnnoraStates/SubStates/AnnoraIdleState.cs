@@ -17,7 +17,6 @@ public class AnnoraIdleState : AnnoraGroundedState
     {
         base.Enter();
         annora.SetXVelocity(0);
-        annora.SetYVelocity(0);
     }
 
     public override void Exit()

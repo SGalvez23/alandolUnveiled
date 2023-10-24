@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class AnnoraJumpState : AnnoraAbilityState
 {
+    private int totalJumps;
     private int amountOfJumpsLeft;
 
     public AnnoraJumpState(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
-        amountOfJumpsLeft = annoraData.amountJumps;
+        amountOfJumpsLeft = annoraData.totalJumps;
     }
 
     public override void Enter()
@@ -30,7 +31,7 @@ public class AnnoraJumpState : AnnoraAbilityState
         else { return false; }
     }
 
-    public void ResetJumps() => amountOfJumpsLeft = annoraData.amountJumps;
+    public void ResetJumps() => amountOfJumpsLeft = annoraData.totalJumps;
 
     public void DecreaseJumps() => amountOfJumpsLeft--;
 }

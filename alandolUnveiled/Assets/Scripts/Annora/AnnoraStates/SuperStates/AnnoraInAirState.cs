@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class AnnoraInAirState : AnnoraState
 {
-    private bool isGrounded;
-    private int xInput;
-    private bool jumpInput;
-    private bool jumpInputStop;
-    private bool coyoteTime;
-    private bool isJumping;
+    protected bool isGrounded;
+    protected int xInput;
+    protected bool JumpInput;
+    protected bool jumpInputStop;
+    protected bool coyoteTime;
+    protected bool isJumping;
+    protected bool aiming;
 
     public AnnoraInAirState(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
@@ -45,18 +46,22 @@ public class AnnoraInAirState : AnnoraState
         CheckCoyoteTime();
 
         xInput = annora.InputHandler.NormInputX;
-        jumpInput = annora.InputHandler.JumpInput;
+        JumpInput = annora.InputHandler.JumpInput;
         jumpInputStop = annora.InputHandler.JumpInputStop;
 
         CheckJumpMultiplier();
 
-        if(isGrounded && annora.CurrentVelocity.y > 0)
+        if(isGrounded && annora.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(annora.LandedState);
         }
-        else if(jumpInput && annora.JumpState.CanJump())
+        else if(JumpInput && annora.JumpState.CanJump())
         {
             stateMachine.ChangeState(annora.JumpState);
+        }
+        else if (aiming)
+        {
+            stateMachine.ChangeState(annora.AerialAimState);
         }
         else
         {
