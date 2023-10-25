@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HookRope : MonoBehaviour
 {
-    public AnnoraController controller;
+    public Annora annora;
     public LineRenderer lr;
 
     [SerializeField] private int percision = 40;
@@ -50,7 +50,7 @@ public class HookRope : MonoBehaviour
     {
         for (int i = 0; i < percision; i++)
         {
-            lr.SetPosition(i, controller.firePoint.position);
+            lr.SetPosition(i, annora.hookFirePoint.position);
         }
     }
 
@@ -65,10 +65,10 @@ public class HookRope : MonoBehaviour
     {
         if (!strightLine)
         {
-            if (lr.GetPosition(percision - 1).x != controller.grapplePoint.x)
+            if (lr.GetPosition(percision - 1).x != annora.grapplePoint.x)
             {
                 DrawRopeWaves();
-                controller.Grapple();
+                annora.Grapple();
                 isGrappling = true;
             }
             else
@@ -80,7 +80,7 @@ public class HookRope : MonoBehaviour
         {
             if (!isGrappling)
             {
-                controller.Grapple();
+                annora.Grapple();
                 isGrappling = true;
             }
             if (waveSize > 0)
@@ -101,9 +101,9 @@ public class HookRope : MonoBehaviour
         for (int i = 0; i < percision; i++)
         {
             float delta = (float)i / ((float)percision - 1f);
-            Vector2 offset = Vector2.Perpendicular(controller.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
-            Vector2 targetPosition = Vector2.Lerp(controller.firePoint.position, controller.grapplePoint, delta) + offset;
-            Vector2 currentPosition = Vector2.Lerp(controller.firePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
+            Vector2 offset = Vector2.Perpendicular(annora.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
+            Vector2 targetPosition = Vector2.Lerp(annora.hookFirePoint.position, annora.grapplePoint, delta) + offset;
+            Vector2 currentPosition = Vector2.Lerp(annora.hookFirePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
             lr.SetPosition(i, currentPosition);
         }
@@ -111,7 +111,7 @@ public class HookRope : MonoBehaviour
 
     void DrawRopeNoWaves()
     {
-        lr.SetPosition(0, controller.firePoint.position);
-        lr.SetPosition(1, controller.grapplePoint);
+        lr.SetPosition(0, annora.hookFirePoint.position);
+        lr.SetPosition(1, annora.grapplePoint);
     }
 }

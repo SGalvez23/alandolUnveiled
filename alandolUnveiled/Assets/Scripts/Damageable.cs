@@ -72,13 +72,11 @@ public class Damageable : MonoBehaviour
             timeSinceHit += Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!IsAlive)
         {
-            Hit(20, new Vector2(-3, 1));
-        }
-
-        if(!IsAlive)
             Destroy(gameObject);
+            GameManager.Instance.amountEnemies -= 1;
+        }
     }
 
     public bool Hit(float damage, Vector2 knockback)
