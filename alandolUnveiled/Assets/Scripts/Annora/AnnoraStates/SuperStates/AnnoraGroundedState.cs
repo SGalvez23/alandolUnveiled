@@ -52,7 +52,11 @@ public class AnnoraGroundedState : AnnoraState
 
         aiming = annora.InputHandler.IsAiming;
 
-        if(JumpInput && annora.JumpState.CanJump())
+        if (xInput == 0)
+        {
+            stateMachine.ChangeState(annora.IdleState);
+        }
+        else if(JumpInput && annora.JumpState.CanJump())
         {
             annora.InputHandler.HasJumped();
             stateMachine.ChangeState(annora.JumpState);
@@ -61,19 +65,6 @@ public class AnnoraGroundedState : AnnoraState
         {
             annora.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(annora.InAirState);
-        }
-
-        if (aiming)
-        {
-            stateMachine.ChangeState(annora.AimState);
-        }
-        else if(aiming && !isGrounded)
-        {
-            stateMachine.ChangeState(annora.AerialAimState);
-        }
-        else if(!aiming && xInput == 0)
-        {
-            stateMachine.ChangeState(annora.IdleState);
         }
     }
 }

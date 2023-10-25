@@ -48,9 +48,11 @@ public class AnnoraInAirState : AnnoraState
         xInput = annora.InputHandler.NormInputX;
         JumpInput = annora.InputHandler.JumpInput;
         jumpInputStop = annora.InputHandler.JumpInputStop;
+        aiming = annora.InputHandler.IsAiming;
 
         CheckJumpMultiplier();
 
+        
         if(isGrounded && annora.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(annora.LandedState);

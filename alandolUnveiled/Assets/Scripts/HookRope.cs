@@ -1,8 +1,8 @@
 using UnityEngine;
 
-/*public class HookRope : MonoBehaviour
+public class HookRope : MonoBehaviour
 {
-    public Player annora;
+    public Annora annora;
     public LineRenderer lr;
 
     [SerializeField] private int percision = 40;
@@ -50,7 +50,7 @@ using UnityEngine;
     {
         for (int i = 0; i < percision; i++)
         {
-            lr.SetPosition(i, annora.firePoint.position);
+            lr.SetPosition(i, annora.hookFirePoint.position);
         }
     }
 
@@ -102,8 +102,8 @@ using UnityEngine;
         {
             float delta = (float)i / ((float)percision - 1f);
             Vector2 offset = Vector2.Perpendicular(annora.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
-            Vector2 targetPosition = Vector2.Lerp(annora.firePoint.position, annora.grapplePoint, delta) + offset;
-            Vector2 currentPosition = Vector2.Lerp(annora.firePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
+            Vector2 targetPosition = Vector2.Lerp(annora.hookFirePoint.position, annora.grapplePoint, delta) + offset;
+            Vector2 currentPosition = Vector2.Lerp(annora.hookFirePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
             lr.SetPosition(i, currentPosition);
         }
@@ -111,8 +111,7 @@ using UnityEngine;
 
     void DrawRopeNoWaves()
     {
-        lr.SetPosition(0, annora.firePoint.position);
+        lr.SetPosition(0, annora.hookFirePoint.position);
         lr.SetPosition(1, annora.grapplePoint);
     }
 }
-*/

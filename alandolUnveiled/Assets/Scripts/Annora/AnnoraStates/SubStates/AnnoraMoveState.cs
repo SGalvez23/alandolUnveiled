@@ -33,14 +33,19 @@ public class AnnoraMoveState : AnnoraGroundedState
         base.Update();
 
         annora.CheckFlip(xInput);
-
         annora.SetXVelocity(annoraData.movementVel * xInput);
-
-        aiming = annora.InputHandler.IsAiming;
 
         if (xInput == 0)
         {
             stateMachine.ChangeState(annora.IdleState);
+        }
+        else if(aiming) 
+        {
+            stateMachine.ChangeState(annora.MovingAimState);
+        }
+        else if(JumpInput)
+        {
+            stateMachine.ChangeState(annora.JumpState);
         }
     }
 }

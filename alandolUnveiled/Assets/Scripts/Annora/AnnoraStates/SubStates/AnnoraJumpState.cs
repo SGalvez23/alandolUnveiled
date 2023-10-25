@@ -18,7 +18,7 @@ public class AnnoraJumpState : AnnoraAbilityState
 
         annora.SetYVelocity(annoraData.jumpVel);
         isDone = true;
-        amountOfJumpsLeft--;
+        DecreaseJumps();
         annora.InAirState.SetIsJumping();
     }
 

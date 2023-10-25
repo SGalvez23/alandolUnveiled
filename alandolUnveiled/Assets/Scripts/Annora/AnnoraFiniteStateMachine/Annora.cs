@@ -19,6 +19,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public AnnoraAimState AimState { get; private set; }
     public AnnoraMovingAimState MovingAimState { get; private set; }
     public AnnoraAerialAimState AerialAimState { get; private set; }
+    public AnnoraHookedState HookedState { get; private set; }
     public Annora_A1State ViejonState { get; private set; }
     public Annora_A2State RojoVivoState { get; private set; }
     //public Annora_A3State CheveState { get; private set; }
@@ -29,14 +30,14 @@ public class Annora : MonoBehaviourPunCallbacks
     public Animator Anim { get; private set; }
     public AnnoraInputHandler InputHandler { get; private set; }
     public Rigidbody2D Rb2D { get; private set; }
-    public LineRenderer LineRenderer { get; private set; }
+    public HookRope HookRope { get; private set; }
+    public SpringJoint2D Sj2D { get; private set; }
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
     #region Check Transforms
     [SerializeField] 
     private Transform groundCheck;
-    public Transform hookFirePoint;
     #endregion
 
     #region Annora Data
@@ -50,6 +51,16 @@ public class Annora : MonoBehaviourPunCallbacks
     #region Abilities
     protected Vector3 mouseOnScreen;
     public GameObject crosshair;
+    public Transform hookGunHolder;
+    public Transform hookFirePoint;
+    public Vector2 grapplePoint;
+    public Vector2 grappleDistanceVector;
+    bool launchToPoint = true;
+    [SerializeField] float launchSpeed = 0.3f;
+    public bool infiniteRange = false;
+    private float targetDistance = 3;
+    private float targetFrequncy = 1;
+    protected int maxRange = 250;
     #endregion
 
     #region UI
@@ -69,6 +80,7 @@ public class Annora : MonoBehaviourPunCallbacks
         AimState = new AnnoraAimState(this, StateMachine, annoraData, "aiming");
         MovingAimState = new AnnoraMovingAimState(this, StateMachine, annoraData, "isMoving");
         AerialAimState = new AnnoraAerialAimState(this, StateMachine, annoraData, "inAir");
+        HookedState = new AnnoraHookedState(this, StateMachine, annoraData, "hooked");
 
         FacingDir = 1;
     }
@@ -78,7 +90,10 @@ public class Annora : MonoBehaviourPunCallbacks
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<AnnoraInputHandler>();
         Rb2D = GetComponent<Rigidbody2D>();
-        LineRenderer = GetComponent<LineRenderer>();
+        HookRope = GetComponent<HookRope>();
+        Sj2D = GetComponent<SpringJoint2D>();
+        HookRope.enabled = false;
+        Sj2D.enabled = false;
 
         StateMachine.Initialize(IdleState);
     }
@@ -91,6 +106,17 @@ public class Annora : MonoBehaviourPunCallbacks
         if (InputHandler.IsAiming)
         {
             crosshair.transform.position = InputHandler.MousePos;
+
+            if(InputHandler.HookShot)
+            {
+                SetGrapplePoint();
+            }
+            else if(!InputHandler.HookShot)
+            {
+                Rb2D.gravityScale = 1;
+                Sj2D.enabled = false;
+                HookRope.enabled = false;
+            }
         }
 
         Debug.Log(StateMachine.CurrentState);
@@ -152,6 +178,53 @@ public class Annora : MonoBehaviourPunCallbacks
     public void DeleteCrosshair()
     {
         crosshair.SetActive(false);
+    }
+
+    void SetGrapplePoint()
+    {
+        Vector3 difference = new Vector3(InputHandler.MousePos.x, InputHandler.MousePos.y) - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(hookFirePoint.position, difference.normalized, 1 << 11);
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.transform.gameObject.name);
+            if (Vector2.Distance(hit.point, hookFirePoint.position) <= maxRange && hit.collider.CompareTag("Anclaje") || infiniteRange)
+            {
+                grapplePoint = hit.point;
+                grappleDistanceVector = grapplePoint - (Vector2)transform.position;
+                HookRope.enabled = true;
+            }
+        }
+    }
+
+    //Funcion que modifica el springJoint2D simular el agarre del gancho
+    public void Grapple()
+    {
+        Sj2D.autoConfigureDistance = false;
+        if (!launchToPoint && !Sj2D.autoConfigureDistance)
+        {
+            Sj2D.distance = targetDistance;
+            Sj2D.frequency = targetFrequncy;
+        }
+
+        if (!launchToPoint)
+        {
+            if (Sj2D.autoConfigureDistance)
+            {
+                Sj2D.autoConfigureDistance = true;
+                Sj2D.frequency = 0;
+            }
+
+            Sj2D.connectedAnchor = grapplePoint;
+            Sj2D.enabled = true;
+        }
+        else
+        {
+            Sj2D.connectedAnchor = grapplePoint;
+            Vector2 distance = hookFirePoint.position - hookGunHolder.position;
+            Sj2D.distance = distance.magnitude;
+            Sj2D.frequency = launchSpeed;
+            Sj2D.enabled = true;
+        }
     }
     #endregion
 }

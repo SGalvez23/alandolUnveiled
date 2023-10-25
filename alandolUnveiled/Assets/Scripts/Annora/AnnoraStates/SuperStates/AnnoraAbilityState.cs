@@ -46,22 +46,23 @@ public class AnnoraAbilityState : AnnoraState
 
         if(isDone)
         {
-            if (isGrounded && annora.CurrentVelocity.y > 0.01f)
+            if (isGrounded && annora.CurrentVelocity.y < 0.01f)
             {
-                stateMachine.ChangeState(annora.IdleState);
-            }
-            else if (aiming && !isGrounded)
-            {
-                stateMachine.ChangeState(annora.AerialAimState);
-            }
-            else if(aiming && isGrounded && xInput != 0)
-            {
-                stateMachine.ChangeState(annora.MovingAimState);
+                stateMachine.ChangeState(annora.LandedState);
             }
             else
             {
                 stateMachine.ChangeState(annora.InAirState);
             }
+        }
+
+        if (aiming && !isGrounded)
+        {
+            stateMachine.ChangeState(annora.AerialAimState);
+        }
+        else if (aiming && xInput != 0 && isGrounded)
+        {
+            stateMachine.ChangeState(annora.MovingAimState);
         }
     }
 }

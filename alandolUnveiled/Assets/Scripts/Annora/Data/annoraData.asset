@@ -15,10 +15,10 @@ MonoBehaviour:
   health: 100
   movementVel: 10
   jumpVel: 15
-  amountJumps: 1
+  totalJumps: 2
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
-  groundCheckRadius: 0.3
+  groundCheckRadius: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

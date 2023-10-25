@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Windows;
 
 public class AnnoraAerialAimState : AnnoraAbilityState
@@ -29,13 +30,14 @@ public class AnnoraAerialAimState : AnnoraAbilityState
 
         JumpInput = annora.InputHandler.JumpInput;
 
-        if(annora.CurrentVelocity.y > 0.1f)
-        {
-            stateMachine.ChangeState(annora.LandedState);
-        }
-        else if(!aiming || xInput == 0)
+
+        if (!aiming)
         {
             stateMachine.ChangeState(annora.InAirState);
+        }
+        else if (isGrounded && annora.CurrentVelocity.y < 0.01f)
+        {
+            stateMachine.ChangeState(annora.LandedState);
         }
         else
         {
