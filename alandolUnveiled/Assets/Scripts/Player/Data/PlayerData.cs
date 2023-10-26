@@ -27,6 +27,7 @@ public class PlayerData : ScriptableObject
     public float launchForce = 2f;
     public float viejonTime = 4f;
     public float rojoVivoTime = 10f;
+    public int cheveCant = 6;
     public float cheveTime = 5f;
     public float carnitaTime = 5f;
 }

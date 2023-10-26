@@ -19,6 +19,7 @@ public class Milo_A1State : PlayerAbilityState
         CanUse = false;
         player.InputHandler.UseA1Input();
         player.PlaceViejon();
+        Debug.Log(Time.time);
     }
 
     public override void Exit()
@@ -32,11 +33,20 @@ public class Milo_A1State : PlayerAbilityState
 
         if (player.appliedA1)
             isDone = true;
+
+        if (player.InputHandler.Ability1Input)
+        {
+            a1Time = player.InputHandler.ability1InputStartTime;
+        }
     }
 
     public bool CanUse1()
     {
-        return CanUse && Time.time >= a1Time + playerData.viejonTime;
+        a1Time = player.InputHandler.ability1InputStartTime;
+        
+
+        return CanUse;
+        //return CanUse && Time.time >= a1Time + playerData.viejonTime;
     }
 
     public void ResetA1() => CanUse = true;

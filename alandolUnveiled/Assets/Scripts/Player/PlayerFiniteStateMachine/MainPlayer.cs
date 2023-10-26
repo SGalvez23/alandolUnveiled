@@ -110,7 +110,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
             playerData.health -= 20;
         }
 
-        healthUI.fillAmount = playerData.health / 100f;
+        //healthUI.fillAmount = playerData.health / 100f;
 
         if (InputHandler.IsAiming)
         {
@@ -218,8 +218,9 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A1
     public void PlaceViejon()
     {
-        Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
+        GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
         appliedA1 = true;
+        Destroy(viejon, 4);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

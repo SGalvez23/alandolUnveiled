@@ -68,13 +68,13 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
         }
-
-        if (aiming)
+        else if (aiming)
         {
             stateMachine.ChangeState(player.BasicAtkState);
         }
         else if(aiming && !isGrounded)
         {
+            //falta agregar MiloAerialAimState
             stateMachine.ChangeState(player.InAirState);
         }
 
