@@ -22,6 +22,8 @@ public class Annora : MonoBehaviourPunCallbacks
     public AnnoraHookedState HookedState { get; private set; }
     public Annora_A1State ViejonState { get; private set; }
     public Annora_A2State RojoVivoState { get; private set; }
+
+    public SpriteRenderer spriteRenderer { get; private set; }
     //public Annora_A3State CheveState { get; private set; }
     //public Annora_A4State CarnitaAsadaState { get; private set; }
     #endregion
@@ -92,6 +94,7 @@ public class Annora : MonoBehaviourPunCallbacks
         Rb2D = GetComponent<Rigidbody2D>();
         HookRope = GetComponent<HookRope>();
         Sj2D = GetComponent<SpringJoint2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         HookRope.enabled = false;
         Sj2D.enabled = false;
 
@@ -119,7 +122,7 @@ public class Annora : MonoBehaviourPunCallbacks
             }
         }
 
-        Debug.Log(StateMachine.CurrentState);
+        //Debug.Log(StateMachine.CurrentState);
     }
 
     private void FixedUpdate()
@@ -226,5 +229,40 @@ public class Annora : MonoBehaviourPunCallbacks
             Sj2D.enabled = true;
         }
     }
-    #endregion
-}
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemigo")
+        {
+            Debug.Log("Player is hurt!");
+        }
+        if (collision.gameObject.tag == "Enemigo")
+        {
+
+            OnDamaged(collision.transform.position);
+        }
+    }
+    void OnDamaged(Vector2 targetPos)
+        {
+            //Layer es del player
+            //gameObject.layer == 2;
+
+            //lo que pasara
+            spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        // Reaction Force
+        int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
+            Rb2D.AddForce(new Vector2(dirc, 1) * 10, ForceMode2D.Impulse);
+
+            Invoke("OffDamage", 3);
+            OffDamage();
+        }
+    void OffDamage()
+        {
+
+            gameObject.layer = 10;
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+
+        }
+        #endregion
+    }

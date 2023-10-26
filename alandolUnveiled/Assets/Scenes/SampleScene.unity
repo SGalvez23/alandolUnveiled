@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 276580879}
   - component: {fileID: 276580878}
   - component: {fileID: 276580877}
+  - component: {fileID: 276580880}
   m_Layer: 10
   m_Name: Spikes
   m_TagString: Enemigo
@@ -842,8 +843,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: -7, z: 0}
-  m_Size: {x: 130, y: 7, z: 1}
+  m_Origin: {x: -2, y: -7, z: 0}
+  m_Size: {x: 132, y: 7, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -863,6 +864,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &276580880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276580875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764d0853d74f5114488fc08b17341a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276975446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,6 +2887,10 @@ PrefabInstance:
       propertyPath: lr
       value: 
       objectReference: {fileID: 1336905657}
+    - target: {fileID: 2493346020638287479, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+      propertyPath: m_Distance
+      value: 4.876191
+      objectReference: {fileID: 0}
     - target: {fileID: 3100470415682615874, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -2965,7 +2982,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7976407054512496140, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1336905658}
   m_SourcePrefab: {fileID: 100100000, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
 --- !u!1 &998364823
 GameObject:
@@ -3781,6 +3801,11 @@ PolygonCollider2D:
       - {x: 0.43359375, y: 0.25}
       - {x: 0, y: 0.5}
   m_UseDelaunayMesh: 0
+--- !u!1 &1180257857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7976407054512496140, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+  m_PrefabInstance: {fileID: 988828872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1222591975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,6 +4256,27 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 8185427533081202275, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
   m_PrefabInstance: {fileID: 988828872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1336905658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180257857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1efba397ecdddd4aad0cf8f786fa3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxHealth: 100
+  healthBar: {fileID: 0}
+  _health: 100
+  _isAlive: 1
+  isInvincible: 0
+  invincibilityTime: 0.25
 --- !u!1 &1341715025
 GameObject:
   m_ObjectHideFlags: 0
