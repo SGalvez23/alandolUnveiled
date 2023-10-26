@@ -28,7 +28,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
     public PhotonView view;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     #endregion
@@ -97,8 +100,11 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     private void Start()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         view = GetComponent<PhotonView>();
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         Anim = GetComponent<Animator>();
@@ -111,6 +117,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
         if(view.IsMine)
         {
@@ -130,6 +137,8 @@ public class MainPlayer : MonoBehaviourPunCallbacks
                 DrawTrajectory();
             }
 =======
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         CurrentVelocity = rb.velocity;
         StateMachine.CurrentState.Update();
 
@@ -144,6 +153,9 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         {
             crosshair.transform.position = InputHandler.MouseInput;
             DrawTrajectory();
+<<<<<<< HEAD
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
+=======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         }
     }

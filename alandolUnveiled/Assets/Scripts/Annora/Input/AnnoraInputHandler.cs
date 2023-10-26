@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Photon.Pun;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 using System.Collections;
@@ -11,6 +14,7 @@ using UnityEngine.InputSystem;
 public class AnnoraInputHandler : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     PhotonView view;
 
     private void Start()
@@ -18,6 +22,8 @@ public class AnnoraInputHandler : MonoBehaviour
         view = GetComponent<PhotonView>();
     }
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     #region Movement
@@ -51,10 +57,14 @@ public class AnnoraInputHandler : MonoBehaviour
     private void Update()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (view.IsMine)
         {
             CheckJumpInputHoldTime();
         }
+=======
+        CheckJumpInputHoldTime();
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
         CheckJumpInputHoldTime();
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9

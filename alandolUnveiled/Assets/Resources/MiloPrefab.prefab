@@ -1,6 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!1 &2411207331604138694
+========
+--- !u!1 &3100470415682615874
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!1 &2411207331604138694
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,20 +16,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   - component: {fileID: 1755108378553531286}
   m_Layer: 0
   m_Name: ViejonCheck
+========
+  - component: {fileID: 1642601370848746197}
+  m_Layer: 7
+  m_Name: GroundCheck
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  - component: {fileID: 1755108378553531286}
+  m_Layer: 0
+  m_Name: ViejonCheck
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!4 &1755108378553531286
+========
+--- !u!4 &1642601370848746197
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!4 &1755108378553531286
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 2411207331604138694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -32,6 +64,21 @@ Transform:
   m_Father: {fileID: 8231936636427607334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5332523378148340664
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 3100470415682615874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9059470579935872057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7079022935792912245
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,20 +86,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   - component: {fileID: 4286884031464710220}
   m_Layer: 0
   m_Name: leftHand
+========
+  - component: {fileID: 6903620835777030988}
+  m_Layer: 7
+  m_Name: HookFirePoint
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  - component: {fileID: 4286884031464710220}
+  m_Layer: 0
+  m_Name: leftHand
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!4 &4286884031464710220
+========
+--- !u!4 &6903620835777030988
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!4 &4286884031464710220
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 5332523378148340664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -63,6 +134,21 @@ Transform:
   m_Father: {fileID: 8231936636427607334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7513316911805560605
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 7079022935792912245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9059470579935872057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7976407054512496140
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,6 +156,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   - component: {fileID: 8231936636427607334}
   - component: {fileID: 6776876725750266809}
   - component: {fileID: 1972803517840376767}
@@ -80,6 +170,7 @@ GameObject:
   - component: {fileID: 7256304441643854906}
   - component: {fileID: 8219245337991431156}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 1962384639749512892}
   - component: {fileID: -3446748354199245604}
   - component: {fileID: -3044619617200478446}
@@ -88,22 +179,60 @@ GameObject:
   m_Layer: 0
   m_Name: MiloPrefab
   m_TagString: MainPlayer
+========
+  - component: {fileID: 9059470579935872057}
+  - component: {fileID: 3126026779914295509}
+  - component: {fileID: 1084242757938692895}
+  - component: {fileID: 1295377304621881553}
+  - component: {fileID: 8321620773913907786}
+  - component: {fileID: 5317411780501075375}
+  - component: {fileID: 8999294140989428611}
+  - component: {fileID: 6257886977070591861}
+  - component: {fileID: 5272651461670514798}
+  - component: {fileID: 2493346020638287479}
+  - component: {fileID: 193017460261520281}
+  - component: {fileID: 8185427533081202275}
+  m_Layer: 7
+  m_Name: AnnoraPrefab
+  m_TagString: Untagged
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_Layer: 0
+  m_Name: MiloPrefab
+  m_TagString: MainPlayer
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!4 &8231936636427607334
+========
+--- !u!4 &9059470579935872057
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!4 &8231936636427607334
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 7513316911805560605}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   m_LocalScale: {x: 1, y: 1, z: 1}
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
@@ -115,11 +244,32 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6776876725750266809
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 7976407054512496140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1642601370848746197}
+  - {fileID: 6903620835777030988}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3126026779914295509
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 7513316911805560605}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -127,7 +277,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   view: {fileID: 0}
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   groundCheck: {fileID: 7466960728233246029}
@@ -152,35 +305,91 @@ MonoBehaviour:
   crosshair: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
   healthUI: {fileID: 0}
 --- !u!114 &1972803517840376767
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea781b5378359140b887310ae861305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 1642601370848746197}
+  annoraData: {fileID: 11400000, guid: 64fb494e201ba3d41a2b4bc5694c330d, type: 2}
+  crosshair: {fileID: 0}
+  hookGunHolder: {fileID: 0}
+  hookFirePoint: {fileID: 6903620835777030988}
+  grapplePoint: {x: 0, y: 0}
+  grappleDistanceVector: {x: 0, y: 0}
+  launchSpeed: 0.3
+  infiniteRange: 0
+--- !u!114 &1084242757938692895
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 7513316911805560605}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4da4719de7349174983f1025c95bda34, type: 3}
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b01d8d62a9d944ca7855a0762b8cc5, type: 3}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Name: 
   m_EditorClassIdentifier: 
   inputBuffer: 0.2
   ability1InputStartTime: 0
   ability2InputStartTime: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   ability3InputStartTime: 0
   ability4InputStartTime: 0
 --- !u!114 &6980476928454403161
+========
+--- !u!114 &1295377304621881553
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  ability3InputStartTime: 0
+  ability4InputStartTime: 0
+--- !u!114 &6980476928454403161
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_GameObject: {fileID: 7513316911805560605}
+========
+  m_GameObject: {fileID: 7976407054512496140}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_GameObject: {fileID: 7513316911805560605}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  m_Actions: {fileID: -944628639613478452, guid: b01221bdc4f2fea49920c8c7b11e631b, type: 3}
+=======
   m_Actions: {fileID: -944628639613478452, guid: e029e2ee0789e9e408bfaa09505ae229, type: 3}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -195,7 +404,15 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
       - m_Target: {fileID: 1972803517840376767}
+========
+      - m_Target: {fileID: 1084242757938692895}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+      - m_Target: {fileID: 1972803517840376767}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -219,7 +436,15 @@ MonoBehaviour:
     m_ActionName: Player/Run[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
       - m_Target: {fileID: 1972803517840376767}
+========
+      - m_Target: {fileID: 1084242757938692895}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+      - m_Target: {fileID: 1972803517840376767}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -235,7 +460,15 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
       - m_Target: {fileID: 1972803517840376767}
+========
+      - m_Target: {fileID: 1084242757938692895}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+      - m_Target: {fileID: 1972803517840376767}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnEnterAim
         m_Mode: 0
@@ -251,7 +484,15 @@ MonoBehaviour:
     m_ActionName: Player/EnterAim[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
       - m_Target: {fileID: 1972803517840376767}
+========
+      - m_Target: {fileID: 1084242757938692895}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+      - m_Target: {fileID: 1972803517840376767}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnAim
         m_Mode: 0
@@ -267,7 +508,15 @@ MonoBehaviour:
     m_ActionName: Player/Aim[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
       - m_Target: {fileID: 1972803517840376767}
+========
+      - m_Target: {fileID: 1084242757938692895}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+      - m_Target: {fileID: 1972803517840376767}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnShoot
         m_Mode: 0
@@ -282,6 +531,49 @@ MonoBehaviour:
     m_ActionId: f4526d4e-39b5-4405-ad04-1c07da31632f
     m_ActionName: Player/Shoot[/Mouse/leftButton,/Keyboard/q]
   - m_PersistentCalls:
+<<<<<<< HEAD
+      m_Calls:
+      - m_Target: {fileID: 1084242757938692895}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: efea6b11-3800-4fb8-8f2a-b4eb928ae384
+    m_ActionName: Player/A1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1084242757938692895}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b3efa931-a319-4f2c-8b4f-efdd4a91b4e0
+    m_ActionName: Player/A2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c579c1ab-2950-4919-a80f-ae293814caa6
+    m_ActionName: Player/A3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 404e83ef-5969-4fa4-8fab-040fc6918bd1
+    m_ActionName: Player/A4[/Keyboard/4]
+  - m_PersistentCalls:
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
       m_Calls: []
     m_ActionId: 9dbc0ffa-bfad-473d-ad5d-e1fd879d4ab0
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
@@ -321,6 +613,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2be7ee28-ec9d-4af7-b9f3-999f2e845454
     m_ActionName: UI/TrackedDeviceOrientation
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1972803517840376767}
@@ -385,22 +681,48 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 404e83ef-5969-4fa4-8fab-040fc6918bd1
     m_ActionName: Player/A4[/Keyboard/4]
+<<<<<<< HEAD
+========
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!95 &6798940537995762090
+========
+--- !u!95 &8321620773913907786
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!95 &6798940537995762090
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_GameObject: {fileID: 7513316911805560605}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f20489654b3ce5f4d9a9bb23d4caa0b9, type: 2}
+<<<<<<< HEAD
+========
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b9a071afa0d32246a20f6a915c9024e, type: 2}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -411,14 +733,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!50 &4461280006037875215
+========
+--- !u!50 &5317411780501075375
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!50 &4461280006037875215
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_GameObject: {fileID: 7513316911805560605}
+========
+  m_GameObject: {fileID: 7976407054512496140}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_GameObject: {fileID: 7513316911805560605}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -438,13 +776,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 --- !u!61 &6350886487170401275
+========
+--- !u!61 &8999294140989428611
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+--- !u!61 &6350886487170401275
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_GameObject: {fileID: 7513316911805560605}
+========
+  m_GameObject: {fileID: 7976407054512496140}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_GameObject: {fileID: 7513316911805560605}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -474,22 +828,52 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
     oldSize: {x: 9.18, y: 10.17}
     newSize: {x: 9.18, y: 10.17}
+========
+    oldSize: {x: 9.36, y: 13.34}
+    newSize: {x: 9.36, y: 13.34}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+    oldSize: {x: 9.18, y: 10.17}
+    newSize: {x: 9.18, y: 10.17}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_Size: {x: 6, y: 10}
   m_EdgeRadius: 0
 --- !u!212 &7256304441643854906
+========
+  m_Size: {x: 8.3, y: 13.25}
+  m_EdgeRadius: 0
+--- !u!212 &6257886977070591861
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_Size: {x: 6, y: 10}
+  m_EdgeRadius: 0
+--- !u!212 &7256304441643854906
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_GameObject: {fileID: 7513316911805560605}
+========
+  m_GameObject: {fileID: 7976407054512496140}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_GameObject: {fileID: 7513316911805560605}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -524,25 +908,196 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_Sprite: {fileID: 21300000, guid: 0ae28ee83e2640143897b94382f54021, type: 3}
+========
+  m_Sprite: {fileID: 21300000, guid: 148f7ab0339ad4d418e9b0b9812b36e6, type: 3}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_Sprite: {fileID: 21300000, guid: 0ae28ee83e2640143897b94382f54021, type: 3}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_Size: {x: 9.18, y: 10.17}
+========
+  m_Size: {x: 9.36, y: 13.34}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_Size: {x: 9.18, y: 10.17}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_SpriteSortPoint: 0
 --- !u!120 &8219245337991431156
+========
+  m_SpriteSortPoint: 1
+--- !u!114 &5272651461670514798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 0
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!231 &2493346020638287479
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 5.662685
+  m_DampingRatio: 1
+  m_Frequency: 1
+--- !u!114 &193017460261520281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976407054512496140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8f6651fae200f43919fdb84815a288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  annora: {fileID: 3126026779914295509}
+  lr: {fileID: 0}
+  percision: 40
+  straightenLineSpeed: 10
+  ropeAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.5
+      outSlope: -0.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: -0.1
+      inSlope: 0.75
+      outSlope: 0.75
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8
+      value: -0.1
+      inSlope: -0.75
+      outSlope: -0.75
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.50000006
+      outSlope: 0.50000006
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  StartWaveSize: 2
+  ropeProgressionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ropeProgressionSpeed: 4
+  isGrappling: 0
+--- !u!120 &8185427533081202275
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_SpriteSortPoint: 0
+--- !u!120 &8219245337991431156
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
   m_GameObject: {fileID: 7513316911805560605}
+========
+  m_GameObject: {fileID: 7976407054512496140}
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+  m_GameObject: {fileID: 7513316911805560605}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -637,8 +1192,13 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
+<<<<<<< HEAD
+    numCornerVertices: 1
+    numCapVertices: 10
+=======
     numCornerVertices: 0
     numCapVertices: 0
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}
@@ -648,6 +1208,8 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+<<<<<<< HEAD
+<<<<<<<< HEAD:alandolUnveiled/Assets/Resources/MiloPrefab.prefab
 <<<<<<< HEAD
 --- !u!114 &1962384639749512892
 MonoBehaviour:
@@ -762,6 +1324,8 @@ MonoBehaviour:
     LayerIndex: 0
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 --- !u!1 &9053455636431880379
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,3 +1357,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231936636427607334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+========
+>>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9:alandolUnveiled/Assets/Resources/AnnoraPrefab.prefab
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9

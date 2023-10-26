@@ -1145,11 +1145,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_LocalPosition: {x: -2.5507, y: 1.6566, z: -10}
 =======
   m_LocalPosition: {x: 0, y: 0, z: -10}
 >>>>>>> Stashed changes
+=======
+  m_LocalPosition: {x: -5.42, y: 1.64, z: -10}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   m_LocalPosition: {x: -5.42, y: 1.64, z: -10}
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
@@ -1567,11 +1571,15 @@ MonoBehaviour:
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_Follow: {fileID: 478016653}
 =======
   m_Follow: {fileID: 0}
 >>>>>>> Stashed changes
+=======
+  m_Follow: {fileID: 1336905647}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   m_Follow: {fileID: 1336905647}
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
@@ -1604,11 +1612,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_LocalPosition: {x: -2.5507, y: 1.6566, z: -10}
 =======
   m_LocalPosition: {x: 0, y: 0, z: -10}
 >>>>>>> Stashed changes
+=======
+  m_LocalPosition: {x: -5.42, y: 1.64, z: -10}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   m_LocalPosition: {x: -5.42, y: 1.64, z: -10}
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
@@ -2147,8 +2159,11 @@ PolygonCollider2D:
       - {x: 0, y: 0.5}
   m_UseDelaunayMesh: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 --- !u!1001 &862754497
@@ -2164,10 +2179,13 @@ PrefabInstance:
       value: crosshair
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     - target: {fileID: 7162006624582296850, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
@@ -2216,7 +2234,10 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 --- !u!1 &869043476
@@ -2927,6 +2948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   - {fileID: 356750557380469799, guid: 000f9c184955d1b4f8c90e5a4ed25cdc, type: 3}
   - {fileID: 877370242324822587, guid: 49d7825d144d3984591ee107ac0df077, type: 3}
@@ -2934,6 +2956,10 @@ MonoBehaviour:
   - {fileID: 7976407054512496140, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
   - {fileID: 7513316911805560605, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
 >>>>>>> Stashed changes
+=======
+  - {fileID: 0}
+  - {fileID: 0}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   - {fileID: 0}
   - {fileID: 0}
@@ -5103,12 +5129,16 @@ SceneRoots:
   - {fileID: 1049604470}
   - {fileID: 179528509}
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   - {fileID: 407789475}
 =======
   - {fileID: 1625114995}
   - {fileID: 1834115566}
 >>>>>>> Stashed changes
+=======
+  - {fileID: 988828872}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
   - {fileID: 988828872}
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9

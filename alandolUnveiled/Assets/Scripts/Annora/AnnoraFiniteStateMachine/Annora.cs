@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+using Unity.VisualScripting.Dependencies.Sqlite;
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 using Unity.VisualScripting.Dependencies.Sqlite;
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
@@ -36,7 +40,10 @@ public class Annora : MonoBehaviourPunCallbacks
     public HookRope HookRope { get; private set; }
     public SpringJoint2D Sj2D { get; private set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
     public PhotonView view;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     //public AnnoraAnimStrings AnimStrings { get; private set; }
@@ -95,8 +102,11 @@ public class Annora : MonoBehaviourPunCallbacks
     private void Start()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         view = GetComponent<PhotonView>();
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 =======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         Anim = GetComponent<Animator>();
@@ -112,6 +122,7 @@ public class Annora : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         if (view.IsMine)
@@ -139,6 +150,8 @@ public class Annora : MonoBehaviourPunCallbacks
         }
         
 =======
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         CurrentVelocity = Rb2D.velocity;
         StateMachine.CurrentState.Update();
 
@@ -159,6 +172,9 @@ public class Annora : MonoBehaviourPunCallbacks
         }
 
         Debug.Log(StateMachine.CurrentState);
+<<<<<<< HEAD
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
+=======
 >>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     }
 
