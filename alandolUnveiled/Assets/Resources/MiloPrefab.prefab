@@ -79,9 +79,12 @@ GameObject:
   - component: {fileID: 6350886487170401275}
   - component: {fileID: 7256304441643854906}
   - component: {fileID: 8219245337991431156}
+<<<<<<< HEAD
   - component: {fileID: 1962384639749512892}
   - component: {fileID: -3446748354199245604}
   - component: {fileID: -3044619617200478446}
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_Layer: 0
   m_Name: MiloPrefab
   m_TagString: MainPlayer
@@ -99,7 +102,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7466960728233246029}
@@ -119,7 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb742f386340b34bbdc090fcbc2f1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   view: {fileID: 0}
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   groundCheck: {fileID: 7466960728233246029}
   viejonCheck: {fileID: 1755108378553531286}
   leftHand: {fileID: 4286884031464710220}
@@ -638,6 +648,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+<<<<<<< HEAD
 --- !u!114 &1962384639749512892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +760,8 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 --- !u!1 &9053455636431880379
 GameObject:
   m_ObjectHideFlags: 0

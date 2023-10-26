@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
 //using Unity.VisualScripting.Dependencies.Sqlite;
 //using UnityEditor.U2D.Aseprite;
+=======
+using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEditor.U2D.Aseprite;
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 

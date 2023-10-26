@@ -4,5 +4,33 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 853c40e874a342c4f8b04fcf930b78ae
+  - enabled: 1
+    path: Assets/Scenes/ConnectToServer.unity
+    guid: 615db02cab1148d4ca5a5d19b5e5087a
+  - enabled: 1
+    path: Assets/Scenes/CreateRoom.unity
+    guid: 3a01a377aa1dadd49af43cc54514b142
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Room.unity
+    guid: 0b66165213b35374d9ad92e545cd23f1
+  - enabled: 0
+    path: Assets/Scenes/Free.unity
+    guid: 006dd9f7413ba554bb073dd27e5ea233
+  - enabled: 1
+    path: Assets/Scenes/Test.unity
+    guid: ce182208181f34049ac25a0e59f922b8
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen.unity
+    guid: 7c0d3a5a159b64c48b8a691792b62344
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
   m_configObjects: {}

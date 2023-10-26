@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+<<<<<<< HEAD
 using Photon.Pun;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 using UnityEngine.InputSystem.Controls;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+<<<<<<< HEAD
     PhotonView view;
 
     private void Start()
@@ -15,6 +19,8 @@ public class PlayerInputHandler : MonoBehaviour
         view = GetComponent<PhotonView>();
     }
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     #region Movement
     public Vector2 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
@@ -55,12 +61,18 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< HEAD
         if (view.IsMine)
         {
             CheckJumpInputHoldTime();
             CheckAbility1HoldTime();
             CheckAbility2HoldTime();
         }
+=======
+        CheckJumpInputHoldTime();
+        CheckAbility1HoldTime();
+        CheckAbility2HoldTime();
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     }
 
     #region Inputs

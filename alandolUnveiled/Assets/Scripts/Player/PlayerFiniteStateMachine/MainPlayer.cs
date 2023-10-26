@@ -27,7 +27,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
+<<<<<<< HEAD
     public PhotonView view;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     #endregion
 
     #region Check Transforms
@@ -93,8 +96,11 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+<<<<<<< HEAD
         view = GetComponent<PhotonView>();
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
@@ -105,6 +111,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+<<<<<<< HEAD
         if(view.IsMine)
         {
             CurrentVelocity = rb.velocity;
@@ -122,6 +129,22 @@ public class MainPlayer : MonoBehaviourPunCallbacks
                 crosshair.transform.position = InputHandler.MouseInput;
                 DrawTrajectory();
             }
+=======
+        CurrentVelocity = rb.velocity;
+        StateMachine.CurrentState.Update();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            playerData.health -= 20;
+        }
+
+        healthUI.fillAmount = playerData.health / 100f;
+
+        if (InputHandler.IsAiming)
+        {
+            crosshair.transform.position = InputHandler.MouseInput;
+            DrawTrajectory();
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         }
     }
 

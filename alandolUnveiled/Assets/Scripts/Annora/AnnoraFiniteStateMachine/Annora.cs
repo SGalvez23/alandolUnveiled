@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+<<<<<<< HEAD
+=======
+using Unity.VisualScripting.Dependencies.Sqlite;
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
 
 public class Annora : MonoBehaviourPunCallbacks
 {
@@ -31,7 +35,10 @@ public class Annora : MonoBehaviourPunCallbacks
     public Rigidbody2D Rb2D { get; private set; }
     public HookRope HookRope { get; private set; }
     public SpringJoint2D Sj2D { get; private set; }
+<<<<<<< HEAD
     public PhotonView view;
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -87,8 +94,11 @@ public class Annora : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+<<<<<<< HEAD
         view = GetComponent<PhotonView>();
 
+=======
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<AnnoraInputHandler>();
         Rb2D = GetComponent<Rigidbody2D>();
@@ -102,6 +112,7 @@ public class Annora : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+<<<<<<< HEAD
 
         if (view.IsMine)
         {
@@ -127,6 +138,28 @@ public class Annora : MonoBehaviourPunCallbacks
             Debug.Log(StateMachine.CurrentState);
         }
         
+=======
+        CurrentVelocity = Rb2D.velocity;
+        StateMachine.CurrentState.Update();
+
+        if (InputHandler.IsAiming)
+        {
+            crosshair.transform.position = InputHandler.MousePos;
+
+            if(InputHandler.HookShot)
+            {
+                SetGrapplePoint();
+            }
+            else if(!InputHandler.HookShot)
+            {
+                Rb2D.gravityScale = 1;
+                Sj2D.enabled = false;
+                HookRope.enabled = false;
+            }
+        }
+
+        Debug.Log(StateMachine.CurrentState);
+>>>>>>> 2a05a6d3076da89c4af55eb72260ac8c6b34a8f9
     }
 
     private void FixedUpdate()
