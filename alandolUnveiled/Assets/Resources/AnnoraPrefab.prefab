@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1642601370848746197}
   annoraData: {fileID: 11400000, guid: 64fb494e201ba3d41a2b4bc5694c330d, type: 2}
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 429742403843415634, guid: aa5e111f8001b444fbc5d7dfd9e30e96, type: 3}
   hookGunHolder: {fileID: 0}
   hookFirePoint: {fileID: 6903620835777030988}
   grapplePoint: {x: 0, y: 0}
@@ -525,7 +525,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 5.662685
+  m_Distance: 5.2015862
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &193017460261520281
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   annora: {fileID: 3126026779914295509}
-  lr: {fileID: 0}
+  lr: {fileID: 8185427533081202275}
   percision: 40
   straightenLineSpeed: 10
   ropeAnimationCurve:
@@ -643,7 +643,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 5d214e7839dae1e489d2d3dfad8e391a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

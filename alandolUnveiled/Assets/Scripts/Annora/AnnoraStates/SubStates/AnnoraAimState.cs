@@ -35,17 +35,24 @@ public class AnnoraAimState : AnnoraAbilityState
 
         aiming = annora.InputHandler.IsAiming;
         JumpInput = annora.InputHandler.JumpInput;
+        shot = annora.InputHandler.HookShot;
+        isGrappling = annora.IsGrappling;
 
-        if (aiming && xInput != 0)
+        if (xInput != 0)
         {
             stateMachine.ChangeState(annora.MovingAimState);
         }
-        else if(aiming && JumpInput && annora.JumpState.CanJump())
+        else if(JumpInput && annora.JumpState.CanJump())
         {
             annora.InputHandler.HasJumped();
             stateMachine.ChangeState(annora.JumpState);
         }
-        else if(!aiming)
+        else if (shot && !isGrappling)
+        {
+            annora.SetGrapplePoint();
+            stateMachine.ChangeState(annora.HookedState);
+        }
+        else if (!aiming)
         {
             isDone = true;
         }

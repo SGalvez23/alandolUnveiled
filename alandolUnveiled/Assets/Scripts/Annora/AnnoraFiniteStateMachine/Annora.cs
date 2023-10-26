@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class Annora : MonoBehaviourPunCallbacks
 {
@@ -53,11 +52,12 @@ public class Annora : MonoBehaviourPunCallbacks
     public GameObject crosshair;
     public Transform hookGunHolder;
     public Transform hookFirePoint;
+    public bool IsGrappling { get; private set; }
     public Vector2 grapplePoint;
     public Vector2 grappleDistanceVector;
     bool launchToPoint = true;
     [SerializeField] float launchSpeed = 0.3f;
-    public bool infiniteRange = false;
+    public bool infiniteRange = true;
     private float targetDistance = 3;
     private float targetFrequncy = 1;
     protected int maxRange = 250;
@@ -94,6 +94,7 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D = GetComponent<SpringJoint2D>();
         HookRope.enabled = false;
         Sj2D.enabled = false;
+        IsGrappling = false;
 
         StateMachine.Initialize(IdleState);
     }
@@ -106,17 +107,6 @@ public class Annora : MonoBehaviourPunCallbacks
         if (InputHandler.IsAiming)
         {
             crosshair.transform.position = InputHandler.MousePos;
-
-            if(InputHandler.HookShot)
-            {
-                SetGrapplePoint();
-            }
-            else if(!InputHandler.HookShot)
-            {
-                Rb2D.gravityScale = 1;
-                Sj2D.enabled = false;
-                HookRope.enabled = false;
-            }
         }
 
         Debug.Log(StateMachine.CurrentState);
@@ -180,18 +170,29 @@ public class Annora : MonoBehaviourPunCallbacks
         crosshair.SetActive(false);
     }
 
-    void SetGrapplePoint()
+    public void StopGrapple()
+    {
+        
+        Rb2D.gravityScale = 1;
+        Sj2D.enabled = false;
+        HookRope.enabled = false;
+        IsGrappling = false;
+        Debug.Log("soltar");
+    }
+
+    public void SetGrapplePoint()
     {
         Vector3 difference = new Vector3(InputHandler.MousePos.x, InputHandler.MousePos.y) - transform.position;
         RaycastHit2D hit = Physics2D.Raycast(hookFirePoint.position, difference.normalized, 1 << 11);
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.gameObject.name);
+            //Debug.Log(hit.transform.gameObject.name);
             if (Vector2.Distance(hit.point, hookFirePoint.position) <= maxRange && hit.collider.CompareTag("Anclaje") || infiniteRange)
             {
                 grapplePoint = hit.point;
                 grappleDistanceVector = grapplePoint - (Vector2)transform.position;
                 HookRope.enabled = true;
+                IsGrappling = true;
             }
         }
     }

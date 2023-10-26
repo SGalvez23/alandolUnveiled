@@ -28,16 +28,23 @@ public class AnnoraAerialAimState : AnnoraAbilityState
     {
         base.Update();
 
+        aiming = annora.InputHandler.IsAiming;
         JumpInput = annora.InputHandler.JumpInput;
-
+        shot = annora.InputHandler.HookShot;
+        isGrappling = annora.IsGrappling;
 
         if (!aiming)
         {
-            stateMachine.ChangeState(annora.InAirState);
+            isDone = true;
         }
         else if (isGrounded && annora.CurrentVelocity.y < 0.01f)
         {
             stateMachine.ChangeState(annora.LandedState);
+        }
+        else if (shot && !isGrappling)
+        {
+            annora.SetGrapplePoint();
+            stateMachine.ChangeState(annora.HookedState);
         }
         else
         {

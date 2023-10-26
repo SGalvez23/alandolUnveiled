@@ -9,6 +9,9 @@ public class AnnoraAbilityState : AnnoraState
     protected int xInput;
     protected bool aiming;
     protected bool JumpInput;
+    protected bool shot;
+    protected bool isGrappling;
+
     public AnnoraAbilityState(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
     }
@@ -43,10 +46,15 @@ public class AnnoraAbilityState : AnnoraState
 
         xInput = annora.InputHandler.NormInputX;
         aiming = annora.InputHandler.IsAiming;
+        shot = annora.InputHandler.HookShot;
 
-        if(isDone)
+        if (isDone)
         {
-            if (isGrounded && annora.CurrentVelocity.y < 0.01f)
+            if (xInput == 0 && isGrounded)
+            {
+                stateMachine.ChangeState(annora.IdleState);
+            }
+            else if(isGrounded && annora.CurrentVelocity.y < 0.01f)
             {
                 stateMachine.ChangeState(annora.LandedState);
             }
@@ -56,13 +64,6 @@ public class AnnoraAbilityState : AnnoraState
             }
         }
 
-        if (aiming && !isGrounded)
-        {
-            stateMachine.ChangeState(annora.AerialAimState);
-        }
-        else if (aiming && xInput != 0 && isGrounded)
-        {
-            stateMachine.ChangeState(annora.MovingAimState);
-        }
+        
     }
 }

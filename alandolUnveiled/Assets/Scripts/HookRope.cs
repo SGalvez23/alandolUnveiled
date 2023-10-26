@@ -23,7 +23,6 @@ public class HookRope : MonoBehaviour
 
     private void Awake()
     {
-        lr = GetComponent<LineRenderer>();
         lr.enabled = false;
         lr.positionCount = percision;
         waveSize = StartWaveSize;
@@ -100,7 +99,7 @@ public class HookRope : MonoBehaviour
     {
         for (int i = 0; i < percision; i++)
         {
-            float delta = (float)i / ((float)percision - 1f);
+            float delta = (float)i / (float)(percision - 1f);
             Vector2 offset = Vector2.Perpendicular(annora.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
             Vector2 targetPosition = Vector2.Lerp(annora.hookFirePoint.position, annora.grapplePoint, delta) + offset;
             Vector2 currentPosition = Vector2.Lerp(annora.hookFirePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
@@ -113,5 +112,7 @@ public class HookRope : MonoBehaviour
     {
         lr.SetPosition(0, annora.hookFirePoint.position);
         lr.SetPosition(1, annora.grapplePoint);
+        Debug.Log(annora.hookFirePoint.position);
+        Debug.Log(annora.grapplePoint);
     }
 }
