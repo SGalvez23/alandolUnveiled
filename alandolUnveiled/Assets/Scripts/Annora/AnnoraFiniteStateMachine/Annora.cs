@@ -246,7 +246,11 @@ public class Annora : MonoBehaviourPunCallbacks
         {
             //Layer es del player
             //gameObject.layer == 2;
-
+            if(annoraData.health <= 0)
+        {
+            Debug.Log("DEAD");
+        }
+            annoraData.health -= 10;
             //lo que pasara
             spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
