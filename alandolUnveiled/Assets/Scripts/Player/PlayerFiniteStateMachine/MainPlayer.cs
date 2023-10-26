@@ -27,6 +27,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
+    PhotonView view;
     #endregion
 
     #region Check Transforms
@@ -56,6 +57,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public int ProjectileIndex { get; set; }
     public GameObject A1Prefab;
     public bool appliedA1;
+    public bool a1Input;
     public GameObject A2Prefab;
     public bool appliedA2;
     public GameObject A3Prefab;
@@ -97,25 +99,37 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         rb = GetComponent<Rigidbody2D>();
         LineRenderer = GetComponent<LineRenderer>();
 
+        view = GetComponent<PhotonView>();
+
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = rb.velocity;
-        StateMachine.CurrentState.Update();
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (view.IsMine)
         {
-            playerData.health -= 20;
-        }
+            CurrentVelocity = rb.velocity;
+            StateMachine.CurrentState.Update();
 
-        healthUI.fillAmount = playerData.health / 100f;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                playerData.health -= 20;
+            }
 
-        if (InputHandler.IsAiming)
-        {
-            crosshair.transform.position = InputHandler.MouseInput;
-            DrawTrajectory();
+            //healthUI.fillAmount = playerData.health / 100f;
+
+            if (InputHandler.IsAiming)
+            {
+                crosshair.transform.position = InputHandler.MouseInput;
+                DrawTrajectory();
+            }
+
+            a1Input = InputHandler.Ability1Input;
+            if (a1Input)
+            {
+                Debug.Log(ViejonState.CanUse);
+                StartCoroutine(UsableA1());
+            }
         }
     }
 
@@ -218,8 +232,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A1
     public void PlaceViejon()
     {
-        Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
+        GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
         appliedA1 = true;
+        Destroy(viejon, 4);
+        ViejonState.CanUse = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -230,6 +246,14 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public void Heal()
     {
         playerData.health += 10;
+    }
+
+    public IEnumerator UsableA1()
+    {
+        Debug.Log("wait");
+        yield return new WaitForSeconds(playerData.viejonTime);
+        Debug.Log("ya");
+        ViejonState.CanUse = true;
     }
     #endregion
 

@@ -12,6 +12,7 @@ public class AnnoraInAirState : AnnoraState
     protected bool coyoteTime;
     protected bool isJumping;
     protected bool aiming;
+    protected bool shot;
 
     public AnnoraInAirState(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
@@ -49,6 +50,7 @@ public class AnnoraInAirState : AnnoraState
         JumpInput = annora.InputHandler.JumpInput;
         jumpInputStop = annora.InputHandler.JumpInputStop;
         aiming = annora.InputHandler.IsAiming;
+        shot = annora.InputHandler.HookShot;
 
         CheckJumpMultiplier();
 

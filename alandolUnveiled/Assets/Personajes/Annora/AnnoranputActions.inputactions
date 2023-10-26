@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputActions",
+    "name": "AnnoranputActions",
     "maps": [
         {
             "name": "Player",
@@ -65,7 +65,7 @@
                     "id": "f4526d4e-39b5-4405-ad04-1c07da31632f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {

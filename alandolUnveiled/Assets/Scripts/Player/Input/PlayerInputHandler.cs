@@ -112,11 +112,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             Ability1Input = true;
             Ability1InputStop = false;
-            ability1InputStartTime = Time.time;
         }
         else if (context.canceled)
         {
             Ability1InputStop = true;
+            ability1InputStartTime = Time.time;
         }
     }
 
