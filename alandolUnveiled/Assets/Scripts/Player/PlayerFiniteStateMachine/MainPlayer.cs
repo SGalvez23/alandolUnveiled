@@ -98,6 +98,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         LineRenderer = GetComponent<LineRenderer>();
 
         StateMachine.Initialize(IdleState);
+        playerData.health = 100;
     }
 
     private void Update()
@@ -105,11 +106,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         CurrentVelocity = rb.velocity;
         StateMachine.CurrentState.Update();
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            playerData.health -= 20;
-        }
-
+      
         healthUI.fillAmount = playerData.health / 100f;
 
         if (InputHandler.IsAiming)
@@ -257,5 +254,32 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         appliedA4 = true;
         ProjectileIndex = 3;
     }
+    #endregion
+
+    #region Damage Player
+
+    public void TakeDamage(int amount){
+        playerData.health -= amount;
+            if( playerData.health <= 0)
+            {
+                Destroy(gameObject);
+                
+            }
+
+    
+
+
+
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemigo")
+        {
+           Debug.Log("Daño");
+           TakeDamage(10);
+        }
+    }
+
     #endregion
 }
