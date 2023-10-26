@@ -1508,6 +1508,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -6.61
       objectReference: {fileID: 0}
+    - target: {fileID: 5272651461670514798, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7976407054512496140, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
       propertyPath: m_Name
       value: AnnoraPrefab

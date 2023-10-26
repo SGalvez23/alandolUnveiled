@@ -32,7 +32,7 @@ public class PlayerGroundedState : PlayerState
         base.Enter();
 
         player.JumpState.ResetJumps();
-        player.ViejonState.ResetA1();//quitar
+//quitar
     }
 
     public override void Exit()
@@ -78,7 +78,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.InAirState);
         }
 
-        if (ability1Input && player.ViejonState.CanUse1() && canPlaceViejon)
+        if (ability1Input && player.ViejonState.CanUse && canPlaceViejon)
         {
             player.InputHandler.UseA1Input();
             stateMachine.ChangeState(player.ViejonState);

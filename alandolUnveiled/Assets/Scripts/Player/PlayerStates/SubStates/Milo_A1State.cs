@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Milo_A1State : PlayerAbilityState
 {
-    public bool CanUse { get; private set; }
+    public bool CanUse { get; set; }
 
     private float a1Time;
 
@@ -16,10 +16,9 @@ public class Milo_A1State : PlayerAbilityState
     {
         base.Enter();
 
-        CanUse = false;
-        player.InputHandler.UseA1Input();
+        CanUse = true;
         player.PlaceViejon();
-        Debug.Log(Time.time);
+        a1Time = player.InputHandler.ability1InputStartTime;
     }
 
     public override void Exit()
@@ -33,17 +32,20 @@ public class Milo_A1State : PlayerAbilityState
 
         if (player.appliedA1)
             isDone = true;
-
-        if (player.InputHandler.Ability1Input)
-        {
-            a1Time = player.InputHandler.ability1InputStartTime;
-        }
     }
 
     public bool CanUse1()
     {
-        a1Time = player.InputHandler.ability1InputStartTime;
-        
+        //Debug.Log(a1Time);
+        //Debug.Log(playerData.viejonTime);
+        if (a1Time > Time.time - playerData.viejonTime)
+        {
+            CanUse = true;
+        }
+        else
+        {
+            CanUse = false;
+        }
 
         return CanUse;
         //return CanUse && Time.time >= a1Time + playerData.viejonTime;
