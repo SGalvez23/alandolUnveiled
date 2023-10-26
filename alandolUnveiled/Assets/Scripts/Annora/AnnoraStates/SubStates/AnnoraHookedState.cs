@@ -40,10 +40,6 @@ public class AnnoraHookedState : AnnoraAbilityState
             annora.StopGrapple();
             isDone = true;
         }
-        else if (aiming)
-        {
-            Debug.Log("asd");
-        }
         else
         {
             annora.CheckFlip(xInput);

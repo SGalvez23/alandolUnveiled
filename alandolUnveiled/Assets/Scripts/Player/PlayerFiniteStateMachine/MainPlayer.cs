@@ -116,7 +116,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
                 playerData.health -= 20;
             }
 
-            //healthUI.fillAmount = playerData.health / 100f;
+            healthUI.fillAmount = playerData.health / 100f;
 
             if (InputHandler.IsAiming)
             {
@@ -221,11 +221,13 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public void Crosshair()
     {
         crosshair.SetActive(true);
+        LineRenderer.enabled = true;
     }
 
     public void DeleteCrosshair()
     {
         crosshair.SetActive(false);
+        LineRenderer.enabled = false;
     }
     #endregion
 

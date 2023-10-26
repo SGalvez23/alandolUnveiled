@@ -112,7 +112,5 @@ public class HookRope : MonoBehaviour
     {
         lr.SetPosition(0, annora.hookFirePoint.position);
         lr.SetPosition(1, annora.grapplePoint);
-        Debug.Log(annora.hookFirePoint.position);
-        Debug.Log(annora.grapplePoint);
     }
 }
