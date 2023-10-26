@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviourPunCallbacks
 {
     #region Movement
     public Vector2 RawMovementInput { get; private set; }
@@ -45,11 +46,21 @@ public class PlayerInputHandler : MonoBehaviour
     public float ability4InputStartTime;
     #endregion
 
+    PhotonView view;
+
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
+
     private void Update()
     {
-        CheckJumpInputHoldTime();
-        CheckAbility1HoldTime();
-        CheckAbility2HoldTime();
+        if (view.IsMine){
+            CheckJumpInputHoldTime();
+            CheckAbility1HoldTime();
+            CheckAbility2HoldTime();
+        }
+        
     }
 
     #region Inputs

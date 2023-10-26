@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class AnnoraInputHandler : MonoBehaviour
+public class AnnoraInputHandler : MonoBehaviourPunCallbacks
 {
     #region Movement
     public Vector2 RawMovementInput { get; private set; }
@@ -34,9 +34,20 @@ public class AnnoraInputHandler : MonoBehaviour
     public float ability2InputStartTime;
     #endregion
 
+    PhotonView view;
+
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
+
     private void Update()
     {
-        CheckJumpInputHoldTime();
+        if(view.IsMine)
+        {
+            CheckJumpInputHoldTime();
+
+        }
     }
 
     #region Inputs

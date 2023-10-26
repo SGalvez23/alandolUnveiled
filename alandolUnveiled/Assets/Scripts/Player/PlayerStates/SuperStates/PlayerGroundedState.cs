@@ -49,57 +49,62 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        xInput = player.InputHandler.NormInputX;
-        JumpInput = player.InputHandler.JumpInput;
-        ability1Input = player.InputHandler.Ability1Input;
-        ability2Input = player.InputHandler.Ability2Input;
-        ability3Input = player.InputHandler.Ability3Input;
-        ability4Input = player.InputHandler.Ability4Input;
+        if (player.photonView.IsMine)
+        {
+            xInput = player.InputHandler.NormInputX;
+            JumpInput = player.InputHandler.JumpInput;
+            ability1Input = player.InputHandler.Ability1Input;
+            ability2Input = player.InputHandler.Ability2Input;
+            ability3Input = player.InputHandler.Ability3Input;
+            ability4Input = player.InputHandler.Ability4Input;
 
-        aiming = player.InputHandler.IsAiming;
+            aiming = player.InputHandler.IsAiming;
 
-        if (JumpInput && player.JumpState.CanJump())
-        {
-            player.InputHandler.HasJumped();
-            stateMachine.ChangeState(player.JumpState);
-        }
-        else if (!isGrounded)
-        {
-            player.InAirState.StartCoyoteTime();
-            stateMachine.ChangeState(player.InAirState);
-        }
-        else if (aiming)
-        {
-            stateMachine.ChangeState(player.BasicAtkState);
-        }
-        else if(aiming && !isGrounded)
-        {
-            //falta agregar MiloAerialAimState
-            stateMachine.ChangeState(player.InAirState);
+            if (JumpInput && player.JumpState.CanJump())
+            {
+                player.InputHandler.HasJumped();
+                stateMachine.ChangeState(player.JumpState);
+            }
+            else if (!isGrounded)
+            {
+                player.InAirState.StartCoyoteTime();
+                stateMachine.ChangeState(player.InAirState);
+            }
+            else if (aiming)
+            {
+                stateMachine.ChangeState(player.BasicAtkState);
+            }
+            else if (aiming && !isGrounded)
+            {
+                //falta agregar MiloAerialAimState
+                stateMachine.ChangeState(player.InAirState);
+            }
+
+            if (ability1Input && player.ViejonState.CanUse && canPlaceViejon)
+            {
+                player.InputHandler.UseA1Input();
+                stateMachine.ChangeState(player.ViejonState);
+            }
+
+            if (ability2Input) // && player.RojoVivoState.CanUse2() -- ajustar CanUse2, no funciona
+            {
+                player.InputHandler.UseA2Input();
+                stateMachine.ChangeState(player.RojoVivoState);
+            }
+
+            if (ability3Input)
+            {
+                player.InputHandler.UseA3Input();
+                stateMachine.ChangeState(player.CheveState);
+            }
+
+            if (ability4Input)
+            {
+                player.InputHandler.UseA4Input();
+                stateMachine.ChangeState(player.CarnitaAsadaState);
+            }
         }
 
-        if (ability1Input && player.ViejonState.CanUse && canPlaceViejon)
-        {
-            player.InputHandler.UseA1Input();
-            stateMachine.ChangeState(player.ViejonState);
-        }
-
-        if (ability2Input) // && player.RojoVivoState.CanUse2() -- ajustar CanUse2, no funciona
-        {
-            player.InputHandler.UseA2Input();
-            stateMachine.ChangeState(player.RojoVivoState);
-        }
-
-        if (ability3Input)
-        {
-            player.InputHandler.UseA3Input();
-            stateMachine.ChangeState(player.CheveState);
-        }
-
-        if (ability4Input)
-        {
-            player.InputHandler.UseA4Input();
-            stateMachine.ChangeState(player.CarnitaAsadaState);
-        }
+        
     }
 }

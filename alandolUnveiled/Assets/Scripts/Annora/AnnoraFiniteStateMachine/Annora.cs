@@ -31,6 +31,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public Rigidbody2D Rb2D { get; private set; }
     public HookRope HookRope { get; private set; }
     public SpringJoint2D Sj2D { get; private set; }
+    PhotonView view;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -96,20 +97,26 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D.enabled = false;
         IsGrappling = false;
 
+        view = GetComponent<PhotonView>();
+
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = Rb2D.velocity;
-        StateMachine.CurrentState.Update();
-
-        if (InputHandler.IsAiming)
+        if(view.IsMine)
         {
-            crosshair.transform.position = InputHandler.MousePos;
-        }
+            CurrentVelocity = Rb2D.velocity;
+            StateMachine.CurrentState.Update();
 
-        Debug.Log(StateMachine.CurrentState);
+            if (InputHandler.IsAiming)
+            {
+                crosshair.transform.position = InputHandler.MousePos;
+            }
+
+            Debug.Log(StateMachine.CurrentState);
+        }
+        
     }
 
     private void FixedUpdate()
