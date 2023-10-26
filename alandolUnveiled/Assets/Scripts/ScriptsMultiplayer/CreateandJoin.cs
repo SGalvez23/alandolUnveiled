@@ -140,7 +140,7 @@ public class CreateandJoin : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 3)
+        if(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount >= 1)
         {
             playButton.SetActive(true);
         }
