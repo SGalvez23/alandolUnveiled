@@ -59,8 +59,9 @@ public class PlayerInputHandler : MonoBehaviourPunCallbacks
             CheckJumpInputHoldTime();
             CheckAbility1HoldTime();
             CheckAbility2HoldTime();
+            CheckAbility3HoldTime();
+            CheckAbility4HoldTime();
         }
-        
     }
 
     #region Inputs
@@ -79,11 +80,6 @@ public class PlayerInputHandler : MonoBehaviourPunCallbacks
             JumpInput = true;
             JumpInputStop = false;
             jumpInputStartTime = Time.time;
-        }
-
-        if (context.canceled)
-        {
-            JumpInputStop = true;
         }
     }
 
@@ -123,11 +119,11 @@ public class PlayerInputHandler : MonoBehaviourPunCallbacks
         {
             Ability1Input = true;
             Ability1InputStop = false;
+            ability1InputStartTime = Time.time;
         }
         else if (context.canceled)
         {
             Ability1InputStop = true;
-            ability1InputStartTime = Time.time;
         }
     }
 
@@ -138,12 +134,10 @@ public class PlayerInputHandler : MonoBehaviourPunCallbacks
             Ability2Input = true;
             Ability2InputStop = false;
             ability2InputStartTime = Time.time;
-            //Debug.Log(Ability2Input);
         }
         if (context.canceled)
         {
             Ability2InputStop = true;
-            //Debug.Log(Ability2Input);
         }
     }
 
@@ -215,7 +209,7 @@ public class PlayerInputHandler : MonoBehaviourPunCallbacks
         {
             Ability3Input = false;
         }
-    }
+    }    
 
     public void UseA4Input() => Ability4Input = false;
 

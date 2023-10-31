@@ -518,14 +518,6 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2816948622458360337, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 2816948622458360337, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5403567786470583935, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
       propertyPath: m_SynchronizeLayers.Array.size
       value: 1
@@ -634,38 +626,6 @@ PrefabInstance:
       propertyPath: healthUI
       value: 
       objectReference: {fileID: 185289042}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418815319137238978, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7513316911805560605, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
       propertyPath: m_Name
       value: MiloPrefab

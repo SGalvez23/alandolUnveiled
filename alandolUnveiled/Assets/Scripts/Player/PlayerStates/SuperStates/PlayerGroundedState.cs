@@ -80,25 +80,25 @@ public class PlayerGroundedState : PlayerState
                 stateMachine.ChangeState(player.InAirState);
             }
 
-            if (ability1Input && player.ViejonState.CanUse && canPlaceViejon)
+            if (ability1Input && canPlaceViejon && player.ViejonState.CanUse)
             {
                 player.InputHandler.UseA1Input();
                 stateMachine.ChangeState(player.ViejonState);
             }
 
-            if (ability2Input) // && player.RojoVivoState.CanUse2() -- ajustar CanUse2, no funciona
+            if (ability2Input && player.RojoVivoState.CanUse)
             {
                 player.InputHandler.UseA2Input();
                 stateMachine.ChangeState(player.RojoVivoState);
             }
 
-            if (ability3Input)
+            if (ability3Input && player.CheveState.CanUse)
             {
                 player.InputHandler.UseA3Input();
                 stateMachine.ChangeState(player.CheveState);
             }
 
-            if (ability4Input)
+            if (ability4Input && player.CarnitaAsadaState.CanUse)
             {
                 player.InputHandler.UseA4Input();
                 stateMachine.ChangeState(player.CarnitaAsadaState);
