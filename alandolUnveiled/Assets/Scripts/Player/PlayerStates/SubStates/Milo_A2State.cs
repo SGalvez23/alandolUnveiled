@@ -16,9 +16,8 @@ public class Milo_A2State : PlayerAbilityState
         base.Enter();
 
         CanUse = false;
-        player.InputHandler.UseA2Input();
         player.ApplyA2();
-        //player.Throw(player.BasicAtkState.Velocity, player.projectileIndex);
+        isDone = true;
     }
 
     public override void Exit()
@@ -29,16 +28,6 @@ public class Milo_A2State : PlayerAbilityState
     public override void Update()
     {
         base.Update();
-
-        if (player.appliedA2)
-        {
-            isDone = true;
-        }
-    }
-
-    public bool CanUse2()
-    {
-        return CanUse && Time.time >= a2Time + playerData.rojoVivoTime;
     }
 
     public void ResetA2() => CanUse = true;

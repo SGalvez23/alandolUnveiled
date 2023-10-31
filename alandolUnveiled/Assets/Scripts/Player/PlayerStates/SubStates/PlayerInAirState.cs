@@ -61,6 +61,7 @@ public class PlayerInAirState : PlayerState
         }
         else if (jumpInput && player.JumpState.CanJump())
         {
+            player.InputHandler.HasJumped();
             stateMachine.ChangeState(player.JumpState);
         }
         else if (ability2Input) // && player.RojoVivoState.CanUse2() -- ajustar CanUse2, no funciona

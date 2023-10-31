@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b203e56127a864348ae585bc2fcab24a, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  health: 380
+  health: 1300
   movementVel: 10
-  jumpVel: 15
+  jumpVel: 18
   amountJumps: 1
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
@@ -24,6 +24,10 @@ MonoBehaviour:
     m_Bits: 64
   launchForce: 1.5
   viejonTime: 4
+  viejonCoolTime: 18
   rojoVivoTime: 10
-  cheveTime: 5
-  carnitaTime: 5
+  rojoVivoCoolTime: 4
+  cheveCant: 6
+  cheveCoolTime: 12
+  carnitaCant: 3
+  carnitaCoolTime: 16
