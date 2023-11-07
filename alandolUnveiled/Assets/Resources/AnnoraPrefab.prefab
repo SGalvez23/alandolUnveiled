@@ -106,6 +106,7 @@ Transform:
   m_Children:
   - {fileID: 1642601370848746197}
   - {fileID: 6903620835777030988}
+  - {fileID: 3757417087512558890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3126026779914295509
@@ -123,12 +124,14 @@ MonoBehaviour:
   groundCheck: {fileID: 1642601370848746197}
   annoraData: {fileID: 11400000, guid: 64fb494e201ba3d41a2b4bc5694c330d, type: 2}
   crosshair: {fileID: 429742403843415634, guid: aa5e111f8001b444fbc5d7dfd9e30e96, type: 3}
-  hookGunHolder: {fileID: 0}
+  hookGunHolder: {fileID: 9059470579935872057}
   hookFirePoint: {fileID: 6903620835777030988}
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
   launchSpeed: 0.3
   infiniteRange: 0
+  DefMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  A1Mat: {fileID: 2100000, guid: 0aee4b10ab78caf4096f13b95dfc04a4, type: 2}
 --- !u!114 &1084242757938692895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +147,8 @@ MonoBehaviour:
   inputBuffer: 0.2
   ability1InputStartTime: 0
   ability2InputStartTime: 0
+  ability3InputStartTime: 0
+  ability4InputStartTime: 0
 --- !u!114 &1295377304621881553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +191,19 @@ MonoBehaviour:
     m_ActionId: c521fe93-6e3e-4e06-a5a7-ef4e59d2a09b
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1084242757938692895}
+        m_TargetAssemblyTypeName: AnnoraInputHandler, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3e35979f-c574-43c7-965a-c2b01b9a606f
     m_ActionName: Player/Attack
   - m_PersistentCalls:
@@ -290,11 +307,35 @@ MonoBehaviour:
     m_ActionId: b3efa931-a319-4f2c-8b4f-efdd4a91b4e0
     m_ActionName: Player/A2[/Keyboard/2]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1084242757938692895}
+        m_TargetAssemblyTypeName: AnnoraInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c579c1ab-2950-4919-a80f-ae293814caa6
     m_ActionName: Player/A3[/Keyboard/3]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1084242757938692895}
+        m_TargetAssemblyTypeName: AnnoraInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility4
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 404e83ef-5969-4fa4-8fab-040fc6918bd1
     m_ActionName: Player/A4[/Keyboard/4]
   - m_PersistentCalls:
@@ -529,7 +570,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 5.2015862
+  m_Distance: 2.426275
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &193017460261520281
@@ -814,3 +855,105 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!1001 &3837746297962314944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9059470579935872057}
+    m_Modifications:
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437975388790440154, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+      propertyPath: m_Name
+      value: AnnoraHUD
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+--- !u!224 &3757417087512558890 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 101171572264796650, guid: aecc087c3c8f3504d9cad62365dff533, type: 3}
+  m_PrefabInstance: {fileID: 3837746297962314944}
+  m_PrefabAsset: {fileID: 0}

@@ -25,4 +25,10 @@ public class AnnoraData : ScriptableObject
 
     [Header("Habilidades Annora")]
     public float launchForce = 0;
+    public float camoTime = 3f;
+    public float camoCoolTime = 6f;
+    public float frenesiTime = 5f;
+    public float frenesiCoolTime = 12f;
+    public float apretonCoolTime = 3f;
+    public float muerteCoolTime = 15f;
 }

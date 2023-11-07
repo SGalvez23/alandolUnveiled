@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Annora_A1State : MonoBehaviour
+public class Annora_A1State : AnnoraAbilityState
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool CanUse { get; private set; }
+    public Annora_A1State(Annora annora, AnnoraStateMachine stateMachine, AnnoraData annoraData, string animBoolName) : base(annora, stateMachine, annoraData, animBoolName)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+
+        CanUse = false;
+        //annora.Camo();
+        isDone = true;
     }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
+    public void ResetA1() => CanUse = true;
 }

@@ -37,13 +37,5 @@ public class AnnoraIdleState : AnnoraGroundedState
         {
             stateMachine.ChangeState(annora.MoveState);
         }
-        else if(JumpInput && annora.JumpState.CanJump())
-        {
-            stateMachine.ChangeState(annora.JumpState);
-        }
-        else if (aiming)
-        {
-            stateMachine.ChangeState(annora.AimState);
-        }
     }
 }
