@@ -29,5 +29,11 @@ public class AnnoraBasicAtkState : AnnoraAbilityState
         {
             annora.basicHitbox.SetActive(false);
         }
+
+        annora.CheckFlip(xInput);
+        annora.SetXVelocity(annoraData.movementVel * xInput);
+
+        annora.Anim.SetFloat("xVelocity", Mathf.Abs(annora.CurrentVelocity.x));
+        annora.Anim.SetFloat("yVelocity", annora.CurrentVelocity.y);
     }
 }

@@ -66,6 +66,7 @@ public class Annora : MonoBehaviourPunCallbacks
     protected int maxRange = 250;
 
     public GameObject basicHitbox;
+    public GameObject A4Hitbox;
 
     //[SerializeField]Material DefMat;
     //[SerializeField]Material A1Mat;

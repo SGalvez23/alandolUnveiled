@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class AbilityHolder : MonoBehaviour
 {
-    public AnnoraAbility ability;
+    public AnnoraAbility[] ability;
     Annora annora;
     float cooldownTime;
     float activeTime;
+    bool ability1Input;
+    bool ability2Input;
+    bool ability3Input;
+    bool ability4Input;
+    int abs;
 
     enum AbilityState
     {
@@ -20,31 +25,55 @@ public class AbilityHolder : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("hola");
         annora = GetComponentInParent<Annora>();
+        abs = 4;
     }
 
     void Update()
     {
+        ability1Input = annora.InputHandler.Ability1Input;
+        ability2Input = annora.InputHandler.Ability2Input;
+        ability3Input = annora.InputHandler.Ability3Input;
+        ability4Input = annora.InputHandler.Ability4Input;
+
+        if (ability1Input)
+        {
+            abs = 0;
+            Debug.Log("A1");
+        }
+        else if (ability2Input)
+        {
+            abs = 1;
+            Debug.Log("A2");
+        }
+        else if (ability3Input)
+        {
+            abs = 2;
+        }
+        else if (ability4Input)
+        {
+            abs = 3;
+        }
+
         switch (state)
         {
             case AbilityState.Ready:
-                if (annora.InputHandler.Ability1Input)
+                if (abs >= 0 && abs <= 3)
                 {
-                    ability.Activate(annora);
-                    activeTime = ability.activeTime;
+                    ability[abs].Activate(annora);
+                    activeTime = ability[abs].activeTime;
                     state = AbilityState.Active;
                 }
                 break;
             case AbilityState.Active:
-                if(activeTime > 0)
+                if (activeTime > 0)
                 {
                     activeTime -= Time.deltaTime;
                 }
                 else
                 {
-                    ability.Deactivate(annora);
-                    cooldownTime = ability.cooldownTime;
+                    ability[abs].Deactivate(annora);
+                    cooldownTime = ability[abs].cooldownTime;
                     state = AbilityState.Cooldown;
                 }
                 break;

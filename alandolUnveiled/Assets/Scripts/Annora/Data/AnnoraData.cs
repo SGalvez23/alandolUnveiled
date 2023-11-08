@@ -30,5 +30,6 @@ public class AnnoraData : ScriptableObject
     public float frenesiTime = 5f;
     public float frenesiCoolTime = 12f;
     public float apretonCoolTime = 3f;
+    public float muerteCerteTime = 2f;
     public float muerteCoolTime = 15f;
 }

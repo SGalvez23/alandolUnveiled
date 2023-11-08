@@ -26,6 +26,20 @@ public class Annora_A4State : AnnoraAbilityState
     public override void Update()
     {
         base.Update();
+
+        if(isAnimationFinished)
+        {
+            isDone = true;
+            annora.A4Hitbox.SetActive(false);
+        }
+        else if (annora.Anim.GetFloat("A4HitboxActive") == 1)
+        {
+            annora.A4Hitbox.SetActive(true);
+        }
+        else if (annora.Anim.GetFloat("A4HitboxActive") != 1)
+        {
+            annora.A4Hitbox.SetActive(false);
+        }
     }
 
     public void ResetA4() => CanUse = true;
