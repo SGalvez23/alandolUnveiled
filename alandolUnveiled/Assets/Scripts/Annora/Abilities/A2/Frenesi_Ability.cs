@@ -12,6 +12,7 @@ public class Frenesi_Ability : AnnoraAbility
     public override void Activate(Annora annora)
     {
         activeTime = annora.annoraData.frenesiTime;
+        cooldownTime = annora.annoraData.frenesiCoolTime;
         trueMoveVel = annora.annoraData.movementVel;
         increasedVel = trueMoveVel + (trueMoveVel * 0.5f);
         ParticleSystem frenesiEffect = annora.GetComponentInChildren<ParticleSystem>();
@@ -23,7 +24,6 @@ public class Frenesi_Ability : AnnoraAbility
 
     public override void Deactivate(Annora annora)
     {
-        cooldownTime = annora.annoraData.frenesiCoolTime;
         ParticleSystem frenesiEffect = annora.GetComponentInChildren<ParticleSystem>();
         
         frenesiEffect.Stop();

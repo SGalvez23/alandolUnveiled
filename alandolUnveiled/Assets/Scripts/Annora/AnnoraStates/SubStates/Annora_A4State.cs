@@ -29,7 +29,6 @@ public class Annora_A4State : AnnoraAbilityState
         if(isAnimationFinished)
         {
             isDone = true;
-            Debug.Log("se acabou");
             annora.A4Hitbox.SetActive(false);
         }
         else if (annora.Anim.GetFloat("A4HitboxActive") == 1)

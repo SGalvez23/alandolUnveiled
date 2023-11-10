@@ -27,11 +27,14 @@ public class CreateandJoin : MonoBehaviourPunCallbacks
     public Transform playerItemParent; //game object parent
 
     public GameObject playButton;
+    AjusteEntreEscenas noDestruirEntreEscenas;
 
     //hacemos esto porque debemos estar dentro de un lobby de photon para poder crear un room
     private void Start()
     {
         PhotonNetwork.JoinLobby();
+
+        noDestruirEntreEscenas = FindObjectOfType<AjusteEntreEscenas>();
     }
 
     public void OnClickCreate()
@@ -153,5 +156,6 @@ public class CreateandJoin : MonoBehaviourPunCallbacks
     public void OnClickPlayButton()
     {
         PhotonNetwork.LoadLevel("PrimerNivel");
+        noDestruirEntreEscenas.gameObject.SetActive(false);
     }
 }

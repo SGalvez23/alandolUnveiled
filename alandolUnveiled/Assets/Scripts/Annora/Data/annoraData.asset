@@ -24,10 +24,10 @@ MonoBehaviour:
     m_Bits: 64
   launchForce: 0
   camoTime: 3
-  camoCoolTime: 6
+  camoCoolTime: 2
   frenesiTime: 5
-  frenesiCoolTime: 12
+  frenesiCoolTime: 2
   apretonTime: 10
   apretonCoolTime: 3
   muerteCerteTime: 6
-  muerteCoolTime: 15
+  muerteCoolTime: 2

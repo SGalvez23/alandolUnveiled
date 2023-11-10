@@ -20,7 +20,6 @@ public class AnnoraBasicAtkState : AnnoraAbilityState
         if (isAnimationFinished)
         {
             isDone = true;
-            Debug.Log("se acabou");
         }
         else if (annora.Anim.GetFloat("basicAtkHitBoxActive") == 1)
         {
