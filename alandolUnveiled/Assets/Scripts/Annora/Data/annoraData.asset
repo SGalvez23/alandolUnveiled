@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: annoraData
   m_EditorClassIdentifier: 
   health: 100
-  movementVel: 15
+  movementVel: 42.8415
   jumpVel: 15
   totalJumps: 2
   coyoteTime: 0.2
@@ -27,5 +27,7 @@ MonoBehaviour:
   camoCoolTime: 6
   frenesiTime: 5
   frenesiCoolTime: 12
+  apretonTime: 10
   apretonCoolTime: 3
+  muerteCerteTime: 2
   muerteCoolTime: 15

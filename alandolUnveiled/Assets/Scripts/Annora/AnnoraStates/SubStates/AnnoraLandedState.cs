@@ -24,5 +24,10 @@ public class AnnoraLandedState : AnnoraGroundedState
         {
             stateMachine.ChangeState(annora.AimState);
         }
+        else
+        {
+            //quitar, no se va necesitar cuando tenga animacion de land
+            stateMachine.ChangeState(annora.IdleState);
+        }
     }
 }

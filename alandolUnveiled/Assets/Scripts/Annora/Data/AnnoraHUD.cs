@@ -79,7 +79,7 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A1Image.fillAmount = 0;
                 isCooldownA1 = false;
-                annora.CamoState.ResetA1();
+                //annora.CamoState.ResetA1();
             }
         }
     }
@@ -99,7 +99,7 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A2Image.fillAmount = 0;
                 isCooldownA2 = false;
-                annora.FrenesiState.ResetA2();
+                //annora.FrenesiState.ResetA2();
             }
         }
     }
@@ -120,7 +120,7 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A3Image.fillAmount = 0;
                 isCooldownA3 = false;
-                annora.ApretonState.ResetA3();
+                //annora.ApretonState.ResetA3();
             }
         }
     }
@@ -142,7 +142,7 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A4Image.fillAmount = 0;
                 isCooldownA4 = false;
-                annora.MuerteCerteState.ResetA4();
+                //annora.MuerteCerteState.ResetA4();
             }
         }
     }

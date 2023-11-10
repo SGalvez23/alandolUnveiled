@@ -33,6 +33,6 @@ public class Frenesi_Ability : AnnoraAbility
 
     public override void ResetAbility(Annora annora)
     {
-        
+        annora.FrenesiState.ResetA2();
     }
 }

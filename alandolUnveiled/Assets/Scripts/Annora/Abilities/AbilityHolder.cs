@@ -39,12 +39,10 @@ public class AbilityHolder : MonoBehaviour
         if (ability1Input)
         {
             abs = 0;
-            Debug.Log("A1");
         }
         else if (ability2Input)
         {
             abs = 1;
-            Debug.Log("A2");
         }
         else if (ability3Input)
         {
@@ -62,6 +60,7 @@ public class AbilityHolder : MonoBehaviour
                 {
                     ability[abs].Activate(annora);
                     activeTime = ability[abs].activeTime;
+                    //Debug.Log(activeTime);
                     state = AbilityState.Active;
                 }
                 break;
@@ -74,6 +73,7 @@ public class AbilityHolder : MonoBehaviour
                 {
                     ability[abs].Deactivate(annora);
                     cooldownTime = ability[abs].cooldownTime;
+                    Debug.Log(cooldownTime);
                     state = AbilityState.Cooldown;
                 }
                 break;
@@ -86,7 +86,7 @@ public class AbilityHolder : MonoBehaviour
                 {
                     Debug.Log("ready");
                     state = AbilityState.Ready;
-                    //ability.ResetAbility(annora);
+                    ability[abs].ResetAbility(annora);
                 }
                 break;
         }

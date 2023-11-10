@@ -64,6 +64,9 @@ public class Annora : MonoBehaviourPunCallbacks
     private float targetDistance = 3;
     private float targetFrequncy = 1;
     protected int maxRange = 250;
+    public bool CanGrabEnemies { get; private set; }
+
+    AbilityHolder abilityHolder;
 
     public GameObject basicHitbox;
     public GameObject A4Hitbox;
@@ -73,6 +76,8 @@ public class Annora : MonoBehaviourPunCallbacks
     #endregion
 
     #region UI
+
+    AnnoraHUD annoraHUD;
 
     #endregion
 
@@ -110,6 +115,8 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D.enabled = false;
         IsGrappling = false;
 
+        annoraHUD = GetComponent<AnnoraHUD>();
+        abilityHolder = GetComponent<AbilityHolder>();
         CamoState.ResetA1();
         FrenesiState.ResetA2();
         ApretonState.ResetA3();
@@ -276,6 +283,17 @@ public class Annora : MonoBehaviourPunCallbacks
 
     #region A3
 
+    public void StartA3()
+    {
+        CanGrabEnemies = true;
+        Debug.Log("start");
+    }
+
+    public void StopA3()
+    {
+        CanGrabEnemies = false;
+        Debug.Log("stop");
+    }
     #endregion
 
     #region A4
