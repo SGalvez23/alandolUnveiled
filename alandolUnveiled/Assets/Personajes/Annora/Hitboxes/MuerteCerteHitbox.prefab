@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5924628709282218364}
   - component: {fileID: 3041014495279951039}
   m_Layer: 2
-  m_Name: MuerteCerteEffect
+  m_Name: MuerteCerteHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

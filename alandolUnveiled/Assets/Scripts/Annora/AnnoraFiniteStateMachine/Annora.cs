@@ -70,6 +70,7 @@ public class Annora : MonoBehaviourPunCallbacks
 
     public GameObject basicHitbox;
     public GameObject A4Hitbox;
+    public GameObject A4Effect;
 
     //[SerializeField]Material DefMat;
     //[SerializeField]Material A1Mat;

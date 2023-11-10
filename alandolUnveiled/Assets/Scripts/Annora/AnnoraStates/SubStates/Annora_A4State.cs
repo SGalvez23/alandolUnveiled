@@ -15,7 +15,6 @@ public class Annora_A4State : AnnoraAbilityState
 
         CanUse = false;
         //annora. hace la habilidad
-        isDone = true;
     }
 
     public override void Exit()
@@ -30,13 +29,14 @@ public class Annora_A4State : AnnoraAbilityState
         if(isAnimationFinished)
         {
             isDone = true;
+            Debug.Log("se acabou");
             annora.A4Hitbox.SetActive(false);
         }
         else if (annora.Anim.GetFloat("A4HitboxActive") == 1)
         {
             annora.A4Hitbox.SetActive(true);
         }
-        else if (annora.Anim.GetFloat("A4HitboxActive") != 1)
+        else if (annora.Anim.GetFloat("A4HitboxActive") == 0)
         {
             annora.A4Hitbox.SetActive(false);
         }

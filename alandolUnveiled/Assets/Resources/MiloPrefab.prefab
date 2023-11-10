@@ -130,18 +130,16 @@ MonoBehaviour:
   - {fileID: -8658730949272685055, guid: 69047bdbfe2acc74898d3f7cdba74b69, type: 3}
   - {fileID: -5464277139209624619, guid: fd035bd4774b18040a6119a597c04458, type: 3}
   - {fileID: 6763915397303334313, guid: 9fb5954123203c945981bd7e62760f2b, type: 3}
+  defProjectile: {fileID: 0}
   A1Prefab: {fileID: 3342070809693042358, guid: 2150e5d3591889d4ebe60c5f3bf6212f, type: 3}
   appliedA1: 0
-  a1Input: 0
   A2Prefab: {fileID: 1000987719633338662, guid: 69047bdbfe2acc74898d3f7cdba74b69, type: 3}
-  appliedA2: 0
   A3Prefab: {fileID: 4849396119909495286, guid: fd035bd4774b18040a6119a597c04458, type: 3}
-  appliedA3: 0
+  cantA3: 0
   A4Prefab: {fileID: 8724523009575504333, guid: 9fb5954123203c945981bd7e62760f2b, type: 3}
-  appliedA4: 0
+  cantA4: 0
   sarten: {fileID: 1000987719633338662, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
   crosshair: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
-  healthUI: {fileID: 0}
 --- !u!114 &1972803517840376767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,8 +651,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: isMoving
+  - Type: 4
+    SynchronizeType: 2
+    Name: isIdle
+  - Type: 9
+    SynchronizeType: 2
+    Name: jump
+  - Type: 4
+    SynchronizeType: 2
+    Name: inAir
+  - Type: 4
+    SynchronizeType: 2
+    Name: landed
+  - Type: 1
+    SynchronizeType: 2
+    Name: yVelocity
+  - Type: 1
+    SynchronizeType: 2
+    Name: xVelocity
+  - Type: 4
+    SynchronizeType: 2
+    Name: viejon
+  - Type: 9
+    SynchronizeType: 2
+    Name: hit
+  - Type: 9
+    SynchronizeType: 2
+    Name: basicAtk
+  - Type: 4
+    SynchronizeType: 2
+    Name: aiming
+  - Type: 4
+    SynchronizeType: 2
+    Name: rojoVivo
+  - Type: 4
+    SynchronizeType: 2
+    Name: buff
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!114 &6291423943353214587
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -73,7 +73,7 @@ public class AbilityHolder : MonoBehaviour
                 {
                     ability[abs].Deactivate(annora);
                     cooldownTime = ability[abs].cooldownTime;
-                    Debug.Log(cooldownTime);
+                    //Debug.Log(cooldownTime);
                     state = AbilityState.Cooldown;
                 }
                 break;

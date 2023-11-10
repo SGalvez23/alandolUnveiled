@@ -73,7 +73,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     private int trajectoryStepCount = 15;
     #endregion
 
-    public Image healthUI;
+    //public Image healthUI;
 
     #region Unity Callback Functions
     private void Awake()
@@ -124,7 +124,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
                 playerData.health -= 20;
             }
 
-            healthUI.fillAmount = playerData.health / 100f;
+            //healthUI.fillAmount = playerData.health / 100f;
 
             if (InputHandler.IsAiming)
             {
