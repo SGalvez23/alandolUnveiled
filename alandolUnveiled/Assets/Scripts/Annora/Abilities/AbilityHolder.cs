@@ -14,14 +14,14 @@ public class AbilityHolder : MonoBehaviour
     bool ability4Input;
     int abs;
 
-    enum AbilityState
+    public enum AbilityState
     {
         Ready,
         Active,
         Cooldown
     }
 
-    AbilityState state = AbilityState.Ready;
+    public AbilityState state = AbilityState.Ready;
 
     private void Start()
     {
@@ -61,7 +61,7 @@ public class AbilityHolder : MonoBehaviour
                     ability[abs].Activate(annora);
                     activeTime = ability[abs].activeTime;
                     cooldownTime = ability[abs].cooldownTime;
-                    //Debug.Log(activeTime);
+                    Debug.Log(activeTime);
                     state = AbilityState.Active;
                 }
                 break;
@@ -73,7 +73,7 @@ public class AbilityHolder : MonoBehaviour
                 else
                 {
                     ability[abs].Deactivate(annora);
-                    //Debug.Log(cooldownTime);
+                    Debug.Log(cooldownTime);
                     state = AbilityState.Cooldown;
                 }
                 break;
@@ -91,5 +91,8 @@ public class AbilityHolder : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void A1States() { 
     }
 }

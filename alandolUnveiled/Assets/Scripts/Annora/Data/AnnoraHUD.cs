@@ -6,34 +6,32 @@ using UnityEngine.UI;
 public class AnnoraHUD : MonoBehaviour
 {
     Annora annora;
+    AbilityHolder abilityHolder;
 
     [Header("Camuflage")]
     public Image A1Image;
     public float A1CoolTime;
     [SerializeField] bool isCooldownA1;
-    public bool A1Input { get; private set; }
 
     [Header("Frenesi de Sangre")]
     public Image A2Image;
     public float A2CoolTime;
     [SerializeField] bool isCooldownA2;
-    public bool A2Input { get; private set; }
 
     [Header("Apreton de Manos")]
     public Image A3Image;
     public float A3CoolTime;
     [SerializeField] bool isCooldownA3;
-    public bool A3Input { get; private set; }
 
     [Header("Muerte Certera")]
     public Image A4Image;
     public float A4CoolTime;
     [SerializeField] bool isCooldownA4;
-    public bool A4Input { get; private set; }
 
     private void Start()
     {
         annora = GetComponentInParent<Annora>();
+        abilityHolder = GetComponentInParent<AbilityHolder>();
         A1CoolTime = annora.annoraData.camoCoolTime;
         A2CoolTime = annora.annoraData.frenesiCoolTime;
         A3CoolTime = annora.annoraData.apretonCoolTime;
@@ -52,11 +50,6 @@ public class AnnoraHUD : MonoBehaviour
 
     private void Update()
     {
-        A1Input = annora.InputHandler.Ability1Input;
-        A2Input = annora.InputHandler.Ability2Input;
-        A3Input = annora.InputHandler.Ability3Input;
-        A4Input = annora.InputHandler.Ability4Input;
-
         A1();
         A2();
         A3();
@@ -65,7 +58,7 @@ public class AnnoraHUD : MonoBehaviour
 
     void A1()
     {
-        if (!isCooldownA1 && A1Input)
+        if (!isCooldownA1 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
         {
             isCooldownA1 = true;
             A1Image.fillAmount = 1;
@@ -79,13 +72,12 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A1Image.fillAmount = 0;
                 isCooldownA1 = false;
-                //annora.CamoState.ResetA1();
             }
         }
     }
     void A2()
     {
-        if (!isCooldownA2 && A2Input)
+        if (!isCooldownA2 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
         {
             isCooldownA2 = true;
             A2Image.fillAmount = 1;
@@ -99,14 +91,13 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A2Image.fillAmount = 0;
                 isCooldownA2 = false;
-                //annora.FrenesiState.ResetA2();
             }
         }
     }
 
     void A3()
     {
-        if (!isCooldownA3 && A3Input)
+        if (!isCooldownA3 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
         {
             isCooldownA3 = true;
             A3Image.fillAmount = 1;
@@ -120,7 +111,6 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A3Image.fillAmount = 0;
                 isCooldownA3 = false;
-                //annora.ApretonState.ResetA3();
             }
         }
     }
@@ -128,7 +118,7 @@ public class AnnoraHUD : MonoBehaviour
 
     void A4()
     {
-        if (!isCooldownA4 && A4Input)
+        if (!isCooldownA4 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
         {
             isCooldownA4 = true;
             A4Image.fillAmount = 1;
@@ -142,7 +132,6 @@ public class AnnoraHUD : MonoBehaviour
             {
                 A4Image.fillAmount = 0;
                 isCooldownA4 = false;
-                //annora.MuerteCerteState.ResetA4();
             }
         }
     }
