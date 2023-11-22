@@ -27,6 +27,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
+    PhotonView view;
     #endregion
 
     #region Check Transforms
@@ -46,22 +47,25 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public int FacingDir { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
 
     private Vector2 workspace;
     #endregion
 
     #region Abilities
     public List<Projectile> projectiles = new List<Projectile>();
-    public int ProjectileIndex { get; set; }
+    public int ProjectileIndex { get; private set; }
+    public GameObject defProjectile;
     public GameObject A1Prefab;
     public bool appliedA1;
     public GameObject A2Prefab;
-    public bool appliedA2;
+    public bool AppliedA2 { get; set; }
     public GameObject A3Prefab;
-    public bool appliedA3;
+    public bool AppliedA3 { get; set; }
+    public int cantA3;
     public GameObject A4Prefab;
-    public bool appliedA4;
+    public bool AppliedA4 { get; set; }
+    public int cantA4;
 
     public GameObject sarten;
     public GameObject crosshair;
@@ -69,7 +73,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     private int trajectoryStepCount = 15;
     #endregion
 
-    public Image healthUI;
+    //public Image healthUI;
 
     #region Unity Callback Functions
     private void Awake()
@@ -78,7 +82,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "isIdle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "isMoving");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "jump");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandedState = new PlayerLandedState(this, StateMachine, playerData, "landed");
         ViejonState = new Milo_A1State(this, StateMachine, playerData, "viejon");
@@ -97,25 +101,42 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         rb = GetComponent<Rigidbody2D>();
         LineRenderer = GetComponent<LineRenderer>();
 
+        view = GetComponent<PhotonView>();
+
+        ProjectileIndex = 0;
+        ViejonState.ResetA1();
+        RojoVivoState.ResetA2();
+        CheveState.ResetA3();
+        CarnitaAsadaState.ResetA4();
+
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = rb.velocity;
-        StateMachine.CurrentState.Update();
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (view.IsMine)
         {
-            playerData.health -= 20;
-        }
+            CurrentVelocity = rb.velocity;
+            StateMachine.CurrentState.Update();
 
-        healthUI.fillAmount = playerData.health / 100f;
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                playerData.health -= 20;
+            }
 
-        if (InputHandler.IsAiming)
-        {
-            crosshair.transform.position = InputHandler.MouseInput;
-            DrawTrajectory();
+            //healthUI.fillAmount = playerData.health / 100f;
+
+            if (InputHandler.IsAiming)
+            {
+                crosshair.transform.position = InputHandler.MouseInput;
+                DrawTrajectory();
+            }
+
+            if (Time.time >= InputHandler.ability3InputStartTime + playerData.rojoVivoTime)
+            {
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
         }
     }
 
@@ -145,7 +166,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region Check Functions
 
     public bool CheckIfGrounded()
-    {
+    {        
         return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
     }
 
@@ -175,6 +196,12 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         transform.Rotate(0, 180, 0);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
+    }
+
     #endregion
 
     #region BasicAtk
@@ -195,9 +222,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
     public void Throw(Vector2 vel, int projectile)
     {
-        //GameObject sartenVolador = Instantiate(sarten, leftHand.position, Quaternion.identity);
-        //sartenVolador.GetComponent<Rigidbody2D>().velocity = vel;
-
         Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
         Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
@@ -207,19 +231,26 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public void Crosshair()
     {
         crosshair.SetActive(true);
+        LineRenderer.enabled = true;
     }
 
     public void DeleteCrosshair()
     {
         crosshair.SetActive(false);
+        LineRenderer.enabled = false;
+    }
+
+    public void ResetProjectile()
+    {
+        ProjectileIndex = 0;
     }
     #endregion
 
     #region A1
     public void PlaceViejon()
     {
-        Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
-        appliedA1 = true;
+        GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
+        Destroy(viejon, 4);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -236,16 +267,16 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A2
     public void ApplyA2()
     {
-        appliedA2 = true;
+        AppliedA2 = true;
         ProjectileIndex = 1;
+        Debug.Log("Start");
     }
     #endregion
 
     #region A3
     public void CookCheve()
     {
-        //Instantiate(A3Prefab, leftHand.position, Quaternion.identity);
-        appliedA3 = true;
+        AppliedA3 = true;
         ProjectileIndex = 2;
     }
     #endregion
@@ -253,8 +284,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A4
     public void CookCarnita()
     {
-        //Instantiate(A4Prefab, leftHand.position, Quaternion.identity);
-        appliedA4 = true;
+        AppliedA4 = true;
         ProjectileIndex = 3;
     }
     #endregion

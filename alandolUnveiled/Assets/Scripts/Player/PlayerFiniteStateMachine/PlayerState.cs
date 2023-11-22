@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,16 @@ public class PlayerState
 
     private string animBoolName;
 
+    PhotonView view;
+
     public PlayerState(MainPlayer player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animBoolName = animBoolName;
+
+        view = player.photonView;
     }
 
     public virtual void Enter()
@@ -27,7 +32,7 @@ public class PlayerState
         DoCheck();
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
-        //Debug.Log(animBoolName);
+        Debug.Log(animBoolName);
         isAnimationFinished = false;
     }
 

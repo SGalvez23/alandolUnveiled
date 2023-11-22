@@ -17,8 +17,8 @@ public class Milo_A1State : PlayerAbilityState
         base.Enter();
 
         CanUse = false;
-        player.InputHandler.UseA1Input();
         player.PlaceViejon();
+        isDone = true;
     }
 
     public override void Exit()
@@ -29,14 +29,6 @@ public class Milo_A1State : PlayerAbilityState
     public override void Update()
     {
         base.Update();
-
-        if (player.appliedA1)
-            isDone = true;
-    }
-
-    public bool CanUse1()
-    {
-        return CanUse && Time.time >= a1Time + playerData.viejonTime;
     }
 
     public void ResetA1() => CanUse = true;
