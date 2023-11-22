@@ -136,6 +136,7 @@ MonoBehaviour:
   grappleDistanceVector: {x: 0, y: 0}
   launchSpeed: 0.3
   infiniteRange: 0
+  abilityHolder: {fileID: 0}
   basicHitbox: {fileID: 5842690671813485323}
   A4Hitbox: {fileID: 9090864184551759033}
   A4Effect: {fileID: 3596642171409110773}
@@ -896,6 +897,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f025b20f6358a94a8d39e6353e703fa, type: 2}
   - {fileID: 11400000, guid: ac40bca4fa83819438d0488efba06254, type: 2}
   - {fileID: 11400000, guid: b5781b90820e52f40afacacd29ba20e8, type: 2}
+  AInput: 0
+  state1: 0
+  state2: 0
+  state3: 0
+  state4: 0
 --- !u!1001 &186958223266491180
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,10 +58,14 @@ public class AnnoraHUD : MonoBehaviour
 
     void A1()
     {
-        if (!isCooldownA1 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
+        if (abilityHolder.state1 == AbilityHolder.A1State.Active)
+        {
+            A1Image.fillAmount = 1;
+        }
+
+        if (!isCooldownA1 && abilityHolder.state1 == AbilityHolder.A1State.Cooldown)
         {
             isCooldownA1 = true;
-            A1Image.fillAmount = 1;
         }
 
         if (isCooldownA1)
@@ -77,10 +81,14 @@ public class AnnoraHUD : MonoBehaviour
     }
     void A2()
     {
-        if (!isCooldownA2 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
+        if(abilityHolder.state2 == AbilityHolder.A2State.Active)
+        {
+            A2Image.fillAmount = 1;
+        }
+
+        if (!isCooldownA2 && abilityHolder.state2 == AbilityHolder.A2State.Cooldown)
         {
             isCooldownA2 = true;
-            A2Image.fillAmount = 1;
         }
 
         if (isCooldownA2)
@@ -97,10 +105,14 @@ public class AnnoraHUD : MonoBehaviour
 
     void A3()
     {
-        if (!isCooldownA3 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
+        if(abilityHolder.state3 == AbilityHolder.A3State.Active)
+        {
+            A3Image.fillAmount = 1;
+        }
+
+        if (!isCooldownA3 && abilityHolder.state3 == AbilityHolder.A3State.Cooldown)
         {
             isCooldownA3 = true;
-            A3Image.fillAmount = 1;
         }
 
         if (isCooldownA3)
@@ -118,10 +130,14 @@ public class AnnoraHUD : MonoBehaviour
 
     void A4()
     {
-        if (!isCooldownA4 && abilityHolder.state == AbilityHolder.AbilityState.Cooldown)
+        if(abilityHolder.state4 == AbilityHolder.A4State.Active)
+        {
+            A4Image.fillAmount = 1;
+        }
+
+        if (!isCooldownA4 && abilityHolder.state4 == AbilityHolder.A4State.Cooldown)
         {
             isCooldownA4 = true;
-            A4Image.fillAmount = 1;
         }
 
         if (isCooldownA4)

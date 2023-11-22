@@ -12,21 +12,53 @@ public class AbilityHolder : MonoBehaviour
     bool ability2Input;
     bool ability3Input;
     bool ability4Input;
-    int abs;
 
-    public enum AbilityState
+    public enum A1State
     {
         Ready,
         Active,
         Cooldown
     }
 
-    public AbilityState state = AbilityState.Ready;
+    public enum A2State
+    {
+        Ready,
+        Active,
+        Cooldown
+    }
+
+    public enum A3State
+    {
+        Ready,
+        Active,
+        Cooldown
+    }
+
+    public enum A4State
+    {
+        Ready,
+        Active,
+        Cooldown
+    }
+
+    public enum AbilityInput
+    {
+        A1,
+        A2,
+        A3,
+        A4
+    }
+
+    public AbilityInput AInput;
+
+    public A1State state1 = A1State.Ready;
+    public A2State state2 = A2State.Ready;
+    public A3State state3 = A3State.Ready;
+    public A4State state4 = A4State.Ready;
 
     private void Start()
     {
         annora = GetComponentInParent<Annora>();
-        abs = 4;
     }
 
     void Update()
@@ -36,63 +68,156 @@ public class AbilityHolder : MonoBehaviour
         ability3Input = annora.InputHandler.Ability3Input;
         ability4Input = annora.InputHandler.Ability4Input;
 
-        if (ability1Input)
+        switch (state1)
         {
-            abs = 0;
-        }
-        else if (ability2Input)
-        {
-            abs = 1;
-        }
-        else if (ability3Input)
-        {
-            abs = 2;
-        }
-        else if (ability4Input)
-        {
-            abs = 3;
-        }
-
-        switch (state)
-        {
-            case AbilityState.Ready:
-                if (abs >= 0 && abs <= 3)
+            case A1State.Ready:
+                if (ability1Input)
                 {
-                    ability[abs].Activate(annora);
-                    activeTime = ability[abs].activeTime;
-                    cooldownTime = ability[abs].cooldownTime;
+                    ability[0].Activate(annora);
+                    activeTime = ability[0].activeTime;
+                    cooldownTime = ability[0].cooldownTime;
                     Debug.Log(activeTime);
-                    state = AbilityState.Active;
+                    state1 = A1State.Active;
                 }
                 break;
-            case AbilityState.Active:
+            case A1State.Active:
                 if (activeTime > 0)
                 {
                     activeTime -= Time.deltaTime;
                 }
                 else
                 {
-                    ability[abs].Deactivate(annora);
+                    ability[0].Deactivate(annora);
                     Debug.Log(cooldownTime);
-                    state = AbilityState.Cooldown;
+                    state1 = A1State.Cooldown;
                 }
                 break;
-            case AbilityState.Cooldown:
+            case A1State.Cooldown:
                 if (cooldownTime > 0)
                 {
                     cooldownTime -= Time.deltaTime;
                 }
                 else
                 {
-                    ability[abs].ResetAbility(annora);
+                    ability[0].ResetAbility(annora);
                     Debug.Log("ready");
-                    abs = 4;
-                    state = AbilityState.Ready;
+                    state1 = A1State.Ready;
                 }
                 break;
         }
-    }
 
-    public void A1States() { 
+        switch (state2)
+        {
+            case A2State.Ready:
+                if (ability2Input)
+                {
+                    ability[1].Activate(annora);
+                    activeTime = ability[1].activeTime;
+                    cooldownTime = ability[1].cooldownTime;
+                    Debug.Log(activeTime);
+                    state2 = A2State.Active;
+                }
+                break;
+            case A2State.Active:
+                if (activeTime > 0)
+                {
+                    activeTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[1].Deactivate(annora);
+                    Debug.Log(cooldownTime);
+                    state2 = A2State.Cooldown;
+                }
+                break;
+            case A2State.Cooldown:
+                if (cooldownTime > 0)
+                {
+                    cooldownTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[1].ResetAbility(annora);
+                    Debug.Log("ready");
+                    state2 = A2State.Ready;
+                }
+                break;
+        }
+
+        switch (state3)
+        {
+            case A3State.Ready:
+                if (ability3Input)
+                {
+                    ability[2].Activate(annora);
+                    activeTime = ability[2].activeTime;
+                    cooldownTime = ability[2].cooldownTime;
+                    Debug.Log(activeTime);
+                    state3 = A3State.Active;
+                }
+                break;
+            case A3State.Active:
+                if (activeTime > 0)
+                {
+                    activeTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[1].Deactivate(annora);
+                    Debug.Log(cooldownTime);
+                    state3 = A3State.Cooldown;
+                }
+                break;
+            case A3State.Cooldown:
+                if (cooldownTime > 0)
+                {
+                    cooldownTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[1].ResetAbility(annora);
+                    Debug.Log("ready");
+                    state3 = A3State.Ready;
+                }
+                break;
+        }
+
+        switch (state4)
+        {
+            case A4State.Ready:
+                if (ability4Input)
+                {
+                    ability[3].Activate(annora);
+                    activeTime = ability[3].activeTime;
+                    cooldownTime = ability[3].cooldownTime;
+                    Debug.Log(activeTime);
+                    state4 = A4State.Active;
+                }
+                break;
+            case A4State.Active:
+                if (activeTime > 0)
+                {
+                    activeTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[3].Deactivate(annora);
+                    Debug.Log(cooldownTime);
+                    state4 = A4State.Cooldown;
+                }
+                break;
+            case A4State.Cooldown:
+                if (cooldownTime > 0)
+                {
+                    cooldownTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability[3].ResetAbility(annora);
+                    Debug.Log("ready");
+                    state4 = A4State.Ready;
+                }
+                break;
+        }
     }
 }
