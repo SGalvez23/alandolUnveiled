@@ -56,8 +56,9 @@ public class IdleState : State
 
     public void SetFlipAfterIdle(bool flip)
     {
+       
         flipAfterIdle = flip;
-        Debug.Log("Llego aqui");
+       
     }
 
     private void SetRandomIdleTime()

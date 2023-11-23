@@ -6,10 +6,17 @@ public class Entity : MonoBehaviour
 {
     public FiniteStateMachine stateMachine;
 
+    [SerializeField]
+    private D_Idle idleStateData;
+    
+    [SerializeField]
+    private D_Move moveStateData;
+
 
     public D_Entity entityData;
 
-
+    public IdleState idleState {get; private set;}
+    public MoveState moveState  {get; private set;}
     public int facingDirection {get; private set;}
 
     public Rigidbody2D rb {get; private set;}
@@ -23,7 +30,16 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Transform wallCheck;
 
+    public virtual void Awake()
+    {
 
+        stateMachine = new FiniteStateMachine();
+        facingDirection = 1;
+        idleState = new IdleState(this, stateMachine, "idle", idleStateData);
+        moveState = new MoveState(this, stateMachine, "move", moveStateData);
+        stateMachine.Initialize(moveState);
+        }
+    
 
 
 
@@ -33,7 +49,6 @@ public class Entity : MonoBehaviour
         rb = enemy.GetComponent<Rigidbody2D>();
         anim = enemy.GetComponent<Animator>();
 
-        stateMachine = new FiniteStateMachine();
   }
 
     public virtual void Update()
