@@ -32,6 +32,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public Rigidbody2D Rb2D { get; private set; }
     public HookRope HookRope { get; private set; }
     public SpringJoint2D Sj2D { get; private set; }
+    public SpriteRenderer SpriteRend { get; private set; }
     PhotonView view;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
@@ -51,6 +52,7 @@ public class Annora : MonoBehaviourPunCallbacks
     #endregion
 
     #region Abilities
+    [Header("Gancho")]
     protected Vector3 mouseOnScreen;
     public GameObject crosshair;
     public Transform hookGunHolder;
@@ -66,8 +68,9 @@ public class Annora : MonoBehaviourPunCallbacks
     protected int maxRange = 250;
     public bool CanGrabEnemies { get; private set; }
 
-    AbilityHolder abilityHolder;
-
+    public AbilityHolder abilityHolder;
+    
+    [Header("Abilities")]
     public GameObject basicHitbox;
     public GameObject A4Hitbox;
     public GameObject A4Effect;
@@ -112,6 +115,7 @@ public class Annora : MonoBehaviourPunCallbacks
         Rb2D = GetComponent<Rigidbody2D>();
         HookRope = GetComponent<HookRope>();
         Sj2D = GetComponent<SpringJoint2D>();
+        SpriteRend = GetComponent<SpriteRenderer>();
         HookRope.enabled = false;
         Sj2D.enabled = false;
         IsGrappling = false;
@@ -139,10 +143,7 @@ public class Annora : MonoBehaviourPunCallbacks
             {
                 crosshair.transform.position = InputHandler.MousePos;
             }
-
-            Debug.Log(StateMachine.CurrentState);
         }
-        
     }
 
     private void FixedUpdate()

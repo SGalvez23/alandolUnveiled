@@ -9,11 +9,12 @@ public class Camo_Ability : AnnoraAbility
     public Material DefMat;
     public float trueMoveVel;
     public float increasedVel;
+    SpriteRenderer spriteRenderer;
 
     public override void Activate(Annora annora)
     {
         activeTime = annora.annoraData.camoTime;
-        SpriteRenderer spriteRenderer = annora.GetComponent<SpriteRenderer>();
+        spriteRenderer = annora.SpriteRend;
         trueMoveVel = annora.annoraData.movementVel;
         increasedVel = trueMoveVel + (trueMoveVel * 0.3f);
 
@@ -25,7 +26,7 @@ public class Camo_Ability : AnnoraAbility
     public override void Deactivate(Annora annora)
     {
         cooldownTime = annora.annoraData.camoCoolTime;
-        SpriteRenderer spriteRenderer = annora.GetComponent<SpriteRenderer>();
+        spriteRenderer = annora.SpriteRend;
 
 
         annora.annoraData.movementVel = trueMoveVel;
