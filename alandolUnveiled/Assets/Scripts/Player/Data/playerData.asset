@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   health: 1300
-  movementVel: 10
-  jumpVel: 18
+  movementVel: 15.5
+  jumpVel: 24
   amountJumps: 1
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
