@@ -7,11 +7,15 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
 
+
+
+
     // ............ States.....
     private enum State{
 
         Walking,
-        Knockback,
+        Jump,
+        Attack,
         Dead
 
     }
@@ -63,9 +67,16 @@ public class EnemyController : MonoBehaviour
             case State.Walking:
                 UpdateWalkingState();
                 break;
+            case State.Jump:
+                UpdateJumpState();
+                break;
+            case State.Attack:
+                UpdateAttackState();
+                break;
             case State.Dead:
                 UpdateDeadState();
                 break;
+            
         }
 
 
@@ -106,9 +117,10 @@ public class EnemyController : MonoBehaviour
     }
 
     // .................. Dead State ....................................
-    private void EnterDeadState()
+    public void EnterDeadState()
     {
         // spawn death animation and particles
+        //Play sound dead
         Destroy(gameObject);
     }
     
@@ -122,6 +134,34 @@ public class EnemyController : MonoBehaviour
 
     }
 
+
+        // .................. Jump State  ....................................
+
+    private void EnterJumpState() {
+    // Implementar la lógica de entrada al estado de salto
+    }
+
+    private void UpdateJumpState() {
+    // Implementar la lógica de salto
+    }
+
+    private void ExitJumpState() {
+    // Implementar la lógica de salida del estado de salto
+    }
+
+    // .................. Attack State ....................................
+
+    private void EnterAttackState() {
+    // Implementar la lógica de entrada al estado de ataque
+    }
+
+    private void UpdateAttackState() {
+    // Implementar la lógica de ataque
+    }
+
+    private void ExitAttackState() {
+    // Implementar la lógica de salida del estado de ataque
+    }
 
 
     // ....... Other Functions ............................................

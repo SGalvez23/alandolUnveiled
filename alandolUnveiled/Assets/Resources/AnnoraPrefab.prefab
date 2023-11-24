@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 1295377304621881553}
   - component: {fileID: 8321620773913907786}
   - component: {fileID: 5317411780501075375}
-  - component: {fileID: 8999294140989428611}
   - component: {fileID: 6257886977070591861}
   - component: {fileID: 5272651461670514798}
   - component: {fileID: 2493346020638287479}
@@ -136,6 +135,9 @@ MonoBehaviour:
   grappleDistanceVector: {x: 0, y: 0}
   launchSpeed: 0.3
   infiniteRange: 0
+  enemies:
+    serializedVersion: 2
+    m_Bits: 0
   abilityHolder: {fileID: 0}
   basicHitbox: {fileID: 5842690671813485323}
   A4Hitbox: {fileID: 9090864184551759033}
@@ -435,51 +437,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &8999294140989428611
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976407054512496140}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.36, y: 13.34}
-    newSize: {x: 9.36, y: 13.34}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 8.3, y: 13.25}
-  m_EdgeRadius: 0
 --- !u!212 &6257886977070591861
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -844,6 +801,12 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 1
     Name: A4HitboxActive
+  - Type: 1
+    SynchronizeType: 0
+    Name: attatched1
+  - Type: 4
+    SynchronizeType: 0
+    Name: attatched
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -910,6 +873,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9059470579935872057}
     m_Modifications:
+    - target: {fileID: 540634535224329369, guid: 6603f8239f00f124bae0359a43fb62b1, type: 3}
+      propertyPath: m_Size.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 540634535224329369, guid: 6603f8239f00f124bae0359a43fb62b1, type: 3}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6020571316288833575, guid: 6603f8239f00f124bae0359a43fb62b1, type: 3}
       propertyPath: m_Name
       value: BasicHitbox
