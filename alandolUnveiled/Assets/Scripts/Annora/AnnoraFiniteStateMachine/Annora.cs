@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using System.Security.Cryptography;
 
 public class Annora : MonoBehaviourPunCallbacks
 {
@@ -67,6 +68,8 @@ public class Annora : MonoBehaviourPunCallbacks
     private float targetDistance = 3;
     private float targetFrequncy = 1;
     protected int maxRange = 250;
+
+    public LayerMask enemies;
     public bool CanGrabEnemies { get; private set; }
 
     AbilityHolder abilityHolder;
@@ -145,6 +148,8 @@ public class Annora : MonoBehaviourPunCallbacks
             {
                 crosshair.transform.position = InputHandler.MousePos;
             }
+
+       
         }
     }
 
@@ -304,4 +309,15 @@ public class Annora : MonoBehaviourPunCallbacks
     #region A4
 
     #endregion
+
+
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
+        }
+            
+    }
 }
