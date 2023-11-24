@@ -13,8 +13,9 @@ public class Annora_A4State : AnnoraAbilityState
     {
         base.Enter();
 
+        annora.AudioClips.PlayMuerteCerteSound();
+
         CanUse = false;
-        //annora. hace la habilidad
     }
 
     public override void Exit()

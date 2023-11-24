@@ -27,6 +27,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
+    public MiloAudioClips AudioClips { get; private set; } 
     PhotonView view;
     #endregion
 
@@ -71,6 +72,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public GameObject crosshair;
     private float trajectoryTimeStep = 0.05f;
     private int trajectoryStepCount = 15;
+    int projectilesThrown = 0;
     #endregion
 
     //public Image healthUI;
@@ -100,6 +102,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         InputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
         LineRenderer = GetComponent<LineRenderer>();
+        AudioClips = GetComponentInChildren<MiloAudioClips>();
 
         view = GetComponent<PhotonView>();
 
@@ -119,20 +122,25 @@ public class MainPlayer : MonoBehaviourPunCallbacks
             CurrentVelocity = rb.velocity;
             StateMachine.CurrentState.Update();
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                playerData.health -= 20;
-            }
-
-            //healthUI.fillAmount = playerData.health / 100f;
-
             if (InputHandler.IsAiming)
             {
                 crosshair.transform.position = InputHandler.MouseInput;
                 DrawTrajectory();
             }
 
-            if (Time.time >= InputHandler.ability3InputStartTime + playerData.rojoVivoTime)
+            if (projectilesThrown > playerData.rojoVivoCant)
+            {
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
+
+            if (projectilesThrown > playerData.cheveCant)
+            {
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
+
+            if (projectilesThrown > playerData.carnitaCant)
             {
                 ResetProjectile();
                 Debug.Log("se acabou");
@@ -226,6 +234,9 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");
+        AudioClips.PlayBasicAtkSound();
+
+        projectilesThrown += 1;
     }
 
     public void Crosshair()
@@ -243,6 +254,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public void ResetProjectile()
     {
         ProjectileIndex = 0;
+        projectilesThrown = 0;
     }
     #endregion
 
@@ -269,7 +281,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     {
         AppliedA2 = true;
         ProjectileIndex = 1;
-        Debug.Log("Start");
     }
     #endregion
 

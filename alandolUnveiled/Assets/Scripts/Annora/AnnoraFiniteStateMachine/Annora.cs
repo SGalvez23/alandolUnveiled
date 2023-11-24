@@ -33,6 +33,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public HookRope HookRope { get; private set; }
     public SpringJoint2D Sj2D { get; private set; }
     public SpriteRenderer SpriteRend { get; private set; }
+    public AnnoraAudioClips AudioClips { get; private set; }
     PhotonView view;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
@@ -68,7 +69,7 @@ public class Annora : MonoBehaviourPunCallbacks
     protected int maxRange = 250;
     public bool CanGrabEnemies { get; private set; }
 
-    public AbilityHolder abilityHolder;
+    AbilityHolder abilityHolder;
     
     [Header("Abilities")]
     public GameObject basicHitbox;
@@ -116,6 +117,7 @@ public class Annora : MonoBehaviourPunCallbacks
         HookRope = GetComponent<HookRope>();
         Sj2D = GetComponent<SpringJoint2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
+        AudioClips = GetComponentInChildren<AnnoraAudioClips>();
         HookRope.enabled = false;
         Sj2D.enabled = false;
         IsGrappling = false;
@@ -230,6 +232,7 @@ public class Annora : MonoBehaviourPunCallbacks
                 grappleDistanceVector = grapplePoint - (Vector2)transform.position;
                 HookRope.enabled = true;
                 IsGrappling = true;
+                AudioClips.PlayHookSound();
             }
         }
     }

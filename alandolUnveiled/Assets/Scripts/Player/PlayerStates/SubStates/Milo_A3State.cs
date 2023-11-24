@@ -15,7 +15,9 @@ public class Milo_A3State : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-        
+
+        player.AudioClips.PlayCheveSound();
+
         CanUse = false;
         player.CookCheve();
         isDone = true;

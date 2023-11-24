@@ -15,6 +15,8 @@ public class Milo_A2State : PlayerAbilityState
     {
         base.Enter();
 
+        player.AudioClips.PlayrRojoVivoSound();
+
         CanUse = false;
         player.ApplyA2();
         isDone = true;

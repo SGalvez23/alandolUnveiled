@@ -13,6 +13,8 @@ public class Annora_A2State : AnnoraAbilityState
     {
         base.Enter();
 
+        annora.AudioClips.PlayFrenesiSound();
+
         CanUse = false;
         //annora. hace la habilidad
         isDone = true;

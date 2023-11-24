@@ -27,7 +27,8 @@ public class PlayerData : ScriptableObject
     public float launchForce = 2f;
     public float viejonTime = 8f;
     public float viejonCoolTime = 18f;
-    public float rojoVivoTime = 10f;
+    //public float rojoVivoTime = 10f;
+    public int rojoVivoCant = 3;
     public float rojoVivoCoolTime = 4f;
     public int cheveCant = 6;
     public float cheveCoolTime = 12;

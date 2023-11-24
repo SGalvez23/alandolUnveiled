@@ -16,6 +16,8 @@ public class Milo_A1State : PlayerAbilityState
     {
         base.Enter();
 
+        player.AudioClips.PlayViejonSound();
+
         CanUse = false;
         player.PlaceViejon();
         isDone = true;

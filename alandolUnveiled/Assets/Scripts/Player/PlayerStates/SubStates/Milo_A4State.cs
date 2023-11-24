@@ -16,6 +16,8 @@ public class Milo_A4State : PlayerAbilityState
     {
         base.Enter();
 
+        player.AudioClips.PlayCarnitaSound();
+
         CanUse = false;
         player.CookCarnita();
         isDone = true;

@@ -11,6 +11,8 @@ public class AnnoraBasicAtkState : AnnoraAbilityState
     public override void Enter()
     {
         base.Enter();
+
+        annora.AudioClips.PlayAtkSound();
     }
 
     public override void Update()

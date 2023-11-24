@@ -13,6 +13,8 @@ public class Annora_A3State : AnnoraAbilityState
     {
         base.Enter();
 
+        annora.AudioClips.PlayApretonSound();
+
         CanUse = false;
         //annora. hace la habilidad
         isDone = true;

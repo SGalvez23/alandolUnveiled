@@ -13,6 +13,8 @@ public class Annora_A1State : AnnoraAbilityState
     {
         base.Enter();
 
+        annora.AudioClips.PlayCamoSound();
+
         CanUse = false;
         //annora.Camo();
         isDone = true;
