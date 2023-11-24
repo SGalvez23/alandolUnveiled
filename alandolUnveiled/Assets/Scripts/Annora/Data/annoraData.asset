@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   movementVel: 15
-  jumpVel: 10
-  totalJumps: 2
+  jumpVel: 30
+  totalJumps: 1
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
   groundCheckRadius: 0.5

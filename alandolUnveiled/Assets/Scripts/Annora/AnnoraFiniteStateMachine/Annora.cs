@@ -219,7 +219,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public void StopGrapple()
     {
         
-        Rb2D.gravityScale = 1;
+        Rb2D.gravityScale = 5;
         Sj2D.enabled = false;
         HookRope.enabled = false;
         IsGrappling = false;
@@ -237,6 +237,7 @@ public class Annora : MonoBehaviourPunCallbacks
                 grappleDistanceVector = grapplePoint - (Vector2)transform.position;
                 HookRope.enabled = true;
                 IsGrappling = true;
+                Rb2D.gravityScale = 2;
                 AudioClips.PlayHookSound();
             }
         }

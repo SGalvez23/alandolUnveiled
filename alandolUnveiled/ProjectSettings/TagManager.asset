@@ -9,6 +9,7 @@ TagManager:
   - Sarten
   - opciones
   - MainPlayer
+  - BasicAtkHitbox
   layers:
   - Default
   - TransparentFX

@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public int amountEnemies;
-    //AjusteEntreEscenas ajustes;
-    public CinemachineVirtualCamera virtualCamera;
+    CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
@@ -25,10 +24,6 @@ public class GameManager : MonoBehaviour
         amountEnemies = 4;
     }
 
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
@@ -36,6 +31,11 @@ public class GameManager : MonoBehaviour
         {
             //Loader.Load(Loader.Scene.VictoryScreen);
         }
+    }
+
+    public void Victory()
+    {
+        Loader.Load(Loader.Scene.VictoryScreen);
     }
 }
 
