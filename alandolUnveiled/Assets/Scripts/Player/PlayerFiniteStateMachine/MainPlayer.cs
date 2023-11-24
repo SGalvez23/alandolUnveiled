@@ -210,10 +210,11 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
     }
 
-    #endregion
 
-    #region BasicAtk
-    public void DrawTrajectory()
+#endregion
+
+#region BasicAtk
+public void DrawTrajectory()
     {
         Vector3[] positions = new Vector3[trajectoryStepCount];
         for (int i = 0; i < trajectoryStepCount; i++)
