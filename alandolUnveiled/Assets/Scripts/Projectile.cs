@@ -5,13 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
-    CircleCollider2D circleCollider;
+    Collider2D collider;
     AudioSource audioSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        collider = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
         audioSource.enabled = false;
         Destroy(gameObject, 3);
@@ -28,11 +28,11 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemigo"))
         {
             collision.gameObject.GetComponent<Damageable>().Health -= 10;
-            circleCollider.isTrigger = true;
+            collider.isTrigger = true;
         }
         else if(!collision.gameObject.CompareTag("MainPlayer") & collision.gameObject != null)
         {
-            circleCollider.isTrigger = true;
+            collider.isTrigger = true;
             audioSource.enabled = true;
             audioSource.Play();
         }

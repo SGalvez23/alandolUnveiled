@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 570765150654021607}
   m_Layer: 0
   m_Name: Milo_A2Prefab
-  m_TagString: Untagged
+  m_TagString: Sarten
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000987719633338662}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-8658730949272685055
 MonoBehaviour:
   m_ObjectHideFlags: 0
