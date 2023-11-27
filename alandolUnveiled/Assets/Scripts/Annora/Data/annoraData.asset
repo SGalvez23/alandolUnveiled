@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5098ae0b753614e9f0e73c69d1a491, type: 3}
   m_Name: annoraData
   m_EditorClassIdentifier: 
-  health: 100
+  health: -70
   movementVel: 15
-  jumpVel: 30
+  jumpVel: 31
   totalJumps: 1
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
