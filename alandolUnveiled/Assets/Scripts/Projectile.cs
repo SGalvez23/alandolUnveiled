@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            collision.gameObject.GetComponent<Damageable>().Health -= 10;
+            collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
         }
     }
 }

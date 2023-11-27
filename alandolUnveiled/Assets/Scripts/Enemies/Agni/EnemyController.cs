@@ -167,22 +167,7 @@ public class EnemyController : MonoBehaviour
     }
 
     private void UpdateAttackState() {
-        if (player != null)
-        {
-            // Calcula la distancia entre el enemigo y el jugador
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-            // Si el jugador está dentro del rango de ataque y ha pasado el tiempo de espera entre ataques
-            if (distanceToPlayer <= attackRange && Time.time >= nextAttackTime)
-            {
-                // Ataca al jugador (aquí puedes realizar la lógica de ataque, por ejemplo, reducir la salud del jugador)
-                AttackPlayer();
-
-                // Actualiza el tiempo del próximo ataque sumando el tiempo de espera entre ataques
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-        }
-        currentState = State.Attack;
+        
 
     }
 
@@ -241,17 +226,7 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    private void AttackPlayer()
-    {
-        // Realiza la lógica de ataque aquí, por ejemplo:
-        // Reduce la salud del jugador, activa animaciones, efectos de sonido, etc.
-        // player.GetComponent<PlayerHealth>().TakeDamage(damageAmount); // Ejemplo de reducción de salud del jugador
-        enemyAnim.SetBool("Attack",true);
-
-        Debug.Log("¡El enemigo atacó al jugador!");
-
-
-    }
+    
 
 
     private void OnDrawGizmos()
