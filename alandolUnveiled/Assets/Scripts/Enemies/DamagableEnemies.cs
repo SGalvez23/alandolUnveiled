@@ -21,21 +21,24 @@ public class DamagableEnemies : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
     }
 
-    private void Update()
-    {
-        if (currentHealth > maxHealth) { }
-    }
+   
     public void TakeDamage(int damage) 
     {
+        
+        
+            currentHealth -= damage;
 
-        currentHealth -= damage;
+            enemyHealthBarEnemies.UpdateHealthBar(currentHealth, maxHealth);
 
-        enemyHealthBarEnemies.UpdateHealthBar(currentHealth, maxHealth);
+            if (currentHealth <= 0)
+            {
+                enemyController.EnterDeadState();
+            }
 
-        if (currentHealth <= 0) 
-        {
-            enemyController.EnterDeadState();
-        }
+
+
+       
+       
     }
 
 

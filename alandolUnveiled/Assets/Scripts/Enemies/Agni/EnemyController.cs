@@ -33,25 +33,43 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
+    // Define una variable para el jugador (suponiendo que tienes una referencia al GameObject del jugador)
+    [SerializeField]
+    private Transform player;
+
+    // Define la distancia a la que el enemigo detectará y atacará al jugador
+    [SerializeField]
+    private float attackRange = 2f;
+
+    // Define el tiempo entre ataques
+    [SerializeField]
+    private float attackRate = 1f;
+    private float nextAttackTime = 0f;
+
+
+
+
     private bool groundDetected, wallDetected;
 
-    private int facingDir, damageDirection;
+    private int facingDir;
 
     private float currentHealth;
-    
-    private Vector2 movement, touchDamageBotLeft, touchDamageTopRight;
+
+    private Vector2 movement;
 
     private GameObject enemy;
     private Rigidbody2D enemyRb;
     private Animator enemyAnim;
 
+ 
 
     //.....  basic Functions ........
-    private void Start()
+    private void Awake()
     {
-        //enemy = transform.Find("enemy").gameObject;
+        
         enemyRb = GetComponent<Rigidbody2D>();  
         enemyAnim = GetComponent<Animator>();
+        
 
         facingDir = 1;
         int enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -67,9 +85,6 @@ public class EnemyController : MonoBehaviour
             case State.Walking:
                 UpdateWalkingState();
                 break;
-            case State.Jump:
-                UpdateJumpState();
-                break;
             case State.Attack:
                 UpdateAttackState();
                 break;
@@ -83,10 +98,11 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    #region Walking State
     // .................. Walking State ....................................
     private void EnterWalkingState()
     {
-
+        
     }
     
     private void UpdateWalkingState()
@@ -96,26 +112,32 @@ public class EnemyController : MonoBehaviour
         
         wallDetected = Physics2D.Raycast(wallCheck.position,transform.right, wallCheckDistance, whatIsGround);
 
+        
         if (!groundDetected || wallDetected)
         {   
             Flip();
-            
-            
+           
+
 
         }
         else 
         {
             movement.Set(movementSpeed * facingDir, enemyRb.velocity.y);
             enemyRb.velocity = movement;
-                
+            enemyAnim.SetBool("canWalk", true);
         }
+       
     }
 
     private void ExitWalkingState()
     {
-
+        //enemyAnim.SetBool("canWalk", false);
     }
 
+    #endregion
+
+    #region Dead State
+    
     // .................. Dead State ....................................
     public void EnterDeadState()
     {
@@ -134,48 +156,35 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    #endregion
 
-        // .................. Jump State  ....................................
-
-    private void EnterJumpState() {
-    // Implementar la lógica de entrada al estado de salto
-    }
-
-    private void UpdateJumpState() {
-    // Implementar la lógica de salto
-    }
-
-    private void ExitJumpState() {
-    // Implementar la lógica de salida del estado de salto
-    }
-
+    #region Attack State
+    
     // .................. Attack State ....................................
 
     private void EnterAttackState() {
-    // Implementar la lógica de entrada al estado de ataque
+   
     }
 
     private void UpdateAttackState() {
-    // Implementar la lógica de ataque
+        
+
     }
 
     private void ExitAttackState() {
-    // Implementar la lógica de salida del estado de ataque
+       enemyAnim.SetBool("Attack", false);
+
     }
 
 
+    #endregion
     // ....... Other Functions ............................................
 
-
-
-
-    
 
     private void Flip()
     {
         facingDir *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
-
     }
 
 
@@ -188,7 +197,10 @@ public class EnemyController : MonoBehaviour
         {
             case State.Walking:
                 ExitWalkingState();
-                break; 
+                break;
+            case State.Attack:
+                ExitAttackState();
+                break;
             case State.Dead:
                 ExitDeadState();
                 break;   
@@ -199,7 +211,10 @@ public class EnemyController : MonoBehaviour
         {
             case State.Walking:
                 EnterWalkingState();
-                break; 
+                break;
+            case State.Attack:
+                EnterAttackState();
+                break;
             case State.Dead:
                 EnterDeadState();
                 break;   
@@ -211,7 +226,9 @@ public class EnemyController : MonoBehaviour
         
     }
 
-  
+    
+
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));

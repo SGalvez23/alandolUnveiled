@@ -75,11 +75,12 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     int projectilesThrown = 0;
     #endregion
 
-    //public Image healthUI;
+   public Image healthUI;
 
     #region Unity Callback Functions
     private void Awake()
     {
+        playerData.health = 100;
         StateMachine = new PlayerStateMachine();
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "isIdle");
@@ -174,7 +175,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region Check Functions
 
     public bool CheckIfGrounded()
-    {        
+    {
         return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.whatIsGround);
     }
 
@@ -302,4 +303,19 @@ public void DrawTrajectory()
         ProjectileIndex = 3;
     }
     #endregion
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            playerData.health -= 10;
+            healthUI.fillAmount = playerData.health / 100f;
+            if( playerData.health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
 }
