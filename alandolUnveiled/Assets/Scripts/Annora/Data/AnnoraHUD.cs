@@ -33,32 +33,38 @@ public class AnnoraHUD : MonoBehaviour
 
     private void Start()
     {
-        annora = GetComponentInParent<Annora>();
-        abilityHolder = GetComponentInParent<AbilityHolder>();
-        A1CoolTime = annora.annoraData.camoCoolTime;
-        A2CoolTime = annora.annoraData.frenesiCoolTime;
-        A3CoolTime = annora.annoraData.apretonCoolTime;
-        A4CoolTime = annora.annoraData.muerteCoolTime;
+        if (annora.photonView.IsMine)
+        {
+            annora = GetComponentInParent<Annora>();
+            abilityHolder = GetComponentInParent<AbilityHolder>();
+            A1CoolTime = annora.annoraData.camoCoolTime;
+            A2CoolTime = annora.annoraData.frenesiCoolTime;
+            A3CoolTime = annora.annoraData.apretonCoolTime;
+            A4CoolTime = annora.annoraData.muerteCoolTime;
 
-        isCooldownA1 = false;
-        isCooldownA2 = false;
-        isCooldownA3 = false;
-        isCooldownA4 = false;
+            isCooldownA1 = false;
+            isCooldownA2 = false;
+            isCooldownA3 = false;
+            isCooldownA4 = false;
 
-        A1Image.fillAmount = 0;
-        A2Image.fillAmount = 0;
-        A3Image.fillAmount = 0;
-        A4Image.fillAmount = 0;
+            A1Image.fillAmount = 0;
+            A2Image.fillAmount = 0;
+            A3Image.fillAmount = 0;
+            A4Image.fillAmount = 0;
+        }
     }
 
     private void Update()
     {
-        vida.fillAmount = annora.actualHealth / 100f;
+        if (annora.photonView.IsMine)
+        {
+            vida.fillAmount = annora.actualHealth / 100f;
 
-        A1();
-        A2();
-        A3();
-        A4();
+            A1();
+            A2();
+            A3();
+            A4();
+        }
     }
 
     void A1()

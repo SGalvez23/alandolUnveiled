@@ -17,9 +17,14 @@ public class CheckpointManager : MonoBehaviourPun
     public string checkpointFileName = "checkpoint.json";
     string path;
 
-    private void Awake()
+    private void Start()
     {
         path = Path.Combine(Application.persistentDataPath, checkpointFileName);
+    }
+
+    public void GetPlayer(GameObject playerTransform)
+    {
+        player = playerTransform.transform;
     }
 
     public void SaveCheckpoint()

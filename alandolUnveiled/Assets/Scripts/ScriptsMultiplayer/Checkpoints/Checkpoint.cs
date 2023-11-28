@@ -15,6 +15,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            checkpointManager.GetPlayer(other.gameObject);
             checkpointManager.SaveCheckpoint();
         }
     }
