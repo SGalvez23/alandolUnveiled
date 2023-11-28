@@ -288,7 +288,7 @@ MonoBehaviour:
   infiniteRange: 0
   enemies:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   basicHitbox: {fileID: 5842690671813485323}
   A4Hitbox: {fileID: 9090864184551759033}
   A4Effect: {fileID: 3596642171409110773}
@@ -681,7 +681,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 33.002426
+  m_Distance: 0.005
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &193017460261520281

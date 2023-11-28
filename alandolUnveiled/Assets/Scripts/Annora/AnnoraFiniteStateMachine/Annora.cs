@@ -46,9 +46,6 @@ public class Annora : MonoBehaviourPunCallbacks
     #endregion
 
     #region Annora Data
-
-    public Image healthUI;
-
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDir { get; private set; }
     [SerializeField]
@@ -350,13 +347,7 @@ public class Annora : MonoBehaviourPunCallbacks
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            annoraData.health -= 10;
-            healthUI.fillAmount = annoraData.health / 100f;
-
-            if (annoraData.health <= 0)
-            {
-                Destroy(gameObject);
-            }
+            actualHealth -= 10;
         }
     }
 

@@ -155,7 +155,7 @@ public class CreateandJoin : MonoBehaviourPunCallbacks
 
     public void OnClickPlayButton()
     {
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("Nivel1");
         noDestruirEntreEscenas.gameObject.SetActive(false);
     }
 }

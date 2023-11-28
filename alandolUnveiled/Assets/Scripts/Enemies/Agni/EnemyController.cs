@@ -14,8 +14,8 @@ public class EnemyController : MonoBehaviour
     private enum State{
 
         Walking,
-        Jump,
         Attack,
+        Jump,
         Dead
 
     }
@@ -28,10 +28,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float groundCheckDistance, wallCheckDistance, movementSpeed;
     [SerializeField]
-    private Transform groundCheck, wallCheck;
+    private Transform groundCheck, wallCheck, attackCheck;
 
     [SerializeField]
-    private LayerMask whatIsGround;
+    private LayerMask whatIsGround, whatIsPlayer;
 
     // Define una variable para el jugador (suponiendo que tienes una referencia al GameObject del jugador)
     [SerializeField]
@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float attackRange = 2f;
 
+
     // Define el tiempo entre ataques
     [SerializeField]
     private float attackRate = 1f;
@@ -49,7 +50,7 @@ public class EnemyController : MonoBehaviour
 
 
 
-    private bool groundDetected, wallDetected;
+    private bool groundDetected, wallDetected, playerDetected;
 
     private int facingDir;
 
@@ -69,7 +70,6 @@ public class EnemyController : MonoBehaviour
         
         enemyRb = GetComponent<Rigidbody2D>();  
         enemyAnim = GetComponent<Animator>();
-        
 
         facingDir = 1;
         int enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log(playerDetected);
         switch(currentState)
         {
             case State.Walking:
@@ -91,11 +91,7 @@ public class EnemyController : MonoBehaviour
             case State.Dead:
                 UpdateDeadState();
                 break;
-            
         }
-
-
-
     }
 
     #region Walking State
@@ -112,13 +108,16 @@ public class EnemyController : MonoBehaviour
         
         wallDetected = Physics2D.Raycast(wallCheck.position,transform.right, wallCheckDistance, whatIsGround);
 
-        
+        playerDetected = Physics2D.Raycast(attackCheck.position, transform.right, attackRange, whatIsPlayer);
+
         if (!groundDetected || wallDetected)
         {   
             Flip();
-           
-
-
+            
+        }
+        else if (playerDetected)
+        {
+            SwicthState(State.Attack);
         }
         else 
         {
@@ -126,12 +125,13 @@ public class EnemyController : MonoBehaviour
             enemyRb.velocity = movement;
             enemyAnim.SetBool("canWalk", true);
         }
+
        
     }
 
     private void ExitWalkingState()
     {
-        //enemyAnim.SetBool("canWalk", false);
+        enemyAnim.SetBool("canWalk", false);
     }
 
     #endregion
@@ -163,17 +163,18 @@ public class EnemyController : MonoBehaviour
     // .................. Attack State ....................................
 
     private void EnterAttackState() {
-   
+        enemyAnim.SetBool("Attack", true);
     }
 
     private void UpdateAttackState() {
-        
-
+        if (!playerDetected)
+        {
+            SwicthState(State.Walking);
+        }
     }
 
     private void ExitAttackState() {
        enemyAnim.SetBool("Attack", false);
-
     }
 
 
@@ -186,9 +187,6 @@ public class EnemyController : MonoBehaviour
         facingDir *= -1;
         transform.Rotate(0.0f, 180.0f, 0.0f);
     }
-
-
-
 
     private void SwicthState(State state)
     {
@@ -206,7 +204,6 @@ public class EnemyController : MonoBehaviour
                 break;   
         }
 
-
         switch(state)
         {
             case State.Walking:
@@ -220,13 +217,8 @@ public class EnemyController : MonoBehaviour
                 break;   
         }
 
-
-        currentState = state;
-
-        
+        currentState = state;        
     }
-
-    
 
 
     private void OnDrawGizmos()
