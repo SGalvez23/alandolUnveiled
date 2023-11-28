@@ -15,40 +15,61 @@ public class CheckpointManager : MonoBehaviourPun
 
     public Transform player;
     public string checkpointFileName = "checkpoint.json";
+    string path;
+
+    private void Awake()
+    {
+        path = Path.Combine(Application.persistentDataPath, checkpointFileName);
+
+        /*if (File.Exists(checkpointFileName))
+        {
+            File.Delete(path);
+        }*/
+    }
 
     public void SaveCheckpoint()
     {
-        /*if (!photonView.IsMine)
-            return;*/
-
-        PlayerData data = new PlayerData
+        if (photonView.IsMine)
         {
-            playerX = player.position.x,
-            playerY = player.position.y
-        };
+            PlayerData data = new PlayerData
+            {
+                playerX = player.transform.position.x,
+                playerY = player.transform.position.y
+            };
 
-        string jsonData = JsonUtility.ToJson(data);
+            string jsonData = JsonUtility.ToJson(data);
 
-        Debug.Log("Guardando Checkpoint...");
-        Debug.Log("JSON Data: " + jsonData);
-        //photonView.RPC("RPC_SaveCheckpoint", RpcTarget.AllBuffered, jsonData);
+            Debug.Log("Guardando Checkpoint...");
+            Debug.Log("JSON Data: " + jsonData);
+            photonView.RPC("RPC_SaveCheckpoint", RpcTarget.AllBuffered, jsonData);
+        }
     }
 
     public void LoadCheckpoint()
     {
-        if(File.Exists(checkpointFileName))
+        if (photonView.IsMine)
         {
-            string jsonData = File.ReadAllText(checkpointFileName);
-            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
-
-            player.position = new Vector2(data.playerX, data.playerY);
+            photonView.RPC("RPC_LoadCheckpoint", RpcTarget.AllBuffered);
         }
     }
 
     [PunRPC]
     void RPC_SaveCheckpoint(string jsonData)
     {
-        File.WriteAllText(checkpointFileName, jsonData);
+        Debug.Log(path);
+        File.WriteAllText(path, jsonData);
+    }
+
+    [PunRPC]
+    void RPC_LoadCheckpoint()
+    {
+        if (File.Exists(checkpointFileName))
+        {
+            string jsonData = File.ReadAllText(checkpointFileName);
+            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
+
+            player.position = new Vector2(data.playerX, data.playerY);
+        }
     }
  
 }

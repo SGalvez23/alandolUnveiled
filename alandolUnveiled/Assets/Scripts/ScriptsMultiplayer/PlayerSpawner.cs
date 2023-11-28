@@ -19,4 +19,13 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
         CinemachineVirtualCamera playerVC = Instantiate(VC, spawnPoint.position, Quaternion.identity);
         playerVC.Follow = newPlayer.transform;
     }
+
+    public void Respawn()
+    {
+        Transform spawnPoint = spawnPoints[0];
+        GameObject playerToSpawn = playerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
+        GameObject newPlayer = PhotonNetwork.Instantiate(playerToSpawn.name, spawnPoint.position, Quaternion.identity);
+        CinemachineVirtualCamera playerVC = Instantiate(VC, spawnPoint.position, Quaternion.identity);
+        playerVC.Follow = newPlayer.transform;
+    }
 }

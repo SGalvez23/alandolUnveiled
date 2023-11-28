@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: annoraData
   m_EditorClassIdentifier: 
   health: 100
+  vidas: 2
   movementVel: 15
   jumpVel: 10
   totalJumps: 2

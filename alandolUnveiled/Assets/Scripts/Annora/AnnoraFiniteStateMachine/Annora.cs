@@ -34,6 +34,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public SpringJoint2D Sj2D { get; private set; }
     public SpriteRenderer SpriteRend { get; private set; }
     PhotonView view;
+    public CheckpointManager CheckpointManager { get; private set; }
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -49,6 +50,9 @@ public class Annora : MonoBehaviourPunCallbacks
     //regresar a private
     public AnnoraData annoraData;
     private Vector2 annoraVel;
+
+    public int actualHealth;
+    public int acutalLives;
     #endregion
 
     #region Abilities
@@ -120,6 +124,11 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D.enabled = false;
         IsGrappling = false;
 
+        actualHealth = annoraData.health;
+        acutalLives = annoraData.vidas;
+        CheckpointManager = FindObjectOfType<CheckpointManager>();
+        CheckpointManager.SaveCheckpoint();
+
         annoraHUD = GetComponent<AnnoraHUD>();
         abilityHolder = GetComponent<AbilityHolder>();
         CamoState.ResetA1();
@@ -128,6 +137,7 @@ public class Annora : MonoBehaviourPunCallbacks
         MuerteCerteState.ResetA4();
 
         view = GetComponent<PhotonView>();
+
 
         StateMachine.Initialize(IdleState);
     }
@@ -142,6 +152,16 @@ public class Annora : MonoBehaviourPunCallbacks
             if (InputHandler.IsAiming)
             {
                 crosshair.transform.position = InputHandler.MousePos;
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                actualHealth -= 20;
+            }
+
+            if(actualHealth <= 0)
+            {
+                Death();
             }
         }
     }
@@ -179,6 +199,22 @@ public class Annora : MonoBehaviourPunCallbacks
         if (xInput != 0 && xInput != FacingDir)
         {
             Flip();
+        }
+    }
+
+    public void Death()
+    {
+        acutalLives -= 1;
+        gameObject.SetActive(false);
+        if (acutalLives >= 0)
+        {
+            CheckpointManager.LoadCheckpoint();
+            actualHealth = 100;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameOver");
         }
     }
     #endregion
