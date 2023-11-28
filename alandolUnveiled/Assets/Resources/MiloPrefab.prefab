@@ -141,6 +141,7 @@ MonoBehaviour:
   cantA4: 0
   sarten: {fileID: 1000987719633338662, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
   crosshair: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
+  healthUI: {fileID: 0}
 --- !u!114 &1972803517840376767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,7 +438,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7513316911805560605}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7ca71eb19185f8e458605fe2ac8b3f40, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
