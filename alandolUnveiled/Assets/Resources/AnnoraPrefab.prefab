@@ -949,6 +949,12 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 2
     Name: A4HitboxActive
+  - Type: 1
+    SynchronizeType: 0
+    Name: attatched1
+  - Type: 4
+    SynchronizeType: 0
+    Name: attatched
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

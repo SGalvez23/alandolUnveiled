@@ -1088,6 +1088,10 @@ PrefabInstance:
       propertyPath: m_SynchronizeParameters.Array.data[11].Type
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6291423943353214587, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
+      propertyPath: m_RotationModel.InterpolateOption
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6776876725750266809, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
       propertyPath: healthUI
       value: 
@@ -1098,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7513316911805560605, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8231936636427607334, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -145512,7 +145516,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.2, y: -1, z: -10}
+  m_LocalPosition: {x: 3.5, y: -1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146049,7 +146053,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1619338157}
+  m_Follow: {fileID: 983770802}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 18
@@ -146078,7 +146082,7 @@ Transform:
   m_GameObject: {fileID: 599860193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.2, y: -1, z: -10}
+  m_LocalPosition: {x: 3.5, y: -1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -147900,6 +147904,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &983770802 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8231936636427607334, guid: 97fe9eecc1669404bb448c88b83ccc05, type: 3}
+  m_PrefabInstance: {fileID: 172933795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019911026
 GameObject:
   m_ObjectHideFlags: 0
@@ -150134,11 +150143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea781b5378359140b887310ae861305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1619338157 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9059470579935872057, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
-  m_PrefabInstance: {fileID: 1706759219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1619338158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150355,6 +150359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2247053012898327938, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+      propertyPath: m_RotationModel.InterpolateOption
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2493346020638287479, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
       propertyPath: m_Distance
       value: 488.38147
