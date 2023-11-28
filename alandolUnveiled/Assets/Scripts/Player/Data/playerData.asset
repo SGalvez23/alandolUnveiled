@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b203e56127a864348ae585bc2fcab24a, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  health: 1300
+  health: 20
   movementVel: 15.5
   jumpVel: 24
   amountJumps: 1

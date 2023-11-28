@@ -8,6 +8,9 @@ public class AnnoraHUD : MonoBehaviour
     Annora annora;
     AbilityHolder abilityHolder;
 
+    [Header("Vida")]
+    public Image vida;
+
     [Header("Camuflage")]
     public Image A1Image;
     public float A1CoolTime;
@@ -50,6 +53,8 @@ public class AnnoraHUD : MonoBehaviour
 
     private void Update()
     {
+        vida.fillAmount = annora.actualHealth / 100f;
+
         A1();
         A2();
         A3();

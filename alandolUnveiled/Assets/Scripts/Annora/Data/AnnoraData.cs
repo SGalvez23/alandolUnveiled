@@ -7,6 +7,7 @@ public class AnnoraData : ScriptableObject
 {
     [Header("Atributos Generals")]
     public int health = 100;
+    public int vidas = 2;
 
     [Header("Move State")]
     public float movementVel = 10f;
