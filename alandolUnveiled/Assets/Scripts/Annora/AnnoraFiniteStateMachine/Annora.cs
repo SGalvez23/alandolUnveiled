@@ -44,6 +44,9 @@ public class Annora : MonoBehaviourPunCallbacks
     #endregion
 
     #region Annora Data
+
+    public Image healthUI;
+
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDir { get; private set; }
     [SerializeField]
@@ -91,6 +94,7 @@ public class Annora : MonoBehaviourPunCallbacks
     #region Unity Callback Functions
     private void Awake()
     {
+        annoraData.health = 100;
         StateMachine = new AnnoraStateMachine();
 
         IdleState = new AnnoraIdleState(this, StateMachine, annoraData, "isIdle");
@@ -306,7 +310,19 @@ public class Annora : MonoBehaviourPunCallbacks
     #region A4
 
     #endregion
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            annoraData.health -= 10;
+            healthUI.fillAmount = annoraData.health / 100f;
 
+            if (annoraData.health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -317,4 +333,5 @@ public class Annora : MonoBehaviourPunCallbacks
         }
             
     }
+    
 }

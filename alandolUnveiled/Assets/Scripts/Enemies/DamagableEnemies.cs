@@ -24,9 +24,8 @@ public class DamagableEnemies : MonoBehaviour
    
     public void TakeDamage(int damage) 
     {
-        /*
-        if ()
-        {
+        
+        
             currentHealth -= damage;
 
             enemyHealthBarEnemies.UpdateHealthBar(currentHealth, maxHealth);
@@ -38,8 +37,8 @@ public class DamagableEnemies : MonoBehaviour
 
 
 
-        }
-       */
+       
+       
     }
 
 
