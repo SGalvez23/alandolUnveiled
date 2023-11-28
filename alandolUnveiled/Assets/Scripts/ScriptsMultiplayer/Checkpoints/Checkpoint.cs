@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public CheckpointManager checkpointManager;
+    CheckpointManager checkpointManager;
+
+    private void Start()
+    {
+        checkpointManager = FindObjectOfType<CheckpointManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

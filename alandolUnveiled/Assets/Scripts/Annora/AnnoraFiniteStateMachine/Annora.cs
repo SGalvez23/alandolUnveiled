@@ -127,7 +127,6 @@ public class Annora : MonoBehaviourPunCallbacks
         actualHealth = annoraData.health;
         acutalLives = annoraData.vidas;
         CheckpointManager = FindObjectOfType<CheckpointManager>();
-        CheckpointManager.SaveCheckpoint();
 
         annoraHUD = GetComponent<AnnoraHUD>();
         abilityHolder = GetComponent<AbilityHolder>();

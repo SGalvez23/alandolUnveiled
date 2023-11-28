@@ -20,11 +20,6 @@ public class CheckpointManager : MonoBehaviourPun
     private void Awake()
     {
         path = Path.Combine(Application.persistentDataPath, checkpointFileName);
-
-        /*if (File.Exists(checkpointFileName))
-        {
-            File.Delete(path);
-        }*/
     }
 
     public void SaveCheckpoint()
@@ -39,8 +34,6 @@ public class CheckpointManager : MonoBehaviourPun
 
             string jsonData = JsonUtility.ToJson(data);
 
-            Debug.Log("Guardando Checkpoint...");
-            Debug.Log("JSON Data: " + jsonData);
             photonView.RPC("RPC_SaveCheckpoint", RpcTarget.AllBuffered, jsonData);
         }
     }
@@ -56,20 +49,18 @@ public class CheckpointManager : MonoBehaviourPun
     [PunRPC]
     void RPC_SaveCheckpoint(string jsonData)
     {
-        Debug.Log(path);
         File.WriteAllText(path, jsonData);
+        Debug.Log("save" + jsonData);
     }
 
     [PunRPC]
     void RPC_LoadCheckpoint()
     {
-        if (File.Exists(checkpointFileName))
-        {
-            string jsonData = File.ReadAllText(checkpointFileName);
-            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
+        string jsonData = File.ReadAllText(path);
+        PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
 
-            player.position = new Vector2(data.playerX, data.playerY);
-        }
+        player.position = new Vector2(data.playerX, data.playerY);
+        Debug.Log("load" + jsonData);
     }
  
 }
