@@ -277,6 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1642601370848746197}
   annoraData: {fileID: 11400000, guid: 64fb494e201ba3d41a2b4bc5694c330d, type: 2}
+  actualHealth: 0
+  acutalLives: 0
   crosshair: {fileID: 4288963498024239542}
   hookGunHolder: {fileID: 9059470579935872057}
   hookFirePoint: {fileID: 6903620835777030988}

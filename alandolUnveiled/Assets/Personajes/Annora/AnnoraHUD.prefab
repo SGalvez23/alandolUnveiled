@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c446e6bb1de3143b1b6a05b7833a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: {fileID: 6538416013546100047}
   A1Image: {fileID: 8040483553528871479}
   A1CoolTime: 0
   isCooldownA1: 0

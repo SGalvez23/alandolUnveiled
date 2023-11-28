@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5717315576132125709}
   - component: {fileID: 5880334310781685575}
   - component: {fileID: 750273886158726899}
-  - component: {fileID: 6668305571824631159}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -46,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082458573eee89c478a69be1e948d5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
 --- !u!61 &750273886158726899
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,25 +90,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32.803253, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6668305571824631159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484411217124417196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0

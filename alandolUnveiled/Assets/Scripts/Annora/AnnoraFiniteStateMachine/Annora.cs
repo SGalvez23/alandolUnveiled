@@ -36,6 +36,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public SpriteRenderer SpriteRend { get; private set; }
     public AnnoraAudioClips AudioClips { get; private set; }
     PhotonView view;
+    public CheckpointManager CheckpointManager { get; private set; }
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -51,6 +52,9 @@ public class Annora : MonoBehaviourPunCallbacks
     //regresar a private
     public AnnoraData annoraData;
     private Vector2 annoraVel;
+
+    public int actualHealth;
+    public int acutalLives;
     #endregion
 
     #region Abilities
@@ -125,6 +129,10 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D.enabled = false;
         IsGrappling = false;
 
+        actualHealth = annoraData.health;
+        acutalLives = annoraData.vidas;
+        CheckpointManager = FindObjectOfType<CheckpointManager>();
+
         annoraHUD = GetComponent<AnnoraHUD>();
         abilityHolder = GetComponent<AbilityHolder>();
         CamoState.ResetA1();
@@ -149,7 +157,15 @@ public class Annora : MonoBehaviourPunCallbacks
                 crosshair.transform.position = InputHandler.MousePos;
             }
 
-       
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                actualHealth -= 20;
+            }
+
+            if (actualHealth <= 0)
+            {
+                Death();
+            }
         }
     }
 
@@ -199,6 +215,22 @@ public class Annora : MonoBehaviourPunCallbacks
     {
         FacingDir *= -1;
         transform.Rotate(0, 180, 0);
+    }
+
+    public void Death()
+    {
+        acutalLives -= 1;
+        gameObject.SetActive(false);
+        if (acutalLives >= 0)
+        {
+            CheckpointManager.LoadCheckpoint();
+            actualHealth = 100;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameOver");
+        }
     }
 
     #endregion
