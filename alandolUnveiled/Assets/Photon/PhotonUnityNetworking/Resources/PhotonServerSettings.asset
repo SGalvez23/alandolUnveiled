@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - RPC_SaveCheckpoint
   - RPC_LoadCheckpoint
+  - DestroyWall
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

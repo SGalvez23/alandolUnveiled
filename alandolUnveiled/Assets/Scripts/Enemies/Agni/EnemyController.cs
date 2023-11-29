@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerDetected);
+        // Debug.Log(playerDetected);
         switch(currentState)
         {
             case State.Walking:
