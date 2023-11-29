@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Realtime;
 using Photon.Pun;
-using System.Security.Cryptography;
 
 public class Annora : MonoBehaviourPunCallbacks
 {
@@ -35,7 +33,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public SpringJoint2D Sj2D { get; private set; }
     public SpriteRenderer SpriteRend { get; private set; }
     public AnnoraAudioClips AudioClips { get; private set; }
-    PhotonView view;
+    public PhotonView view;
     public CheckpointManager CheckpointManager { get; private set; }
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion

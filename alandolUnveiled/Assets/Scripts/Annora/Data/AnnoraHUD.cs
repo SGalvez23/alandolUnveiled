@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class AnnoraHUD : MonoBehaviour
 {
     Annora annora;
     AbilityHolder abilityHolder;
+    PhotonView view;
 
     [Header("Vida")]
     public Image vida;
@@ -33,30 +35,29 @@ public class AnnoraHUD : MonoBehaviour
 
     private void Start()
     {
-        if (annora.photonView.IsMine)
-        {
-            annora = GetComponentInParent<Annora>();
-            abilityHolder = GetComponentInParent<AbilityHolder>();
-            A1CoolTime = annora.annoraData.camoCoolTime;
-            A2CoolTime = annora.annoraData.frenesiCoolTime;
-            A3CoolTime = annora.annoraData.apretonCoolTime;
-            A4CoolTime = annora.annoraData.muerteCoolTime;
+        view = GetComponent<PhotonView>();
 
-            isCooldownA1 = false;
-            isCooldownA2 = false;
-            isCooldownA3 = false;
-            isCooldownA4 = false;
+        annora = GetComponentInParent<Annora>();
+        abilityHolder = GetComponentInParent<AbilityHolder>();
+        A1CoolTime = annora.annoraData.camoCoolTime;
+        A2CoolTime = annora.annoraData.frenesiCoolTime;
+        A3CoolTime = annora.annoraData.apretonCoolTime;
+        A4CoolTime = annora.annoraData.muerteCoolTime;
 
-            A1Image.fillAmount = 0;
-            A2Image.fillAmount = 0;
-            A3Image.fillAmount = 0;
-            A4Image.fillAmount = 0;
-        }
+        isCooldownA1 = false;
+        isCooldownA2 = false;
+        isCooldownA3 = false;
+        isCooldownA4 = false;
+
+        A1Image.fillAmount = 0;
+        A2Image.fillAmount = 0;
+        A3Image.fillAmount = 0;
+        A4Image.fillAmount = 0;
     }
 
     private void Update()
     {
-        if (annora.photonView.IsMine)
+        if (view.IsMine)
         {
             vida.fillAmount = annora.actualHealth / 100f;
 

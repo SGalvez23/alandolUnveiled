@@ -2094,6 +2094,10 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 28.824987
       objectReference: {fileID: 0}
+    - target: {fileID: 4106753081757086967, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5272651461670514798, guid: 3cfb0e2c80a8bfe4db55ff381e4f2225, type: 3}
       propertyPath: sceneViewId
       value: 1
