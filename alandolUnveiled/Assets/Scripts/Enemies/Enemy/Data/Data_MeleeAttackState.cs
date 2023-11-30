@@ -6,7 +6,7 @@ using UnityEngine;
 public class Data_MeleeAttackState : ScriptableObject
 {
     public float attackRadius = 0.5f;
-    public float attackDamage = 10f;
+    public float attackDamage = 12f;
 
     public LayerMask whatIsPlayer;
 }

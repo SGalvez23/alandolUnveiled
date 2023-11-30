@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Photon.Pun;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviourPunCallbacks, IPunObservable
 {
     public FiniteStateMachine stateMachine;
     public Data_Enemy enemyData;
     public AttackState attackState;
+    public AttackDetails attackDetails;
 
     public int facingDir {  get; private set; }
     public Rigidbody2D Rb2D { get; private set; }
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
         AudioSource.enabled = false;
         currentHealth = enemyData.maxHealth;
         facingDir = 1;
+        attackDetails.damageAmount = enemyData.touchDamage;
 
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         Physics.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
@@ -48,12 +50,19 @@ public class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        stateMachine.currentState.LogicUpdate();
+        if (photonView.IsMine)
+        {
+            Debug.Log(attackDetails.damageAmount);
+            stateMachine.currentState.LogicUpdate();
+        }
     }
 
     public virtual void FixedUpdate()
     {
-        stateMachine.currentState.PhysicsUpdate();
+        if (photonView.IsMine)
+        {
+            stateMachine.currentState.PhysicsUpdate();
+        }
     }
 
     public virtual void SetVelocity(float velocity)
@@ -95,6 +104,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Damage(AttackDetails attackDetails)
     {
+        Debug.Log("daño");
         currentHealth -= attackDetails.damageAmount;
 
         DamageHop(enemyData.damageHopSpeed);
@@ -115,9 +125,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BasicAtkHitbox") || collision.gameObject.CompareTag("MuerteCerte"))
+        {
+            attackDetails = collision.GetComponentInParent<Annora>().attackDetails;
+            Damage(attackDetails);
+        }
+        else if (collision.gameObject.CompareTag("Sarten"))
+        {
+            //TODO: efectos del sarten
+            //attackDetails = collision.GetComponent<Annora>().attackDetails;
+        }
+    }
+
     public virtual void Death()
     {
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     public void PlaySound()
@@ -142,5 +166,22 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDir * enemyData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * enemyData.ledgeCheckDistance));
         Gizmos.DrawLine(playerCheck.position, playerCheck.position + (Vector3)(Vector2.right * facingDir * enemyData.minAggroDistance));
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+            stream.SendNext(currentHealth);
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+            currentHealth = (float)stream.ReceiveNext();
+
+        }
     }
 }

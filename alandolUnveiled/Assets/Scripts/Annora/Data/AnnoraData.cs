@@ -10,6 +10,8 @@ public class AnnoraData : ScriptableObject
     public int vidas = 2;
     public float basicAtkDmg = 15f;
 
+    public float damageHopSpeed = 3f;
+
     [Header("Move State")]
     public float movementVel = 10f;
 
@@ -35,4 +37,5 @@ public class AnnoraData : ScriptableObject
     public float apretonCoolTime = 3f;
     public float muerteCerteTime = 2f;
     public float muerteCoolTime = 15f;
+    public float muerteCerteDmg = 40f;
 }

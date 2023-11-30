@@ -5,11 +5,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
+    AudioSource audioSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.enabled = false;
         Destroy(gameObject, 3);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 7, true);
     }
 
     private void Update()
@@ -25,7 +29,11 @@ public class Projectile : MonoBehaviour
             collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
             Destroy(gameObject);
         }
+        else if(!collision.gameObject.CompareTag("MainPlayer") & collision.gameObject != null)
+        {
+            audioSource.enabled = true;
+            audioSource.Play();
+            Destroy(gameObject, 1);
+        }
     }
-
-    
 }

@@ -36,7 +36,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     public PhotonView view;
     public Collider2D Collider { get; private set; }
     public CheckpointManager CheckpointManager { get; private set; }
-    private AttackDetails attackDetails;
+    public  AttackDetails attackDetails;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -54,7 +54,8 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     private Vector2 annoraVel;
 
     public float actualHealth;
-    public int acutalLives;
+    public int actualLives;
+
     #endregion
 
     #region Abilities
@@ -71,7 +72,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     public bool infiniteRange = true;
     private float targetDistance = 3;
     private float targetFrequncy = 1;
-    protected int maxRange = 250;
+    protected int maxRange = 300;
 
     public LayerMask enemies;
     public bool CanGrabEnemies { get; private set; }
@@ -132,7 +133,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
         IsGrappling = false;
 
         actualHealth = annoraData.health;
-        acutalLives = annoraData.vidas;
+        actualLives = annoraData.vidas;
         CheckpointManager = FindObjectOfType<CheckpointManager>();
 
         annoraHUD = GetComponent<AnnoraHUD>();
@@ -154,14 +155,11 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
             CurrentVelocity = Rb2D.velocity;
             StateMachine.CurrentState.Update();
 
+            Debug.Log(attackDetails.damageAmount);
+
             if (InputHandler.IsAiming)
             {
                 crosshair.transform.position = InputHandler.MousePos;
-            }
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                actualHealth -= 20;
             }
 
             if (actualHealth <= 0)
@@ -221,9 +219,10 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Death()
     {
-        acutalLives -= 1;
+        actualLives -= 1;
         gameObject.SetActive(false);
-        if (acutalLives >= 0)
+        AnimationFinishTrigger();
+        if (actualLives >= 0)
         {
             CheckpointManager.LoadCheckpoint();
             actualHealth = 100;
@@ -244,13 +243,34 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
         foreach(Collider2D collider in detectedObjs)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            PhotonView photonView = collider.GetComponent<PhotonView>();
+            Debug.Log(collider);
+
+            if (photonView != null && photonView.IsMine)
+            {
+                photonView.RPC("SendDamage", RpcTarget.All, attackDetails);
+            }
+            
+            //collider.transform.SendMessage("Damage", attackDetails);
         }
+    }
+
+    [PunRPC]
+    void SendDamage(AttackDetails attackDetails)
+    {
+        GetComponent<Enemy>().Damage(attackDetails);
+    }
+
+    public virtual void DamageHop(float velocity)
+    {
+        annoraVel.Set(velocity, velocity / 3);
+        Rb2D.velocity = annoraVel;
     }
 
     private void Damage(AttackDetails attackDetails)
     {
         actualHealth -= attackDetails.damageAmount;
+        DamageHop(annoraData.damageHopSpeed);
 
         if (attackDetails.position.x < transform.position.x)
         {
@@ -288,7 +308,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     public void SetGrapplePoint()
     {
         Vector3 difference = new Vector3(InputHandler.MousePos.x, InputHandler.MousePos.y) - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(hookFirePoint.position, difference.normalized, 1 << 11);
+        RaycastHit2D hit = Physics2D.Raycast(hookFirePoint.position, difference.normalized, 1 << 7);
         if (hit.collider != null)
         {
             if (Vector2.Distance(hit.point, hookFirePoint.position) <= maxRange && hit.collider.CompareTag("Anclaje") || infiniteRange)
@@ -337,15 +357,17 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
     #region A1
 
-    /*public void Camo()
+    public void CamoMask()
     {
-        GetComponent<SpriteRenderer>().material = A1Mat;
+        gameObject.layer = LayerMask.NameToLayer("Invisible");
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 8, true);
     }
 
-    public void RmCamo()
+    public void RmCamoMask()
     {
-        GetComponent<SpriteRenderer>().material = DefMat;
-    }*/
+        gameObject.layer = LayerMask.NameToLayer("MainPlayer");
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 8, false);
+    }
     #endregion
 
     #region A2
@@ -357,35 +379,30 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     public void StartA3()
     {
         CanGrabEnemies = true;
-        Debug.Log("start");
     }
 
     public void StopA3()
     {
         CanGrabEnemies = false;
-        Debug.Log("stop");
     }
     #endregion
 
     #region A4
 
     #endregion
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            actualHealth -= 10;
+            attackDetails = collision.gameObject.GetComponent<Solstice>().attackDetails;
+            Damage(attackDetails);
         }
-    }
-
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemigo"))
+        else if (collision.gameObject.CompareTag("SolsticeAtk"))
         {
-            collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
+            attackDetails = collision.gameObject.GetComponentInParent<Solstice>().attackDetails;
+            Damage(attackDetails);
         }
-            
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

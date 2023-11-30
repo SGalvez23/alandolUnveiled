@@ -19,9 +19,10 @@ MonoBehaviour:
   maxAggroDistance: 25
   minAggroDistance: 20
   closeRangeActionDistance: 3
+  damagedSound: {fileID: 8300000, guid: b3ad8964f0ced274a88622b97e99e520, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 128

@@ -16,7 +16,7 @@ public class Annora_A2State : AnnoraAbilityState
         annora.AudioClips.PlayFrenesiSound();
 
         CanUse = false;
-        //annora. hace la habilidad
+        annora.attackDetails.damageAmount = annoraData.basicAtkDmg * 1.25f;
         isDone = true;
     }
 

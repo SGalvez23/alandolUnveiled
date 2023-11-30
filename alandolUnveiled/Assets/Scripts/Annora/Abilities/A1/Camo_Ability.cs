@@ -19,8 +19,8 @@ public class Camo_Ability : AnnoraAbility
         increasedVel = trueMoveVel + (trueMoveVel * 0.3f);
 
         annora.annoraData.movementVel = increasedVel;
+        annora.CamoMask();
         spriteRenderer.material = CamoMat;
-        //Debug.Log(increasedVel);
     }
 
     public override void Deactivate(Annora annora)
@@ -30,6 +30,7 @@ public class Camo_Ability : AnnoraAbility
 
 
         annora.annoraData.movementVel = trueMoveVel;
+        annora.RmCamoMask();
         spriteRenderer.material = DefMat;
     }
 

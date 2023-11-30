@@ -14,7 +14,7 @@ public class Annora_A4State : AnnoraAbilityState
         base.Enter();
 
         annora.AudioClips.PlayMuerteCerteSound();
-
+        annora.attackDetails.damageAmount = annoraData.muerteCerteDmg;
         CanUse = false;
     }
 
@@ -30,6 +30,7 @@ public class Annora_A4State : AnnoraAbilityState
         if(isAnimationFinished)
         {
             isDone = true;
+            annora.attackDetails.damageAmount = annoraData.basicAtkDmg;
             annora.A4Hitbox.SetActive(false);
         }
         else if (annora.Anim.GetFloat("A4HitboxActive") == 1)

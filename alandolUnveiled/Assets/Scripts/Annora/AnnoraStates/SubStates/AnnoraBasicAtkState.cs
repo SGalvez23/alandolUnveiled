@@ -16,6 +16,7 @@ public class AnnoraBasicAtkState : AnnoraAbilityState
         base.Enter();
 
         annora.AudioClips.PlayAtkSound();
+        annora.attackDetails.damageAmount = annoraData.basicAtkDmg;
     }
 
     public override void Update()

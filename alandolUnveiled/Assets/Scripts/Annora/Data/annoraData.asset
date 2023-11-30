@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   vidas: 2
+  basicAtkDmg: 15
   movementVel: 15
   jumpVel: 31
   totalJumps: 1

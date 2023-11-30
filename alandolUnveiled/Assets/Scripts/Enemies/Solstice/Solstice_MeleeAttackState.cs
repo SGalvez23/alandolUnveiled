@@ -19,6 +19,8 @@ public class Solstice_MeleeAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+
+        solstice.attackDetails.damageAmount = stateData.attackDamage;
     }
 
     public override void Exit()

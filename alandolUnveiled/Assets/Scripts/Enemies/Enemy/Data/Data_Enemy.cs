@@ -8,6 +8,7 @@ public class Data_Enemy : ScriptableObject
     public float maxHealth = 100f;
 
     public float damageHopSpeed = 5f;
+    public float touchDamage = 5f;
 
     public float wallCheckDistance = 0.2f;
     public float ledgeCheckDistance = 0.4f;
