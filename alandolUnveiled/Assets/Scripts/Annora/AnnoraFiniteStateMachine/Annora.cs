@@ -234,33 +234,6 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void CheckAttackHitBox()
-    {
-        Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 5f, enemies);
-
-        attackDetails.damageAmount = annoraData.basicAtkDmg;
-        attackDetails.position = transform.position;
-
-        foreach(Collider2D collider in detectedObjs)
-        {
-            PhotonView photonView = collider.GetComponent<PhotonView>();
-            Debug.Log(collider);
-
-            if (photonView != null && photonView.IsMine)
-            {
-                photonView.RPC("SendDamage", RpcTarget.All, attackDetails);
-            }
-            
-            //collider.transform.SendMessage("Damage", attackDetails);
-        }
-    }
-
-    [PunRPC]
-    void SendDamage(AttackDetails attackDetails)
-    {
-        GetComponent<Enemy>().Damage(attackDetails);
-    }
-
     public virtual void DamageHop(float velocity)
     {
         annoraVel.Set(velocity, velocity / 3);
@@ -397,6 +370,8 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
         {
             attackDetails = collision.gameObject.GetComponent<Solstice>().attackDetails;
             Damage(attackDetails);
+
+            //collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
         }
         else if (collision.gameObject.CompareTag("SolsticeAtk"))
         {
