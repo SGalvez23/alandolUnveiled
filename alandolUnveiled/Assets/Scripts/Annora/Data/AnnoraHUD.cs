@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnnoraHUD : MonoBehaviour
+public class AnnoraHUD : MonoBehaviourPunCallbacks, IPunObservable
 {
     Annora annora;
     AbilityHolder abilityHolder;
@@ -161,6 +161,24 @@ public class AnnoraHUD : MonoBehaviour
                 A4Image.fillAmount = 0;
                 isCooldownA4 = false;
             }
+        }
+    }
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            //stream.SendNext(transform.position);
+            stream.SendNext(vida);
+        }
+        else
+        {
+            // Reading data received from the network
+            //transform.position = (Vector3)stream.ReceiveNext();
+            vida = (Image)stream.ReceiveNext();
+
         }
     }
 }

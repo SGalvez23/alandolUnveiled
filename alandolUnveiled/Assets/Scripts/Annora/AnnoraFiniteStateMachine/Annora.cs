@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class Annora : MonoBehaviourPunCallbacks
+public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Variables de Estado
     public AnnoraStateMachine StateMachine { get; private set; }
@@ -34,6 +34,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public SpriteRenderer SpriteRend { get; private set; }
     public AnnoraAudioClips AudioClips { get; private set; }
     public PhotonView view;
+    public Collider2D Collider { get; private set; }
     public CheckpointManager CheckpointManager { get; private set; }
     private AttackDetails attackDetails;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
@@ -125,6 +126,7 @@ public class Annora : MonoBehaviourPunCallbacks
         Sj2D = GetComponent<SpringJoint2D>();
         SpriteRend = GetComponent<SpriteRenderer>();
         AudioClips = GetComponentInChildren<AnnoraAudioClips>();
+        Collider = GetComponent<Collider2D>();
         HookRope.enabled = false;
         Sj2D.enabled = false;
         IsGrappling = false;
@@ -385,5 +387,22 @@ public class Annora : MonoBehaviourPunCallbacks
         }
             
     }
-    
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+            stream.SendNext(actualHealth);
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+            actualHealth = (float)stream.ReceiveNext();
+
+        }
+    }
+
 }

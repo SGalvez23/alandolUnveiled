@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class MainPlayer : MonoBehaviourPunCallbacks
+public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Variables de Estado
     public PlayerStateMachine StateMachine { get; private set; }
@@ -318,4 +318,20 @@ public void DrawTrajectory()
         }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+            stream.SendNext(rb);
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+            rb = (Rigidbody2D)stream.ReceiveNext();
+
+        }
+    }
 }

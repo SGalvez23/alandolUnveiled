@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 5403567786470583935}
   - component: {fileID: 6291423943353214587}
   - component: {fileID: -3787111705150469468}
+  - component: {fileID: 4117689804784932640}
   m_Layer: 0
   m_Name: MiloPrefab
   m_TagString: Player
@@ -710,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PositionModel:
     SynchronizeEnabled: 1
-    TeleportEnabled: 1
+    TeleportEnabled: 0
     TeleportIfDistanceGreaterThan: 1
     InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
@@ -750,9 +751,26 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 5403567786470583935}
   - {fileID: 6291423943353214587}
+  - {fileID: 4117689804784932640}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4117689804784932640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513316911805560605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &9053455636431880379
 GameObject:
   m_ObjectHideFlags: 0

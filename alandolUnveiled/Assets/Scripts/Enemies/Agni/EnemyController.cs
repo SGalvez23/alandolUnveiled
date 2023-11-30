@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
 {
 
 
 
 
     // ............ States.....
-    private enum State{
+    private enum State
+    {
 
         Walking,
         Attack,
@@ -42,6 +43,7 @@ public class EnemyController : MonoBehaviour
     private float attackRange = 2f;
 
 
+
     // Define el tiempo entre ataques
     [SerializeField]
     private float attackRate = 1f;
@@ -62,71 +64,75 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D enemyRb;
     private Animator enemyAnim;
 
- 
+
 
     //.....  basic Functions ........
     private void Awake()
     {
-        
-        enemyRb = GetComponent<Rigidbody2D>();  
+
+        enemyRb = GetComponent<Rigidbody2D>();
         enemyAnim = GetComponent<Animator>();
 
         facingDir = 1;
         int enemyLayer = LayerMask.NameToLayer("Enemy");
-        Physics.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
-}
+        Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
+    }
 
 
     private void Update()
     {
         // Debug.Log(playerDetected);
-        switch(currentState)
+        if (photonView.IsMine)
         {
-            case State.Walking:
-                UpdateWalkingState();
-                break;
-            case State.Attack:
-                UpdateAttackState();
-                break;
-            case State.Dead:
-                UpdateDeadState();
-                break;
+            switch (currentState)
+            {
+                case State.Walking:
+                    UpdateWalkingState();
+                    break;
+                case State.Attack:
+                    UpdateAttackState();
+                    break;
+                case State.Dead:
+                    UpdateDeadState();
+                    break;
+            }
         }
+
     }
 
     #region Walking State
     // .................. Walking State ....................................
     private void EnterWalkingState()
     {
-        
+
     }
-    
+
     private void UpdateWalkingState()
     {
 
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
-        
-        wallDetected = Physics2D.Raycast(wallCheck.position,transform.right, wallCheckDistance, whatIsGround);
+
+        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
 
         playerDetected = Physics2D.Raycast(attackCheck.position, transform.right, attackRange, whatIsPlayer);
 
         if (!groundDetected || wallDetected)
-        {   
+        {
             Flip();
-            
+
         }
         else if (playerDetected)
         {
             SwicthState(State.Attack);
         }
-        else 
+        else
         {
             movement.Set(movementSpeed * facingDir, enemyRb.velocity.y);
             enemyRb.velocity = movement;
             enemyAnim.SetBool("canWalk", true);
         }
 
-       
+
     }
 
     private void ExitWalkingState()
@@ -137,7 +143,7 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region Dead State
-    
+
     // .................. Dead State ....................................
     public void EnterDeadState()
     {
@@ -145,7 +151,7 @@ public class EnemyController : MonoBehaviour
         //Play sound dead
         Destroy(gameObject);
     }
-    
+
     private void UpdateDeadState()
     {
 
@@ -159,22 +165,25 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region Attack State
-    
+
     // .................. Attack State ....................................
 
-    private void EnterAttackState() {
+    private void EnterAttackState()
+    {
         enemyAnim.SetBool("Attack", true);
     }
 
-    private void UpdateAttackState() {
+    private void UpdateAttackState()
+    {
         if (!playerDetected)
         {
             SwicthState(State.Walking);
         }
     }
 
-    private void ExitAttackState() {
-       enemyAnim.SetBool("Attack", false);
+    private void ExitAttackState()
+    {
+        enemyAnim.SetBool("Attack", false);
     }
 
 
@@ -191,7 +200,7 @@ public class EnemyController : MonoBehaviour
     private void SwicthState(State state)
     {
 
-        switch(currentState)
+        switch (currentState)
         {
             case State.Walking:
                 ExitWalkingState();
@@ -201,10 +210,10 @@ public class EnemyController : MonoBehaviour
                 break;
             case State.Dead:
                 ExitDeadState();
-                break;   
+                break;
         }
 
-        switch(state)
+        switch (state)
         {
             case State.Walking:
                 EnterWalkingState();
@@ -214,17 +223,34 @@ public class EnemyController : MonoBehaviour
                 break;
             case State.Dead:
                 EnterDeadState();
-                break;   
+                break;
         }
 
-        currentState = state;        
+        currentState = state;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+
+
+        }
     }
 
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-        
+
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 }
