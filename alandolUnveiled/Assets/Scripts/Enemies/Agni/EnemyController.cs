@@ -267,11 +267,7 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
         {
             collision.gameObject.GetComponent<Annora>().actualHealth -= 10;
         }
-        else
-        {
-            collision.gameObject.GetComponent<PlayerData>().health -= 10;
-
-        }
+       
 
     }
     private void OnDrawGizmos()

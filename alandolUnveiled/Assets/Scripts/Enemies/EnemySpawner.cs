@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     private int playersInside = 0;
     private bool waveStarted = false;
 
-    private int totalEnemiesInWave;
+    private int totalEnemiesInWave = 15;
     private int enemiesDefeated = 0;
     public GameObject wall;
     [PunRPC]
