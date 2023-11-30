@@ -1022,6 +1022,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiloHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 121
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
