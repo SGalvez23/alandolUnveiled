@@ -40,6 +40,9 @@ public class Enemy : MonoBehaviour
         currentHealth = enemyData.maxHealth;
         facingDir = 1;
 
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        Physics.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
+
         stateMachine = new FiniteStateMachine();
     }
 

@@ -141,6 +141,8 @@ GameObject:
   - component: {fileID: 319461094844470440}
   - component: {fileID: 421522872200637288}
   - component: {fileID: 4167626173651742272}
+  - component: {fileID: 3913910515802648737}
+  - component: {fileID: -9021991992558469411}
   m_Layer: 0
   m_Name: Solstice
   m_TagString: Untagged
@@ -183,6 +185,7 @@ MonoBehaviour:
   wallCheck: {fileID: 6281429107774994769}
   ledgeCheck: {fileID: 167235550708359794}
   playerCheck: {fileID: 1656047097747070160}
+  currentHealth: 0
   idleStateData: {fileID: 11400000, guid: 20dc4ba3964984742bde647fbda9c745, type: 2}
   moveStateData: {fileID: 11400000, guid: c179565797c3f984bbc79a2bf4083dea, type: 2}
   playerDetectedData: {fileID: 11400000, guid: e41e3708b4857604bb1d047b077790db, type: 2}
@@ -346,6 +349,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 421522872200637288}
+  - {fileID: 3913910515802648737}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -481,3 +485,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3913910515802648737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397110273189587913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &-9021991992558469411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397110273189587913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
