@@ -6,8 +6,9 @@ using UnityEngine;
 public class AnnoraData : ScriptableObject
 {
     [Header("Atributos Generals")]
-    public int health = 100;
+    public float health = 100;
     public int vidas = 2;
+    public float basicAtkDmg = 15f;
 
     [Header("Move State")]
     public float movementVel = 10f;

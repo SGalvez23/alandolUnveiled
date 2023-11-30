@@ -35,6 +35,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public AnnoraAudioClips AudioClips { get; private set; }
     public PhotonView view;
     public CheckpointManager CheckpointManager { get; private set; }
+    private AttackDetails attackDetails;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -51,7 +52,7 @@ public class Annora : MonoBehaviourPunCallbacks
     public AnnoraData annoraData;
     private Vector2 annoraVel;
 
-    public int actualHealth;
+    public float actualHealth;
     public int acutalLives;
     #endregion
 
@@ -232,6 +233,32 @@ public class Annora : MonoBehaviourPunCallbacks
         }
     }
 
+    private void CheckAttackHitBox()
+    {
+        Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 1f, enemies);
+
+        attackDetails.damageAmount = annoraData.basicAtkDmg;
+        attackDetails.position = transform.position;
+
+        foreach(Collider2D collider in detectedObjs)
+        {
+            collider.transform.parent.SendMessage("Damage", attackDetails);
+        }
+    }
+
+    private void Damage(AttackDetails attackDetails)
+    {
+        actualHealth -= attackDetails.damageAmount;
+
+        if (attackDetails.position.x < transform.position.x)
+        {
+            //knockback
+        }
+        else
+        {
+            //knockback
+        }
+    }
     #endregion
 
 

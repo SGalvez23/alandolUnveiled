@@ -62,6 +62,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3170801318451258583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6625904665941068640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7890264982760529619}
+  m_Layer: 0
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7890264982760529619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6625904665941068640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3170801318451258583}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6979511352190880144
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +161,7 @@ Transform:
   - {fileID: 6281429107774994769}
   - {fileID: 167235550708359794}
   - {fileID: 1656047097747070160}
+  - {fileID: 7890264982760529619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &530189703003437688
@@ -153,6 +185,8 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: e41e3708b4857604bb1d047b077790db, type: 2}
   chargeStateData: {fileID: 11400000, guid: f94c712b28e1a7448a53ef9cfe0d951e, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 1c073a041f8a3f442af810e1a80d259d, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: 31190c51089af6148a6f738ac2be9491, type: 2}
+  meleeAttackPosition: {fileID: 7890264982760529619}
 --- !u!212 &7253749166096447537
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -252,10 +286,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 7ca71eb19185f8e458605fe2ac8b3f40, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

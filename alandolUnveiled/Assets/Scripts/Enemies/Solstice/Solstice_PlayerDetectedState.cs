@@ -24,7 +24,11 @@ public class Solstice_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (performLongRangeAction)
+        if (performCloseRangeAction)
+        {
+            stateMachine.ChangeState(solstice.MeleeAttackState);
+        }
+        else if (performLongRangeAction)
         {
             stateMachine.ChangeState(solstice.ChargeState);
         }
@@ -32,8 +36,6 @@ public class Solstice_PlayerDetectedState : PlayerDetectedState
         {
             stateMachine.ChangeState(solstice.LookForPlayerState);
         }
-
-        //attack
     }
 
     public override void PhysicsUpdate()

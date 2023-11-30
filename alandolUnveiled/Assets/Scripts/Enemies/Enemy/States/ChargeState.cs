@@ -10,6 +10,7 @@ public class ChargeState : State
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
     protected bool isChargeTimeOver;
+    protected bool performCloseRangeAction;
 
     public ChargeState(Enemy enemy, FiniteStateMachine stateMachine, string animBoolName, Data_ChargeState stateData) : base(enemy, stateMachine, animBoolName)
     {
@@ -23,6 +24,8 @@ public class ChargeState : State
         isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
         isDetectingLedge = enemy.CheckLedge();
         isDetectingWall = enemy.CheckWall();
+
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()

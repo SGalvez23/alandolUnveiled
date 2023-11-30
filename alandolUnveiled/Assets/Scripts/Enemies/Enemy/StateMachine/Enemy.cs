@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public FiniteStateMachine stateMachine;
     public Data_Enemy enemyData;
+    public AttackState attackState;
 
     public int facingDir {  get; private set; }
     public Rigidbody2D Rb2D { get; private set; }
@@ -72,11 +73,20 @@ public class Enemy : MonoBehaviour
         return Physics2D.Raycast(playerCheck.position, transform.right, enemyData.maxAggroDistance, enemyData.whatIsPlayer);
     }
 
+    public virtual bool CheckPlayerInCloseRangeAction()
+    {
+        return Physics2D.Raycast(playerCheck.position, transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
+    }
+
     public virtual void Flip()
     {
         facingDir *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
+
+    public void AnimationTrigger() => attackState.TriggerAttack();
+
+    public void AnimationFinishTrigger() => attackState.FinishAttack();
 
     public virtual void OnDrawGizmos()
     {

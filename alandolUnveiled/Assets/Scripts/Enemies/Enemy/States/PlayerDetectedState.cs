@@ -9,6 +9,7 @@ public class PlayerDetectedState : State
     protected bool isPlayerInMinAggroRange;
     protected bool isPlayerInMaxAggroRange;
     protected bool performLongRangeAction;
+    protected bool performCloseRangeAction;
     public PlayerDetectedState(Enemy enemy, FiniteStateMachine stateMachine, string animBoolName, Data_PlayerDetectedState stateData) : base(enemy, stateMachine, animBoolName)
     {
         this.stateData = stateData; 
@@ -20,6 +21,8 @@ public class PlayerDetectedState : State
 
         isPlayerInMinAggroRange = enemy.CheckPlayerInMinAggroRange();
         isPlayerInMaxAggroRange = enemy.CheckPlayerInMaxAggroRange();
+
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()

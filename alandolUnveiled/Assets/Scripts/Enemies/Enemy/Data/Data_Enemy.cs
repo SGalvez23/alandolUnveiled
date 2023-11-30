@@ -11,6 +11,8 @@ public class Data_Enemy : ScriptableObject
     public float maxAggroDistance = 4f;
     public float minAggroDistance = 2f;
 
+    public float closeRangeActionDistance = 1f;
+
     public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 }
