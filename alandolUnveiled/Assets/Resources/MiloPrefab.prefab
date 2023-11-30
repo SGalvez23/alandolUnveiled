@@ -420,7 +420,7 @@ Rigidbody2D:
   m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3.5
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -755,6 +755,7 @@ MonoBehaviour:
   - {fileID: 5403567786470583935}
   - {fileID: 6291423943353214587}
   - {fileID: 4117689804784932640}
+  - {fileID: 4365239586646641661}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1132,6 +1133,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+--- !u!114 &4365239586646641661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6559475802031486421, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+  m_PrefabInstance: {fileID: 7463452200305475112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93adc69fa3970674aa8b50ba6d8c9b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4408633172845439847 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6538416013546100047, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
