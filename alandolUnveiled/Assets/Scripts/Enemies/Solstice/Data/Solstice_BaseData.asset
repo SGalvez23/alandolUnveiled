@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916b1d7bde7cafd4eb0c530ac00c28f4, type: 3}
   m_Name: Solstice_BaseData
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  damageHopSpeed: 15
   wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
-  maxAggroDistance: 10
-  minAggroDistance: 10
+  maxAggroDistance: 25
+  minAggroDistance: 20
+  closeRangeActionDistance: 3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

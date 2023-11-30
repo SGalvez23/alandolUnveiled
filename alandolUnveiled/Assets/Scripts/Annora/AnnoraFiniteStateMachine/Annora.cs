@@ -235,14 +235,14 @@ public class Annora : MonoBehaviourPunCallbacks
 
     private void CheckAttackHitBox()
     {
-        Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 1f, enemies);
+        Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 5f, enemies);
 
         attackDetails.damageAmount = annoraData.basicAtkDmg;
         attackDetails.position = transform.position;
 
         foreach(Collider2D collider in detectedObjs)
         {
-            collider.transform.parent.SendMessage("Damage", attackDetails);
+            collider.transform.SendMessage("Damage", attackDetails);
         }
     }
 

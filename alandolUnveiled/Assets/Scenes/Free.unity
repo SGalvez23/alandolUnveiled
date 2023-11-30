@@ -335,6 +335,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 319461094844470440, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 729714549354796287, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978606226746775400, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3170801318451258583, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.774788
@@ -375,9 +387,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6625904665941068640, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979511352190880144, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7397110273189587913, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
       propertyPath: m_Name
       value: Solstice
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397110273189587913, guid: b121dc9b866f51a4396d321dd5c3f344, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10,6 +10,7 @@ public class Solstice : Enemy
     public Solstice_ChargeState ChargeState { get; private set; }
     public Solstice_LookForPlayerState LookForPlayerState { get; private set; }
     public Solstice_MeleeAttackState MeleeAttackState { get; private set; }
+    public Solstice_DeadState DeadState { get; private set; }
 
     [SerializeField]
     private Data_IdleState idleStateData;
@@ -23,6 +24,8 @@ public class Solstice : Enemy
     private Data_LookForPlayerState lookForPlayerStateData;
     [SerializeField]
     private Data_MeleeAttackState meleeAttackStateData;
+    [SerializeField]
+    private Data_DeadState deadStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -37,8 +40,19 @@ public class Solstice : Enemy
         ChargeState = new Solstice_ChargeState(this, stateMachine, "charge", chargeStateData, this);
         LookForPlayerState = new Solstice_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         MeleeAttackState = new Solstice_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        DeadState = new Solstice_DeadState(this, stateMachine, "death", deadStateData, this);
 
         stateMachine.Initialize(MoveState);
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+
+        if (isDead)
+        {
+            stateMachine.ChangeState(DeadState);
+        }
     }
 
     public override void OnDrawGizmos()

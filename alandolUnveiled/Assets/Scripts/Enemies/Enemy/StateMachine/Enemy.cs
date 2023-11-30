@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int facingDir {  get; private set; }
     public Rigidbody2D Rb2D { get; private set; }
     public Animator Anim { get; private set; }
+    public AudioSource AudioSource { get; private set; }
 
     [SerializeField]
     private Transform wallCheck;
@@ -20,8 +21,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform playerCheck;
 
+    [SerializeField]
     private float currentHealth;
     private float lastDamageTime;
+    private int lastDamageDirection;
 
     private Vector2 velocityWorkspace;
 
@@ -31,7 +34,10 @@ public class Enemy : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         Rb2D = GetComponent<Rigidbody2D>();
+        AudioSource = GetComponent<AudioSource>();
 
+        AudioSource.enabled = false;
+        currentHealth = enemyData.maxHealth;
         facingDir = 1;
 
         stateMachine = new FiniteStateMachine();
@@ -76,6 +82,46 @@ public class Enemy : MonoBehaviour
     public virtual bool CheckPlayerInCloseRangeAction()
     {
         return Physics2D.Raycast(playerCheck.position, transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
+    }
+
+    public virtual void DamageHop(float velocity)
+    {
+        velocityWorkspace.Set(velocity, velocity / 3);
+        Rb2D.velocity = velocityWorkspace;
+    }
+
+    public virtual void Damage(AttackDetails attackDetails)
+    {
+        currentHealth -= attackDetails.damageAmount;
+
+        DamageHop(enemyData.damageHopSpeed);
+        PlaySound();
+
+        if(attackDetails.position.x > transform.position.x)
+        {
+            lastDamageDirection = -1;
+        }
+        else
+        {
+            lastDamageDirection = 1;
+        }
+
+        if(currentHealth <= 0)
+        {
+            isDead = true;
+        }
+    }
+
+    public virtual void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    public void PlaySound()
+    {
+        AudioSource.clip = enemyData.damagedSound;
+        AudioSource.enabled = true;
+        AudioSource.Play();
     }
 
     public virtual void Flip()
