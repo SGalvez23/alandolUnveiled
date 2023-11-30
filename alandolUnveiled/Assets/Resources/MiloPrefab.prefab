@@ -141,7 +141,7 @@ MonoBehaviour:
   cantA4: 0
   sarten: {fileID: 1000987719633338662, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
   crosshair: {fileID: 429742403843415634, guid: bd75ed6aa551d934ba673d2ed5581f57, type: 3}
-  healthUI: {fileID: 4408633172845439847}
+  healthUI: {fileID: 0}
 --- !u!114 &1972803517840376767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,17 +1043,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
---- !u!114 &4408633172845439847 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6538416013546100047, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
-  m_PrefabInstance: {fileID: 7463452200305475112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7418815319137238978 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 101171572264796650, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}

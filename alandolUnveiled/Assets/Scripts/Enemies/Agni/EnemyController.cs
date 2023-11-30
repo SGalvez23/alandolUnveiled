@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 
-public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
+
+public class EnemyController : MonoBehaviour
 {
 
 
@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     private float attackRange = 2f;
 
-   
 
     // Define el tiempo entre ataques
     [SerializeField]
@@ -81,22 +80,18 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     private void Update()
     {
         // Debug.Log(playerDetected);
-        if (photonView.IsMine)
+        switch(currentState)
         {
-            switch (currentState)
-            {
-                case State.Walking:
-                    UpdateWalkingState();
-                    break;
-                case State.Attack:
-                    UpdateAttackState();
-                    break;
-                case State.Dead:
-                    UpdateDeadState();
-                    break;
-            }
+            case State.Walking:
+                UpdateWalkingState();
+                break;
+            case State.Attack:
+                UpdateAttackState();
+                break;
+            case State.Dead:
+                UpdateDeadState();
+                break;
         }
-       
     }
 
     #region Walking State
@@ -223,23 +218,6 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         currentState = state;        
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // Writing data to send over the network
-            stream.SendNext(transform.position);
-            
-        }
-        else
-        {
-            // Reading data received from the network
-            transform.position = (Vector3)stream.ReceiveNext();
-                
-
-        }
     }
 
 
