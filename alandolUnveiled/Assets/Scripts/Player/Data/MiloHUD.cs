@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+public class MiloHUD : MonoBehaviourPunCallbacks, IPunObservable
 
-public class MiloHUD : MonoBehaviour
 {
     MainPlayer milo;
+
+    [Header("Vida")]
+    public Image vida;
 
     [Header("El Viejon")]
     public Image A1Image;
@@ -52,14 +56,19 @@ public class MiloHUD : MonoBehaviour
 
     private void Update()
     {
-        A1Input = milo.InputHandler.Ability1Input;
-        A2Input = milo.InputHandler.Ability2Input;
-        A3Input = milo.InputHandler.Ability3Input;
-        A4Input = milo.InputHandler.Ability4Input;
-        A1();
-        A2();
-        A3();
-        A4();
+        if (photonView.IsMine)
+        {
+            vida.fillAmount = milo.actualhealth / 100f;
+
+            A1Input = milo.InputHandler.Ability1Input;
+            A2Input = milo.InputHandler.Ability2Input;
+            A3Input = milo.InputHandler.Ability3Input;
+            A4Input = milo.InputHandler.Ability4Input;
+            A1();
+            A2();
+            A3();
+            A4();
+        }
     }
 
     void A1()
@@ -145,4 +154,22 @@ public class MiloHUD : MonoBehaviour
             }
         }
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            //stream.SendNext(transform.position);
+            stream.SendNext(vida);
+        }
+        else
+        {
+            // Reading data received from the network
+            //transform.position = (Vector3)stream.ReceiveNext();
+            vida = (Image)stream.ReceiveNext();
+
+        }
+    }
 }
+

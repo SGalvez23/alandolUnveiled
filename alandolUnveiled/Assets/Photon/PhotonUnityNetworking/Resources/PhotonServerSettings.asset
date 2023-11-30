@@ -47,6 +47,7 @@ MonoBehaviour:
   - RPC_CloseRoom
   - RPC_OpenRoom
   - RPC_StartEnemyWave
+  - RPC_AllEnemiesDefeated
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

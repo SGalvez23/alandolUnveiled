@@ -1,8 +1,6 @@
-
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using Photon.Pun;
-
 public class EnemySpawner : MonoBehaviourPunCallbacks
 {
     public GameObject[] enemyPrefabs;
@@ -12,28 +10,29 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
     private int playersInside = 0;
     private bool waveStarted = false;
 
+    private int totalEnemiesInWave;
+    private int enemiesDefeated = 0;
+    public GameObject wall;
     [PunRPC]
     void RPC_CloseRoom()
     {
-        // Lógica para cerrar la habitación cuando se inicia la oleada de enemigos
-        // Puedes desactivar ciertos elementos o cambiar propiedades según tus necesidades
+        wall.SetActive(true);
         Debug.Log("Room closed!");
     }
-
     [PunRPC]
     void RPC_OpenRoom()
     {
-        // Lógica para abrir la habitación después de que se maten todos los enemigos
-        // Puedes activar ciertos elementos o cambiar propiedades según tus necesidades
+        // Lï¿½gica para abrir la habitaciï¿½n despuï¿½s de que se maten todos los enemigos
+        // Puedes activar ciertos elementos o cambiar propiedades segï¿½n tus necesidades
+        wall.SetActive(false);
+
         Debug.Log("Room opened!");
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playersInside++;
-
             if (playersInside == PhotonNetwork.CurrentRoom.PlayerCount && !waveStarted && PhotonNetwork.IsMasterClient)
             {
                 photonView.RPC("RPC_CloseRoom", RpcTarget.AllBuffered);
@@ -41,39 +40,35 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
             }
         }
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             playersInside--;
-
             if (!waveStarted)
             {
                 StopEnemyWave();
             }
         }
     }
-
     void StartEnemyWave()
     {
         waveStarted = true;
         photonView.RPC("RPC_StartEnemyWave", RpcTarget.AllBuffered);
+        totalEnemiesInWave = enemiesPerWave;
+        enemiesDefeated = 0;
         StartCoroutine(SpawnEnemies());
     }
-
     [PunRPC]
     void RPC_StartEnemyWave()
     {
         waveStarted = true;
     }
-
     void StopEnemyWave()
     {
         waveStarted = false;
-        // Lógica para detener la oleada si los jugadores salen del área antes de que comience
+        // Lï¿½gica para detener la oleada si los jugadores salen del ï¿½rea antes de que comience
     }
-
     IEnumerator SpawnEnemies()
     {
         for (int i = 0; i < enemiesPerWave; i++)
@@ -83,7 +78,28 @@ public class EnemySpawner : MonoBehaviourPunCallbacks
             GameObject enemy = PhotonNetwork.Instantiate(enemyPrefabs[randomPrefabIndex].name, spawnPoints[randomSpawnPointIndex].position, Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
         }
+    }
 
-        photonView.RPC("RPC_OpenRoom", RpcTarget.AllBuffered);
+
+    public void EnemyDefeated()
+    {
+        enemiesDefeated++;
+        if (enemiesDefeated >= totalEnemiesInWave)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC("RPC_AllEnemiesDefeated", RpcTarget.All);
+            }
+            //photonView.RPC("RPC_OpenRoom", RpcTarget.AllBuffered);
+        }
+    }
+
+
+    [PunRPC]
+    void RPC_AllEnemiesDefeated()
+    {
+        // LÃ³gica para terminar el juego cuando todos los enemigos hayan sido derrotados
+        // Por ejemplo, podrÃ­as llamar a una funciÃ³n que maneje el final del juego
+        PhotonNetwork.LoadLevel("VictoryScreen");
     }
 }

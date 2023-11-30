@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
 {
-
+    EnemySpawner enemySpawner;
 
 
 
@@ -69,6 +69,7 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     //.....  basic Functions ........
     private void Awake()
     {
+        enemySpawner = GameObject.FindObjectOfType<EnemySpawner>(); // Obtener la referencia al EnemySpawner
 
         enemyRb = GetComponent<Rigidbody2D>();
         enemyAnim = GetComponent<Animator>();
@@ -149,7 +150,7 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     {
         // spawn death animation and particles
         //Play sound dead
-        Destroy(gameObject);
+        EnemyDefeated();
     }
 
     private void UpdateDeadState()
@@ -171,10 +172,15 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     private void EnterAttackState()
     {
         enemyAnim.SetBool("Attack", true);
+        if (!playerDetected)
+        {
+            SwicthState(State.Walking);
+        }
     }
 
     private void UpdateAttackState()
     {
+
         if (!playerDetected)
         {
             SwicthState(State.Walking);
@@ -246,7 +252,28 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    private void EnemyDefeated()
+    {
+        if (enemySpawner != null)
+        {
+            enemySpawner.EnemyDefeated();
+            PhotonNetwork.Destroy(gameObject);
+            // Llamar a la función EnemyDefeated del EnemySpawner
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Annora>().actualHealth -= 10;
+        }
+        else
+        {
+            collision.gameObject.GetComponent<PlayerData>().health -= 10;
 
+        }
+
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));

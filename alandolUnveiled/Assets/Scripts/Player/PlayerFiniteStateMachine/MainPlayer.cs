@@ -29,6 +29,8 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public LineRenderer LineRenderer { get; private set; }
     public MiloAudioClips AudioClips { get; private set; } 
     PhotonView view;
+    public CheckpointManager CheckpointManager { get; private set; }
+
     #endregion
 
     #region Check Transforms
@@ -76,6 +78,9 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
    public Image healthUI;
+    public float actualhealth;
+    public int acutalLives = 3;
+
 
     #region Unity Callback Functions
     private void Awake()
@@ -112,7 +117,8 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         RojoVivoState.ResetA2();
         CheveState.ResetA3();
         CarnitaAsadaState.ResetA4();
-
+        actualhealth = playerData.health;
+        
         StateMachine.Initialize(IdleState);
     }
 
@@ -145,6 +151,12 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 ResetProjectile();
                 Debug.Log("se acabou");
+            }
+
+
+            if (actualhealth <= 0)
+            {
+                Death();
             }
         }
     }
@@ -211,11 +223,27 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
     }
 
+    public void Death()
+    {
+        acutalLives -= 1;
+        gameObject.SetActive(false);
+        if (acutalLives >= 0)
+        {
+            CheckpointManager.LoadCheckpoint();
+            actualhealth = 100;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameOver");
+        }
+    }
 
-#endregion
 
-#region BasicAtk
-public void DrawTrajectory()
+    #endregion
+
+    #region BasicAtk
+    public void DrawTrajectory()
     {
         Vector3[] positions = new Vector3[trajectoryStepCount];
         for (int i = 0; i < trajectoryStepCount; i++)
@@ -309,11 +337,11 @@ public void DrawTrajectory()
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            playerData.health -= 10;
-            healthUI.fillAmount = playerData.health / 100f;
-            if( playerData.health <= 0)
+            actualhealth -= 10;
+            healthUI.fillAmount = actualhealth / 100f;
+            if( actualhealth <= 0)
             {
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
             }
         }
     }
@@ -324,13 +352,13 @@ public void DrawTrajectory()
         {
             // Writing data to send over the network
             stream.SendNext(transform.position);
-            stream.SendNext(rb);
+            stream.SendNext(actualhealth);
         }
         else
         {
             // Reading data received from the network
             transform.position = (Vector3)stream.ReceiveNext();
-            rb = (Rigidbody2D)stream.ReceiveNext();
+            actualhealth = (float)stream.ReceiveNext();
 
         }
     }
