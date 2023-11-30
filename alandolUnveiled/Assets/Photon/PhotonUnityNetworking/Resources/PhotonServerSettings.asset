@@ -44,6 +44,9 @@ MonoBehaviour:
   - DestroyWall
   - DestroyObstacle
   - HideLever
+  - RPC_CloseRoom
+  - RPC_OpenRoom
+  - RPC_StartEnemyWave
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
