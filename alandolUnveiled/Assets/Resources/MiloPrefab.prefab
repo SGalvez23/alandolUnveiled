@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: -3787111705150469468}
   m_Layer: 0
   m_Name: MiloPrefab
-  m_TagString: MainPlayer
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,10 +414,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1021,6 +1021,22 @@ PrefabInstance:
     - target: {fileID: 2437975388790440154, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Name
       value: MiloHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -129
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 121
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

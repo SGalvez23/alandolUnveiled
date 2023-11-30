@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Lever : MonoBehaviour
+public class Lever : MonoBehaviourPunCallbacks
 {
     public GameObject wall;
 
@@ -11,14 +11,26 @@ public class Lever : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BasicAtkHitbox"))
         {
-            // Hide lever on 
-            gameObject.SetActive(false);
-            // Check if this is the master client before destroying the wall
-            if (PhotonNetwork.IsMasterClient)
-            {
-                // Use PhotonNetwork.Destroy to ensure the destruction is synchronized
-                PhotonNetwork.Destroy(wall);
-            }
+            // Hide lever for all clients
+            photonView.RPC("HideLever", RpcTarget.All);
+            // Call the RPC method to destroy the wall
+            photonView.RPC("DestroyWall", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    void DestroyWall()
+    {
+        // Only on master client, applies to all clients
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(wall);
+        }
+    }
+
+    [PunRPC]
+    void HideLever()
+    {
+        gameObject.SetActive(false);
     }
 }
