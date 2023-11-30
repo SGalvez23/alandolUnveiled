@@ -31,7 +31,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public CheckpointManager CheckpointManager { get; private set; }
     private AttackDetails attackDetails;
     PhotonView view;
-    public CheckpointManager CheckpointManager { get; private set; }
 
     #endregion
 
@@ -123,14 +122,12 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         RojoVivoState.ResetA2();
         CheveState.ResetA3();
         CarnitaAsadaState.ResetA4();
-<<<<<<< Updated upstream
+
         actualhealth = playerData.health;
-        
-=======
+
 
         view = GetComponent<PhotonView>();
 
->>>>>>> Stashed changes
         StateMachine.Initialize(IdleState);
     }
 
@@ -277,30 +274,8 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
     }
 
-    public void Death()
-    {
-        acutalLives -= 1;
-        gameObject.SetActive(false);
-        if (acutalLives >= 0)
-        {
-            CheckpointManager.LoadCheckpoint();
-            actualhealth = 100;
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("GameOver");
-        }
-    }
-
-<<<<<<< Updated upstream
-
     #endregion
 
-=======
-    #endregion
-
->>>>>>> Stashed changes
     #region BasicAtk
     public void DrawTrajectory()
     {
@@ -385,19 +360,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-<<<<<<< Updated upstream
-            actualhealth -= 10;
-            healthUI.fillAmount = actualhealth / 100f;
-            if( actualhealth <= 0)
-            {
-                PhotonNetwork.Destroy(gameObject);
-            }
-=======
             attackDetails.damageAmount = playerData.touchDamage;
             attackDetails.position = transform.position;
 
             collision.transform.SendMessage("Damage", attackDetails);
->>>>>>> Stashed changes
         }
     }
 
