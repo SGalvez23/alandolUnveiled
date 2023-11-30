@@ -43,7 +43,10 @@ MonoBehaviour:
   - RPC_LoadCheckpoint
   - DestroyWall
   - DestroyObstacle
+<<<<<<< Updated upstream
   - HideLever
+=======
+>>>>>>> Stashed changes
   - RPC_CloseRoom
   - RPC_OpenRoom
   - RPC_StartEnemyWave

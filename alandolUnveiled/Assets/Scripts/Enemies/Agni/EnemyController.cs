@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
 {
 
 
@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float attackRange = 2f;
 
+   
 
     // Define el tiempo entre ataques
     [SerializeField]
@@ -80,18 +81,22 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         // Debug.Log(playerDetected);
-        switch(currentState)
+        if (photonView.IsMine)
         {
-            case State.Walking:
-                UpdateWalkingState();
-                break;
-            case State.Attack:
-                UpdateAttackState();
-                break;
-            case State.Dead:
-                UpdateDeadState();
-                break;
+            switch (currentState)
+            {
+                case State.Walking:
+                    UpdateWalkingState();
+                    break;
+                case State.Attack:
+                    UpdateAttackState();
+                    break;
+                case State.Dead:
+                    UpdateDeadState();
+                    break;
+            }
         }
+       
     }
 
     #region Walking State
@@ -218,6 +223,23 @@ public class EnemyController : MonoBehaviour
         }
 
         currentState = state;        
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+            
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+                
+
+        }
     }
 
 
