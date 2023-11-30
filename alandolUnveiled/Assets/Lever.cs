@@ -11,20 +11,26 @@ public class Lever : MonoBehaviourPunCallbacks
     {
         if (collision.gameObject.CompareTag("BasicAtkHitbox"))
         {
-            // Hide lever
-            gameObject.SetActive(false);
+            // Hide lever for all clients
+            photonView.RPC("HideLever", RpcTarget.All);
             // Call the RPC method to destroy the wall
-            photonView.RPC("DestroyWall", RpcTarget.MasterClient);
+            photonView.RPC("DestroyWall", RpcTarget.All);
         }
     }
 
     [PunRPC]
     void DestroyWall()
     {
-        // Only the master client will execute this
+        // Only on master client, applies to all clients
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Destroy(wall);
         }
+    }
+
+    [PunRPC]
+    void HideLever()
+    {
+        gameObject.SetActive(false);
     }
 }
