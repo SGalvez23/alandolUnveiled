@@ -27,7 +27,9 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
-    public MiloAudioClips AudioClips { get; private set; } 
+    public MiloAudioClips AudioClips { get; private set; }
+    public CheckpointManager CheckpointManager { get; private set; }
+    private AttackDetails attackDetails;
     PhotonView view;
     public CheckpointManager CheckpointManager { get; private set; }
 
@@ -53,12 +55,14 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public PlayerData playerData;
 
     private Vector2 workspace;
+
+    public float actualHealth;
+    public int actualLives;
     #endregion
 
     #region Abilities
     public List<Projectile> projectiles = new List<Projectile>();
     public int ProjectileIndex { get; private set; }
-    public GameObject defProjectile;
     public GameObject A1Prefab;
     public bool appliedA1;
     public GameObject A2Prefab;
@@ -110,15 +114,23 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         LineRenderer = GetComponent<LineRenderer>();
         AudioClips = GetComponentInChildren<MiloAudioClips>();
 
-        view = GetComponent<PhotonView>();
+        actualHealth = playerData.health;
+        actualLives = playerData.vidas;
+        CheckpointManager = FindObjectOfType<CheckpointManager>();
 
         ProjectileIndex = 0;
         ViejonState.ResetA1();
         RojoVivoState.ResetA2();
         CheveState.ResetA3();
         CarnitaAsadaState.ResetA4();
+<<<<<<< Updated upstream
         actualhealth = playerData.health;
         
+=======
+
+        view = GetComponent<PhotonView>();
+
+>>>>>>> Stashed changes
         StateMachine.Initialize(IdleState);
     }
 
@@ -135,22 +147,27 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 DrawTrajectory();
             }
 
+            if (actualHealth <= 0)
+            {
+                Death();
+            }
+
             if (projectilesThrown > playerData.rojoVivoCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
             if (projectilesThrown > playerData.cheveCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
             if (projectilesThrown > playerData.carnitaCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
 
@@ -217,6 +234,43 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         transform.Rotate(0, 180, 0);
     }
 
+    public void Death()
+    {
+        actualLives -= 1;
+        gameObject.SetActive(false);
+        if (actualLives >= 0)
+        {
+            CheckpointManager.LoadCheckpoint();
+            actualHealth = 100;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameOver");
+        }
+    }
+
+    public virtual void DamageHop(float velocity)
+    {
+        workspace.Set(velocity, velocity / 3);
+        rb.velocity = workspace;
+    }
+
+    private void Damage(AttackDetails attackDetails)
+    {
+        actualHealth -= attackDetails.damageAmount;
+        DamageHop(playerData.damageHopSpeed);
+
+        if (attackDetails.position.x < transform.position.x)
+        {
+            //knockback
+        }
+        else
+        {
+            //knockback
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -239,9 +293,14 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+<<<<<<< Updated upstream
 
     #endregion
 
+=======
+    #endregion
+
+>>>>>>> Stashed changes
     #region BasicAtk
     public void DrawTrajectory()
     {
@@ -263,7 +322,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         // Instantiate the projectile across the network
         Projectile throwable = PhotonNetwork.Instantiate(projectiles[projectile].name, leftHand.position, Quaternion.identity).GetComponent<Projectile>();
         // Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
-        Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");
         AudioClips.PlayBasicAtkSound();
@@ -296,16 +354,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
         Destroy(viejon, 4);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Invoke("Heal", 1);
-    }
-    //modificar, no funciona bien el heal
-    public void Heal()
-    {
-        playerData.health += 10;
-    }
     #endregion
 
     #region A2
@@ -337,12 +385,19 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
+<<<<<<< Updated upstream
             actualhealth -= 10;
             healthUI.fillAmount = actualhealth / 100f;
             if( actualhealth <= 0)
             {
                 PhotonNetwork.Destroy(gameObject);
             }
+=======
+            attackDetails.damageAmount = playerData.touchDamage;
+            attackDetails.position = transform.position;
+
+            collision.transform.SendMessage("Damage", attackDetails);
+>>>>>>> Stashed changes
         }
     }
 

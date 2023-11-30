@@ -9,7 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1755108378553531286}
+<<<<<<< Updated upstream
   m_Layer: 2
+=======
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: ViejonCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +44,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4286884031464710220}
+<<<<<<< Updated upstream
   m_Layer: 2
+=======
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: leftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +91,11 @@ GameObject:
   - component: {fileID: 6291423943353214587}
   - component: {fileID: -3787111705150469468}
   - component: {fileID: 4117689804784932640}
+<<<<<<< Updated upstream
   m_Layer: 2
+=======
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: MiloPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -127,12 +139,13 @@ MonoBehaviour:
   leftHand: {fileID: 4286884031464710220}
   sartenPrefab: {fileID: 2358144569708116879, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
   playerData: {fileID: 11400000, guid: 4592ef04ee246304a8564fb2248918a6, type: 2}
+  actualHealth: 0
+  actualLives: 0
   projectiles:
   - {fileID: 8581083390164647671, guid: fcef8ef7f162ff345922cb806b5fc7c4, type: 3}
   - {fileID: -8658730949272685055, guid: 69047bdbfe2acc74898d3f7cdba74b69, type: 3}
   - {fileID: -5464277139209624619, guid: fd035bd4774b18040a6119a597c04458, type: 3}
   - {fileID: 6763915397303334313, guid: 9fb5954123203c945981bd7e62760f2b, type: 3}
-  defProjectile: {fileID: 0}
   A1Prefab: {fileID: 3342070809693042358, guid: 2150e5d3591889d4ebe60c5f3bf6212f, type: 3}
   appliedA1: 0
   A2Prefab: {fileID: 1000987719633338662, guid: 69047bdbfe2acc74898d3f7cdba74b69, type: 3}
@@ -783,7 +796,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7466960728233246029}
+<<<<<<< Updated upstream
   m_Layer: 2
+=======
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +833,11 @@ GameObject:
   - component: {fileID: 4591218949249385555}
   - component: {fileID: 9000438794404741955}
   - component: {fileID: 1157429450406095607}
+<<<<<<< Updated upstream
   m_Layer: 2
+=======
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: Sounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +982,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 63595153648176242, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
+<<<<<<< Updated upstream
       value: 2
+=======
+      value: 7
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 101171572264796650, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Pivot.x
@@ -1045,7 +1070,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2142852386405248595, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
+<<<<<<< Updated upstream
       value: 2
+=======
+      value: 7
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 2437975388790440154, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Name
@@ -1053,6 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2437975388790440154, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
+<<<<<<< Updated upstream
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2442797425101835322, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
@@ -1078,6 +1108,33 @@ PrefabInstance:
     - target: {fileID: 5023424375911152722, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
       value: 2
+=======
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2442797425101835322, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876488630758311139, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233731886928848381, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259179351275168910, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990733091463934189, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5023424375911152722, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 5367214623161702149, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_LocalScale.x
@@ -1097,6 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5808818962703240550, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
+<<<<<<< Updated upstream
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6559475802031486421, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
@@ -1126,6 +1184,29 @@ PrefabInstance:
     - target: {fileID: 8917176769160659016, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
       propertyPath: m_Layer
       value: 2
+=======
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843329126801904278, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134364331462914415, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314374844894472038, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567261043143110683, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917176769160659016, guid: c6cafc352a5ff4941abd23ecebcb1c41, type: 3}
+      propertyPath: m_Layer
+      value: 7
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
