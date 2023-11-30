@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Damageable : MonoBehaviour
 {
-    public UnityEvent<float, Vector2> damagableHit;
-    Animator animator;
     [SerializeField]
     private float _maxHealth = 100;
     public Image healthBar;
@@ -49,14 +47,13 @@ public class Damageable : MonoBehaviour
         private set
         {
             _isAlive = value;
-            animator.SetBool(AnimationStrings.isAlive, value);
-            Debug.Log("IsAlive set " + value);
+
         }
     }
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        
     }
 
     private void Update()
@@ -75,24 +72,21 @@ public class Damageable : MonoBehaviour
         if (!IsAlive)
         {
             Destroy(gameObject);
-            GameManager.Instance.amountEnemies -= 1;
         }
     }
 
-    public bool Hit(float damage, Vector2 knockback)
+    public void Hit(float damage)
     {
         if (IsAlive && !isInvincible)
         {
             Health -= damage;
             isInvincible = true;
 
-            animator.SetTrigger(AnimationStrings.hitTrigger);
-            damagableHit?.Invoke(damage, knockback);
             healthBar.fillAmount = _health / 100f;
 
-            return true;
+            
         }
 
-        return false;
+        
     }
 }

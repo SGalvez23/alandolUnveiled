@@ -16,13 +16,18 @@ public class AnnoraLandedState : AnnoraGroundedState
         {
             stateMachine.ChangeState(annora.MoveState);
         }
-        else if(isAnimationFinished && xInput == 0)
+        else if(isAnimationFinished)
         {
             stateMachine.ChangeState(annora.IdleState);
         }
         else if (aiming)
         {
             stateMachine.ChangeState(annora.AimState);
+        }
+        else
+        {
+            //quitar, no se va necesitar cuando tenga animacion de land
+            stateMachine.ChangeState(annora.IdleState);
         }
     }
 }

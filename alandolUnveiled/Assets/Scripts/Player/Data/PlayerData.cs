@@ -25,9 +25,13 @@ public class PlayerData : ScriptableObject
 
     [Header("Habilidades Milo")]
     public float launchForce = 2f;
-    public float viejonTime = 4f;
-    public float rojoVivoTime = 10f;
+    public float viejonTime = 8f;
+    public float viejonCoolTime = 18f;
+    //public float rojoVivoTime = 10f;
+    public int rojoVivoCant = 3;
+    public float rojoVivoCoolTime = 4f;
     public int cheveCant = 6;
-    public float cheveTime = 5f;
-    public float carnitaTime = 5f;
+    public float cheveCoolTime = 12;
+    public int carnitaCant = 3;
+    public float carnitaCoolTime = 16;
 }

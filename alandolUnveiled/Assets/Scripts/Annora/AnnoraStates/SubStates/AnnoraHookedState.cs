@@ -38,11 +38,8 @@ public class AnnoraHookedState : AnnoraAbilityState
         if (!shot)
         {
             annora.StopGrapple();
+            annora.Anim.SetBool("hooked", false);
             isDone = true;
-        }
-        else if (aiming)
-        {
-            Debug.Log("asd");
         }
         else
         {

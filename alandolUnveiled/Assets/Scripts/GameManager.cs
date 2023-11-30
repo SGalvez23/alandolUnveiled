@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public int amountEnemies;
+    CinemachineVirtualCamera virtualCamera;
 
     private void Awake()
     {
@@ -22,12 +24,18 @@ public class GameManager : MonoBehaviour
         amountEnemies = 4;
     }
 
+
     private void Update()
     {
         if(amountEnemies == 0)
         {
-            Loader.Load(Loader.Scene.VictoryScreen);
+            //Loader.Load(Loader.Scene.VictoryScreen);
         }
+    }
+
+    public void Victory()
+    {
+        Loader.Load(Loader.Scene.VictoryScreen);
     }
 }
 

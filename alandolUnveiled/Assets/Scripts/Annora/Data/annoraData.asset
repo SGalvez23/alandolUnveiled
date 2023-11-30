@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: annoraData
   m_EditorClassIdentifier: 
   health: 100
-  movementVel: 10
-  jumpVel: 15
-  totalJumps: 2
+  vidas: 2
+  movementVel: 15
+  jumpVel: 31
+  totalJumps: 1
   coyoteTime: 0.2
   jumpHeightMultiplier: 0.5
   groundCheckRadius: 0.5
@@ -23,3 +24,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   launchForce: 0
+  camoTime: 3
+  camoCoolTime: 2
+  frenesiTime: 5
+  frenesiCoolTime: 2
+  apretonTime: 10
+  apretonCoolTime: 3
+  muerteCerteTime: 6
+  muerteCoolTime: 2

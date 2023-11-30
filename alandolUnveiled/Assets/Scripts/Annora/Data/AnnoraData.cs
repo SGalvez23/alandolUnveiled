@@ -6,7 +6,9 @@ using UnityEngine;
 public class AnnoraData : ScriptableObject
 {
     [Header("Atributos Generals")]
-    public int health = 100;
+    public float health = 100;
+    public int vidas = 2;
+    public float basicAtkDmg = 15f;
 
     [Header("Move State")]
     public float movementVel = 10f;
@@ -25,4 +27,12 @@ public class AnnoraData : ScriptableObject
 
     [Header("Habilidades Annora")]
     public float launchForce = 0;
+    public float camoTime = 3f;
+    public float camoCoolTime = 6f;
+    public float frenesiTime = 5f;
+    public float frenesiCoolTime = 12f;
+    public float apretonTime = 10f;
+    public float apretonCoolTime = 3f;
+    public float muerteCerteTime = 2f;
+    public float muerteCoolTime = 15f;
 }

@@ -63,7 +63,5 @@ public class AnnoraAbilityState : AnnoraState
                 stateMachine.ChangeState(annora.InAirState);
             }
         }
-
-        
     }
 }

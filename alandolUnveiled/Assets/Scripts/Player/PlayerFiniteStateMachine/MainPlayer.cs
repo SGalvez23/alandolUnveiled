@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class MainPlayer : MonoBehaviourPunCallbacks
+public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region Variables de Estado
     public PlayerStateMachine StateMachine { get; private set; }
@@ -27,7 +27,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
+    public MiloAudioClips AudioClips { get; private set; } 
     PhotonView view;
+    public CheckpointManager CheckpointManager { get; private set; }
+
     #endregion
 
     #region Check Transforms
@@ -47,40 +50,47 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public int FacingDir { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
 
     private Vector2 workspace;
     #endregion
 
     #region Abilities
     public List<Projectile> projectiles = new List<Projectile>();
-    public int ProjectileIndex { get; set; }
+    public int ProjectileIndex { get; private set; }
+    public GameObject defProjectile;
     public GameObject A1Prefab;
     public bool appliedA1;
-    public bool a1Input;
     public GameObject A2Prefab;
-    public bool appliedA2;
+    public bool AppliedA2 { get; set; }
     public GameObject A3Prefab;
-    public bool appliedA3;
+    public bool AppliedA3 { get; set; }
+    public int cantA3;
     public GameObject A4Prefab;
-    public bool appliedA4;
+    public bool AppliedA4 { get; set; }
+    public int cantA4;
 
     public GameObject sarten;
     public GameObject crosshair;
     private float trajectoryTimeStep = 0.05f;
     private int trajectoryStepCount = 15;
+    int projectilesThrown = 0;
     #endregion
 
-    public Image healthUI;
+   public Image healthUI;
+    public float actualhealth;
+    public int acutalLives = 3;
+
 
     #region Unity Callback Functions
     private void Awake()
     {
+        playerData.health = 100;
         StateMachine = new PlayerStateMachine();
 
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "isIdle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "isMoving");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "jump");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         LandedState = new PlayerLandedState(this, StateMachine, playerData, "landed");
         ViejonState = new Milo_A1State(this, StateMachine, playerData, "viejon");
@@ -98,9 +108,17 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         InputHandler = GetComponent<PlayerInputHandler>();
         rb = GetComponent<Rigidbody2D>();
         LineRenderer = GetComponent<LineRenderer>();
+        AudioClips = GetComponentInChildren<MiloAudioClips>();
 
         view = GetComponent<PhotonView>();
 
+        ProjectileIndex = 0;
+        ViejonState.ResetA1();
+        RojoVivoState.ResetA2();
+        CheveState.ResetA3();
+        CarnitaAsadaState.ResetA4();
+        actualhealth = playerData.health;
+        
         StateMachine.Initialize(IdleState);
     }
 
@@ -111,24 +129,34 @@ public class MainPlayer : MonoBehaviourPunCallbacks
             CurrentVelocity = rb.velocity;
             StateMachine.CurrentState.Update();
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                playerData.health -= 20;
-            }
-
-            //healthUI.fillAmount = playerData.health / 100f;
-
             if (InputHandler.IsAiming)
             {
                 crosshair.transform.position = InputHandler.MouseInput;
                 DrawTrajectory();
             }
 
-            a1Input = InputHandler.Ability1Input;
-            if (a1Input)
+            if (projectilesThrown > playerData.rojoVivoCant)
             {
-                Debug.Log(ViejonState.CanUse);
-                StartCoroutine(UsableA1());
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
+
+            if (projectilesThrown > playerData.cheveCant)
+            {
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
+
+            if (projectilesThrown > playerData.carnitaCant)
+            {
+                ResetProjectile();
+                Debug.Log("se acabou");
+            }
+
+
+            if (actualhealth <= 0)
+            {
+                Death();
             }
         }
     }
@@ -189,6 +217,29 @@ public class MainPlayer : MonoBehaviourPunCallbacks
         transform.Rotate(0, 180, 0);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
+    }
+
+    public void Death()
+    {
+        acutalLives -= 1;
+        gameObject.SetActive(false);
+        if (acutalLives >= 0)
+        {
+            CheckpointManager.LoadCheckpoint();
+            actualhealth = 100;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("GameOver");
+        }
+    }
+
+
     #endregion
 
     #region BasicAtk
@@ -209,23 +260,33 @@ public class MainPlayer : MonoBehaviourPunCallbacks
 
     public void Throw(Vector2 vel, int projectile)
     {
-        //GameObject sartenVolador = Instantiate(sarten, leftHand.position, Quaternion.identity);
-        //sartenVolador.GetComponent<Rigidbody2D>().velocity = vel;
-
-        Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
+        // Instantiate the projectile across the network
+        Projectile throwable = PhotonNetwork.Instantiate(projectiles[projectile].name, leftHand.position, Quaternion.identity).GetComponent<Projectile>();
+        // Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
         Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");
+        AudioClips.PlayBasicAtkSound();
+
+        projectilesThrown += 1;
     }
 
     public void Crosshair()
     {
         crosshair.SetActive(true);
+        LineRenderer.enabled = true;
     }
 
     public void DeleteCrosshair()
     {
         crosshair.SetActive(false);
+        LineRenderer.enabled = false;
+    }
+
+    public void ResetProjectile()
+    {
+        ProjectileIndex = 0;
+        projectilesThrown = 0;
     }
     #endregion
 
@@ -233,9 +294,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     public void PlaceViejon()
     {
         GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
-        appliedA1 = true;
         Destroy(viejon, 4);
-        ViejonState.CanUse = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -247,20 +306,12 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     {
         playerData.health += 10;
     }
-
-    public IEnumerator UsableA1()
-    {
-        Debug.Log("wait");
-        yield return new WaitForSeconds(playerData.viejonTime);
-        Debug.Log("ya");
-        ViejonState.CanUse = true;
-    }
     #endregion
 
     #region A2
     public void ApplyA2()
     {
-        appliedA2 = true;
+        AppliedA2 = true;
         ProjectileIndex = 1;
     }
     #endregion
@@ -268,8 +319,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A3
     public void CookCheve()
     {
-        //Instantiate(A3Prefab, leftHand.position, Quaternion.identity);
-        appliedA3 = true;
+        AppliedA3 = true;
         ProjectileIndex = 2;
     }
     #endregion
@@ -277,9 +327,39 @@ public class MainPlayer : MonoBehaviourPunCallbacks
     #region A4
     public void CookCarnita()
     {
-        //Instantiate(A4Prefab, leftHand.position, Quaternion.identity);
-        appliedA4 = true;
+        AppliedA4 = true;
         ProjectileIndex = 3;
     }
     #endregion
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            actualhealth -= 10;
+            healthUI.fillAmount = actualhealth / 100f;
+            if( actualhealth <= 0)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            // Writing data to send over the network
+            stream.SendNext(transform.position);
+            stream.SendNext(actualhealth);
+        }
+        else
+        {
+            // Reading data received from the network
+            transform.position = (Vector3)stream.ReceiveNext();
+            actualhealth = (float)stream.ReceiveNext();
+
+        }
+    }
 }
