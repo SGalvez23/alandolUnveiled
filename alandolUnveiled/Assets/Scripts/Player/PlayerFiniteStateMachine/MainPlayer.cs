@@ -27,9 +27,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public LineRenderer LineRenderer { get; private set; }
-    public MiloAudioClips AudioClips { get; private set; } 
-    PhotonView view;
+    public MiloAudioClips AudioClips { get; private set; }
     public CheckpointManager CheckpointManager { get; private set; }
+    private AttackDetails attackDetails;
+    PhotonView view;
 
     #endregion
 
@@ -53,12 +54,14 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public PlayerData playerData;
 
     private Vector2 workspace;
+
+    public float actualHealth;
+    public int actualLives;
     #endregion
 
     #region Abilities
     public List<Projectile> projectiles = new List<Projectile>();
     public int ProjectileIndex { get; private set; }
-    public GameObject defProjectile;
     public GameObject A1Prefab;
     public bool appliedA1;
     public GameObject A2Prefab;
@@ -110,15 +113,21 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         LineRenderer = GetComponent<LineRenderer>();
         AudioClips = GetComponentInChildren<MiloAudioClips>();
 
-        view = GetComponent<PhotonView>();
+        actualHealth = playerData.health;
+        actualLives = playerData.vidas;
+        CheckpointManager = FindObjectOfType<CheckpointManager>();
 
         ProjectileIndex = 0;
         ViejonState.ResetA1();
         RojoVivoState.ResetA2();
         CheveState.ResetA3();
         CarnitaAsadaState.ResetA4();
+
         actualhealth = playerData.health;
-        
+
+
+        view = GetComponent<PhotonView>();
+
         StateMachine.Initialize(IdleState);
     }
 
@@ -135,22 +144,27 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 DrawTrajectory();
             }
 
+            if (actualHealth <= 0)
+            {
+                Death();
+            }
+
             if (projectilesThrown > playerData.rojoVivoCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
             if (projectilesThrown > playerData.cheveCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
             if (projectilesThrown > playerData.carnitaCant)
             {
                 ResetProjectile();
-                Debug.Log("se acabou");
+                //Debug.Log("se acabou");
             }
 
 
@@ -217,20 +231,14 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         transform.Rotate(0, 180, 0);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
-    }
-
     public void Death()
     {
-        acutalLives -= 1;
+        actualLives -= 1;
         gameObject.SetActive(false);
-        if (acutalLives >= 0)
+        if (actualLives >= 0)
         {
             CheckpointManager.LoadCheckpoint();
-            actualhealth = 100;
+            actualHealth = 100;
             gameObject.SetActive(true);
         }
         else
@@ -239,6 +247,32 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    public virtual void DamageHop(float velocity)
+    {
+        workspace.Set(velocity, velocity / 3);
+        rb.velocity = workspace;
+    }
+
+    private void Damage(AttackDetails attackDetails)
+    {
+        actualHealth -= attackDetails.damageAmount;
+        DamageHop(playerData.damageHopSpeed);
+
+        if (attackDetails.position.x < transform.position.x)
+        {
+            //knockback
+        }
+        else
+        {
+            //knockback
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groundCheck.transform.position, playerData.groundCheckRadius);
+    }
 
     #endregion
 
@@ -263,7 +297,6 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
         // Instantiate the projectile across the network
         Projectile throwable = PhotonNetwork.Instantiate(projectiles[projectile].name, leftHand.position, Quaternion.identity).GetComponent<Projectile>();
         // Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
-        Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");
         AudioClips.PlayBasicAtkSound();
@@ -293,18 +326,7 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     #region A1
     public void PlaceViejon()
     {
-        GameObject viejon = Instantiate(A1Prefab, viejonCheck.position, Quaternion.identity);
-        Destroy(viejon, 4);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Invoke("Heal", 1);
-    }
-    //modificar, no funciona bien el heal
-    public void Heal()
-    {
-        playerData.health += 10;
+        GameObject viejon = PhotonNetwork.Instantiate(A1Prefab.name, viejonCheck.position, Quaternion.identity);
     }
     #endregion
 
@@ -337,12 +359,10 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (collision.gameObject.CompareTag("Enemigo"))
         {
-            actualhealth -= 10;
-            healthUI.fillAmount = actualhealth / 100f;
-            if( actualhealth <= 0)
-            {
-                PhotonNetwork.Destroy(gameObject);
-            }
+            attackDetails.damageAmount = playerData.touchDamage;
+            attackDetails.position = transform.position;
+
+            collision.transform.SendMessage("Damage", attackDetails);
         }
     }
 
