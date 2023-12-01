@@ -15,6 +15,9 @@ public class Lever : MonoBehaviourPunCallbacks
             photonView.RPC("HideLever", RpcTarget.All);
             // Call the RPC method to destroy the wall
             photonView.RPC("DestroyWall", RpcTarget.All);
+
+            gameObject.SetActive(false);
+            Destroy(wall);
         }
     }
 

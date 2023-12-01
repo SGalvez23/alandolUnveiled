@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591ef0a25514b5241850cf4b83e1509d, type: 3}
   m_Name: A4
   m_EditorClassIdentifier: 
-  cooldownTime: 0
-  activeTime: 0
+  cooldownTime: 2
+  activeTime: 6
+  vfx: {fileID: 0}

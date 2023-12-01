@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         facingDir = 1;
 
         int enemyLayer = LayerMask.NameToLayer("Enemy");
-        Physics.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
+        Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
 
         stateMachine = new FiniteStateMachine();
     }

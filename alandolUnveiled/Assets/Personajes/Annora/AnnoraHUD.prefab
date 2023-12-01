@@ -275,7 +275,7 @@ Canvas:
   m_GameObject: {fileID: 2437975388790440154}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -372,7 +372,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 4234925512338442850}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -441,7 +442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b81f4e17ae8d714aa556679e6046bb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 612fae7eaed40b445a203ef7e677f9f7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -701,7 +702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08c0fe73bd19de44692f13358c1ecfa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1eed0394a36bb3641be1a8ca7fbaa8a2, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -776,7 +777,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b81f4e17ae8d714aa556679e6046bb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 612fae7eaed40b445a203ef7e677f9f7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -851,7 +852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08c0fe73bd19de44692f13358c1ecfa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1eed0394a36bb3641be1a8ca7fbaa8a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

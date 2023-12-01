@@ -19,6 +19,7 @@ public class Frenesi_Ability : AnnoraAbility
 
         frenesiEffect.Play();
         annora.annoraData.movementVel = increasedVel;
+        annora.attackDetails.damageAmount = annora.annoraData.frenesiDmg;
         annora.Anim.SetFloat("basicAtkSpeed", 1.35f);
     }
 
@@ -28,6 +29,7 @@ public class Frenesi_Ability : AnnoraAbility
         
         frenesiEffect.Stop();
         annora.annoraData.movementVel = trueMoveVel;
+        annora.attackDetails.damageAmount = annora.annoraData.basicAtkDmg;
         annora.Anim.SetFloat("basicAtkSpeed", 1);
     }
 

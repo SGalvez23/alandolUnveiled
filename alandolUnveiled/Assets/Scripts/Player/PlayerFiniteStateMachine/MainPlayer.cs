@@ -261,8 +261,8 @@ public class MainPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void Throw(Vector2 vel, int projectile)
     {
         // Instantiate the projectile across the network
-        Projectile throwable = PhotonNetwork.Instantiate(projectiles[projectile].name, leftHand.position, Quaternion.identity).GetComponent<Projectile>();
-        // Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
+        //Projectile throwable = PhotonNetwork.Instantiate(projectiles[projectile].name, leftHand.position, Quaternion.identity).GetComponent<Projectile>();
+        Projectile throwable = Instantiate(projectiles[projectile], leftHand.position, Quaternion.identity);
         Debug.Log(projectile);
         throwable.GetComponent<Rigidbody2D>().velocity = vel;
         Anim.SetTrigger("basicAtk");

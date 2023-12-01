@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   vidas: 2
-  movementVel: 15
+  basicAtkDmg: 15
+  movementVel: 20
   jumpVel: 31
   totalJumps: 1
   coyoteTime: 0.2
@@ -28,7 +29,9 @@ MonoBehaviour:
   camoCoolTime: 2
   frenesiTime: 5
   frenesiCoolTime: 2
+  frenesiDmg: 18
   apretonTime: 10
   apretonCoolTime: 3
   muerteCerteTime: 6
   muerteCoolTime: 2
+  muerteCerteDmg: 40

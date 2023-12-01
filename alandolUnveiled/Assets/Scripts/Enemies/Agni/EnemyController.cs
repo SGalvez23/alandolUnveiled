@@ -9,7 +9,6 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     EnemySpawner enemySpawner;
 
 
-
     // ............ States.....
     private enum State
     {
@@ -57,23 +56,32 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
     private int facingDir;
 
     private float currentHealth;
+    public Slider health;
 
     private Vector2 movement;
 
-    private GameObject enemy;
+    public float damageHopSpeed;
+
     private Rigidbody2D enemyRb;
     private Animator enemyAnim;
 
 
+    [SerializeField]
+    GameObject basicHitbox;
+    AttackDetails attackDetails;
+    int lastDamageDirection;
+
 
     //.....  basic Functions ........
-    private void Awake()
+    private void Start()
     {
         enemySpawner = GameObject.FindObjectOfType<EnemySpawner>(); // Obtener la referencia al EnemySpawner
 
         enemyRb = GetComponent<Rigidbody2D>();
         enemyAnim = GetComponent<Animator>();
 
+        currentHealth = 70f;
+        damageHopSpeed = 10f;
         facingDir = 1;
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
@@ -85,6 +93,13 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
         // Debug.Log(playerDetected);
         if (photonView.IsMine)
         {
+            health.value = currentHealth / 70;
+
+            if(currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+
             switch (currentState)
             {
                 case State.Walking:
@@ -261,19 +276,55 @@ public class EnemyController : MonoBehaviourPunCallbacks, IPunObservable
             // Llamar a la función EnemyDefeated del EnemySpawner
         }
     }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Annora>().actualHealth -= 10;
-        }
-       
+    //public void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        collision.gameObject.GetComponent<Annora>().actualHealth -= 10;
+    //    }
+    //}
 
+    public void CheckAttackHitBox()
+    {
+        Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 2f, whatIsPlayer);
+
+        attackDetails.damageAmount = 8f;
+        attackDetails.position = transform.position;
+
+        foreach (Collider2D collider in detectedObjs)
+        {
+            collider.transform.SendMessage("Damage", attackDetails);
+        }
     }
+
+    public virtual void DamageHop(float velocity)
+    {
+        movement.Set(velocity, velocity * 0.45f);
+        enemyRb.velocity = movement;
+    }
+
+    public virtual void Damage(AttackDetails attackDetails)
+    {
+        currentHealth -= attackDetails.damageAmount;
+
+        DamageHop(damageHopSpeed);
+
+        if (attackDetails.position.x > transform.position.x)
+        {
+            lastDamageDirection = -1;
+        }
+        else
+        {
+            lastDamageDirection = 1;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
 
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+
+        Gizmos.DrawCube(basicHitbox.gameObject.transform.position, new Vector3(1,1,1));
     }
 }

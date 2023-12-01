@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class Annora : MonoBehaviourPunCallbacks, IPunObservable
+public class Annora : MonoBehaviourPunCallbacks
 {
     #region Variables de Estado
     public AnnoraStateMachine StateMachine { get; private set; }
@@ -36,7 +36,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     public PhotonView view;
     public Collider2D Collider { get; private set; }
     public CheckpointManager CheckpointManager { get; private set; }
-    private AttackDetails attackDetails;
+    public AttackDetails attackDetails;
     //public AnnoraAnimStrings AnimStrings { get; private set; }
     #endregion
 
@@ -55,6 +55,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
     public float actualHealth;
     public int acutalLives;
+    int lastDamageDirection;
     #endregion
 
     #region Abilities
@@ -148,7 +149,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     private void Update()
-    {
+    {        
         if(view.IsMine)
         {
             CurrentVelocity = Rb2D.velocity;
@@ -223,6 +224,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     {
         acutalLives -= 1;
         gameObject.SetActive(false);
+        AnimationFinishTrigger();
         if (acutalLives >= 0)
         {
             CheckpointManager.LoadCheckpoint();
@@ -235,7 +237,7 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void CheckAttackHitBox()
+    public void CheckAttackHitBox()
     {
         Collider2D[] detectedObjs = Physics2D.OverlapCircleAll(basicHitbox.transform.position, 5f, enemies);
 
@@ -244,21 +246,31 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
         foreach(Collider2D collider in detectedObjs)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            if (!collider.isTrigger)
+            {
+                collider.transform.SendMessage("Damage", attackDetails);
+            }
         }
     }
 
-    private void Damage(AttackDetails attackDetails)
+    public virtual void DamageHop(float velocity)
+    {
+        annoraVel.Set(velocity, velocity / 3);
+        Rb2D.velocity = annoraVel;
+    }
+
+    public void Damage(AttackDetails attackDetails)
     {
         actualHealth -= attackDetails.damageAmount;
+        DamageHop(12f);
 
-        if (attackDetails.position.x < transform.position.x)
+        if (attackDetails.position.x > transform.position.x)
         {
-            //knockback
+            lastDamageDirection = -1;
         }
         else
         {
-            //knockback
+            lastDamageDirection = 1;
         }
     }
     #endregion
@@ -337,15 +349,15 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
 
     #region A1
 
-    /*public void Camo()
+    public void CamoMask()
     {
-        GetComponent<SpriteRenderer>().material = A1Mat;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 8, true);
     }
 
-    public void RmCamo()
+    public void RmCamoMask()
     {
-        GetComponent<SpriteRenderer>().material = DefMat;
-    }*/
+        Physics2D.IgnoreLayerCollision(gameObject.layer, 8, false);
+    }
     #endregion
 
     #region A2
@@ -370,39 +382,39 @@ public class Annora : MonoBehaviourPunCallbacks, IPunObservable
     #region A4
 
     #endregion
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemigo"))
-        {
-            actualHealth -= 10;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemigo"))
+    //    {
+    //        actualHealth -= 10;
+    //    }
+    //}
 
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemigo"))
-        {
-            collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
-        }
+    //public void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemigo"))
+    //    {
+    //        collision.gameObject.GetComponent<DamagableEnemies>().TakeDamage(10);
+    //    }
             
-    }
+    //}
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            // Writing data to send over the network
-            stream.SendNext(transform.position);
-            stream.SendNext(actualHealth);
-        }
-        else
-        {
-            // Reading data received from the network
-            transform.position = (Vector3)stream.ReceiveNext();
-            actualHealth = (float)stream.ReceiveNext();
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        // Writing data to send over the network
+    //        stream.SendNext(transform.position);
+    //        stream.SendNext(actualHealth);
+    //    }
+    //    else
+    //    {
+    //        // Reading data received from the network
+    //        transform.position = (Vector3)stream.ReceiveNext();
+    //        actualHealth = (float)stream.ReceiveNext();
 
-        }
-    }
+    //    }
+    //}
 
 }

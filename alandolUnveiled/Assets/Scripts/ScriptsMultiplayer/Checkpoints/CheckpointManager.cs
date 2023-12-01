@@ -41,13 +41,28 @@ public class CheckpointManager : MonoBehaviourPun
 
             photonView.RPC("RPC_SaveCheckpoint", RpcTarget.AllBuffered, jsonData);
         }
+        else
+        {
+            PlayerData data = new PlayerData
+            {
+                playerX = player.transform.position.x,
+                playerY = player.transform.position.y
+            };
+
+            string jsonData = JsonUtility.ToJson(data);
+            File.WriteAllText(path, jsonData);
+        }
     }
 
     public void LoadCheckpoint()
     {
         if (photonView.IsMine)
         {
-            photonView.RPC("RPC_LoadCheckpoint", RpcTarget.AllBuffered);
+            //photonView.RPC("RPC_LoadCheckpoint", RpcTarget.AllBuffered);
+            string jsonData = File.ReadAllText(path);
+            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
+
+            player.position = new Vector2(data.playerX, data.playerY);
         }
     }
 

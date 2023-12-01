@@ -53,7 +53,10 @@ public class MeleeAttackState : AttackState
 
         foreach(Collider2D collider in detectedObjs)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            if (!collider.isTrigger)
+            {
+                collider.transform.SendMessage("Damage", attackDetails);
+            }
         }
     }
 }

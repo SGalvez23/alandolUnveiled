@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5421d6d1ed4bdbc44ba40a23853527aa, type: 3}
   m_Name: A1
   m_EditorClassIdentifier: 
-  cooldownTime: 6
-  activeTime: 3
+  cooldownTime: 2
+  activeTime: 4
   CamoMat: {fileID: 2100000, guid: 0aee4b10ab78caf4096f13b95dfc04a4, type: 2}
   DefMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  trueMoveVel: 21.97
-  increasedVel: 28.560999
+  trueMoveVel: 20
+  increasedVel: 26

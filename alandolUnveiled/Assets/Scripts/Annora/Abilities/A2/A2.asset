@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7c379bc0a903f4790580227254bae1, type: 3}
   m_Name: A2
   m_EditorClassIdentifier: 
-  cooldownTime: 12
+  cooldownTime: 2
   activeTime: 5
-  trueMoveVel: 15
-  increasedVel: 22.5
+  trueMoveVel: 20
+  increasedVel: 30
   vfx: {fileID: 4805804082660000818, guid: 162fd230c63f2b5498d95df8a18522c7, type: 3}

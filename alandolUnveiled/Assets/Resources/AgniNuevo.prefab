@@ -149,6 +149,9 @@ MonoBehaviour:
   player: {fileID: 0}
   attackRange: 2
   attackRate: 1
+  health: {fileID: 7736088772971425970}
+  damageHopSpeed: 0
+  basicHitbox: {fileID: 7936583199250726454}
 --- !u!212 &4364495088421476928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -210,7 +213,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3770427670283870700}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: affba792f8a016444ba7f8006be0dfe1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -435,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 4480692372969999735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -5.98, z: 0}
+  m_LocalPosition: {x: 1.25, y: -5.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -695,7 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146431092435380021}
   - component: {fileID: 206321286011474942}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 167235550708359794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 729714549354796287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.8, z: 0}
+  m_LocalPosition: {x: 3, y: -5.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6281429107774994769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7890264982760529619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeleeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656047097747070160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4167626173651742272}
   - component: {fileID: 3913910515802648737}
   - component: {fileID: -9021991992558469411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solstice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,6 +350,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 421522872200637288}
   - {fileID: 3913910515802648737}
+  - {fileID: -9021991992558469411}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
